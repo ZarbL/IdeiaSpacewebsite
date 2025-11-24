@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Connecting the World through Space Technology",
+    "subtitle": "We transform ideas into innovative space solutions, offering next-generation global connectivity.",
+    "button": "Watch video"
+  },
+  "challenge": {
+    "title": "The Space Challenge",
+    "button": "Learn More"
+  },
+  "cta": {
+    "title": "Ready to revolutionize your connectivity?",
+    "subtitle": "Join thousands of companies that already trust IdeiaSpace",
+    "button": "Contact Us"
+  },
+  "services": {
+    "spaceChallenge": {
+      "title": "The Space Challenge: From Classroom to Orbit",
+      "description": "The Space Challenge is an Ideia Space project that connects the universe to the classroom. We transform students into protagonists, taking them from mission conception to launching a real satellite.",
+      "button": "See our impact"
+    }
+  }
+}

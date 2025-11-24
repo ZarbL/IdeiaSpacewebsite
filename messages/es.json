@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "services": "Servicios",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "Conectando el Mundo a través de la Tecnología Espacial",
+    "subtitle": "Transformamos ideas en soluciones espaciales innovadoras, ofreciendo conectividad global de próxima generación.",
+    "button": "Ver video"
+  },
+  "challenge": {
+    "title": "El Desafío Espacial",
+    "button": "Saber Más"
+  },
+  "cta": {
+    "title": "¿Listo para revolucionar tu conectividad?",
+    "subtitle": "Únete a miles de empresas que ya confían en IdeiaSpace",
+    "button": "Contáctanos"
+  },
+  "services": {
+    "spaceChallenge": {
+      "title": "El Desafío Espacial: Del Aula a la Órbita",
+      "description": "El Desafío Espacial es un proyecto de Ideia Space que conecta el universo con el aula. Transformamos a los estudiantes en protagonistas, llevándolos desde la concepción de una misión hasta el lanzamiento de un satélite real.",
+      "button": "Vea nuestro impacto"
+    }
+  }
+}
