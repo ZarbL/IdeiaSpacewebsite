@@ -19,11 +19,109 @@
     "subtitle": "Únete a miles de empresas que ya confían en IdeiaSpace",
     "button": "Contáctanos"
   },
+  "technologies": {
+    "title": "Nuestras Tecnologías",
+    "description": "Desarrollamos soluciones innovadoras que conectan el espacio con el aula",
+    "button": "Saber Más",
+    "ideiaForward": {
+      "title": "IdeiaForward",
+      "description": "Tecnología de vanguardia para conectividad espacial y educación"
+    }
+  },
   "services": {
     "spaceChallenge": {
       "title": "El Desafío Espacial: Del Aula a la Órbita",
       "description": "El Desafío Espacial es un proyecto de Ideia Space que conecta el universo con el aula. Transformamos a los estudiantes en protagonistas, llevándolos desde la concepción de una misión hasta el lanzamiento de un satélite real.",
       "button": "Vea nuestro impacto"
+    },
+    "whySpaceChallenge": {
+      "title": "¿Por qué un Desafío Espacial?",
+      "description1": "La educación brasileña presenta un bajo rendimiento en áreas STEM (Ciencia, Tecnología, Ingeniería y Matemáticas). Al mismo tiempo, el sector espacial está en expansión y enfrenta una escasez de profesionales cualificados.",
+      "description2": "Creemos que la fascinación por el espacio puede ser la chispa para una experiencia de aprendizaje atractiva. Utilizamos la misión espacial como herramienta para capacitar a los estudiantes para la economía del futuro."
+    },
+    "whatIsChallenge": {
+      "title": "¿Qué es el Desafío Espacial?",
+      "description": "Se trata de una competencia de proyectos de Misión Espacial dirigida a estudiantes de secundaria (14 a 18 años). El proyecto está diseñado para un año e impacta a diferentes grupos de estudiantes en etapas progresivas:"
+    },
+    "stats": {
+      "oneYear": "1 Año",
+      "initialStudents": "Estudiantes Iniciales",
+      "selectedStudents": "Estudiantes Seleccionados",
+      "projectDuration": "Duración Total del Proyecto"
+    },
+    "methodology": {
+      "title": "Nuestra Metodología: Aprendiendo en la Práctica",
+      "description": "Nuestra filosofía se basa en el Aprendizaje Basado en Proyectos (ABP) y el concepto \"Hands On\". El Desafío Espacial está estructurado en un camino pedagógico de 5 pasos:",
+      "steps": {
+        "conceive": {
+          "title": "Conceptualizar",
+          "description": "Los estudiantes definen el alcance y los objetivos de la misión. Responden: '¿Qué problema resolverá mi misión?'."
+        },
+        "design": {
+          "title": "Diseñar",
+          "description": "Los equipos detallan cómo será la misión espacial y qué recursos serán necesarios."
+        },
+        "build": {
+          "title": "Construir",
+          "description": "Los estudiantes exploran el kit de desarrollo de satélites (SMT) y llevan la misión del papel a la realidad."
+        },
+        "launch": {
+          "title": "Lanzar",
+          "description": "Los estudiantes seleccionados construyen el satélite orbital, realizan pruebas y lo preparan para el lanzamiento."
+        },
+        "apply": {
+          "title": "Aplicar",
+          "description": "Con el satélite en órbita, los estudiantes utilizan sus datos para resolver el problema identificado en la concepción de la misión."
+        }
+      }
+    },
+    "ecosystem": {
+      "title": "Ecosistema de Aprendizaje Completo",
+      "impact": {
+        "title": "Nuestro Impacto Comprobado",
+        "students": "+1.000 Estudiantes Capacitados",
+        "studentsDesc": "Hemos formado más de mil estudiantes en tecnología espacial",
+        "teachers": "+140 Profesores Capacitados",
+        "teachersDesc": "Profesores capacitados en metodologías innovadoras",
+        "satellites": "+8 Satélites Desarrollados",
+        "satellitesDesc": "Satélites diseñados y construidos por nuestros estudiantes",
+        "countries": "5+ Países Impactados",
+        "countriesDesc": "Llevando educación espacial al mundo"
+      },
+      "testimonials": {
+        "title": "Lo que dicen nuestros estudiantes",
+        "roseno": {
+          "name": "Roseno Gonçalves",
+          "message": "Tuve la oportunidad de participar en un curso de Ideia Space... Logramos trabajar con Arduino y ESP como plataformas de prototipado para sensores... Fue muy divertido y esclarecedor."
+        },
+        "mariana": {
+          "name": "Mariana Taveira",
+          "message": "Participé en el curso de satélites para estudiantes de secundaria... Con la ayuda de ingenieros, diseñamos nuestra misión espacial, con el objetivo de resolver problemas reales con nanosatélites. Fue una experiencia increíble que amplió mis horizontes en el área espacial."
+        }
+      }
     }
+  },
+  "leadership": {
+    "title": "Conozca el Liderazgo de Ideia Space",
+    "description": "Somos un socio dedicado en la formación de la futura fuerza laboral para el sector espacial. Fundada en 2022 por especialistas con experiencia en la Agencia Espacial Brasileña y +25 años de experiencia combinada.",
+    "ceo": "CEO",
+    "coo": "COO",
+    "cpo": "CPO",
+    "cto": "CTO",
+    "cpi": "CPI (Piucho)"
+  },
+  "contact": {
+    "title": "Contáctenos",
+    "subtitle": "¿Vamos a revolucionar la educación con esta Idea?",
+    "description": "¡Estamos listos para transformar la educación espacial. Hable con nosotros!",
+    "form": {
+      "heading": "Contáctenos",
+      "name": "Nombre",
+      "email": "Email",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "send": "Enviar Mensaje"
+    },
+    "whatsapp": "WhatsApp"
   }
 }

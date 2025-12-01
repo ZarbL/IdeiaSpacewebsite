@@ -81,3 +81,329 @@ html {
 .animate-slow-zoom {
   animation: slowZoom 100s linear infinite alternate;
 }
+
+/* Hide scrollbar for carousel */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Methodology Card Styles */
+.methodology-card-wrapper {
+  flex-shrink: 0;
+}
+
+.methodology-card {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  background: var(--card-color, mediumturquoise);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.methodology-card-front {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 0.5s ease;
+}
+
+.methodology-card::before,
+.methodology-card::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.5s;
+  z-index: 10;
+}
+
+.methodology-card::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.methodology-card::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.methodology-card:hover::before,
+.methodology-card:hover::after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 0.5s;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.methodology-card:hover::after {
+  content: attr(data-description);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.methodology-card:hover .methodology-card-front {
+  opacity: 0.3;
+}
+
+/* Planet Animation Styles */
+.planets {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+#star {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(255, 170, 0);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: bouncingStar 4s infinite;
+  z-index: 0;
+}
+
+#starShadow {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  background-color: rgb(255, 170, 0);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  filter: blur(5px);
+  opacity: 0.3;
+  animation: shadowAnimation 4s infinite;
+  z-index: 0;
+}
+
+@keyframes bouncingStar {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  10% {
+    transform: translate(-50%, -30%);
+  }
+  20% {
+    transform: translate(-50%, -50%);
+  }
+  30% {
+    transform: translate(-50%, -30%);
+  }
+  40% {
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+  }
+  50% {
+    width: 0px;
+    height: 0px;
+  }
+  90% {
+    width: 0px;
+    height: 0px;
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@keyframes shadowAnimation {
+  0% {
+    opacity: 0.1;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  30% {
+    opacity: 0.4;
+  }
+  40% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+#blackHole {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(0, 0, 0);
+  outline: orange solid 5px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: bouncingBlackHole 4s infinite;
+  z-index: 0;
+}
+
+@keyframes bouncingBlackHole {
+  0% {
+    height: 0px;
+    width: 0px;
+  }
+  40% {
+    width: 0px;
+    height: 0px;
+  }
+  50% {
+    width: 50px;
+    height: 50px;
+  }
+  90% {
+    width: 50px;
+    height: 50px;
+  }
+  100% {
+    width: 0px;
+    height: 0px;
+  }
+}
+
+#blackHoleDisk1 {
+  position: absolute;
+  width: 68px;
+  height: 68px;
+  clip-path: inset(50% 0 0 0);
+  border: black 10px solid;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(70deg);
+  animation: diskAn 4s infinite;
+  z-index: 0;
+}
+
+#blackHoleDisk2 {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  clip-path: inset(0 0 50% 0);
+  border: rgb(245, 174, 8) 10px solid;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(55deg);
+  animation: diskAn 4s infinite;
+  z-index: 0;
+}
+
+@keyframes diskAn {
+  0% {
+    height: 0px;
+    width: 0px;
+    border: orange 0px solid;
+  }
+  40% {
+    width: 0px;
+    height: 0px;
+    border: orange 0px solid;
+  }
+  50% {
+    width: 88px;
+    height: 88px;
+    border: orange 18px solid;
+  }
+  90% {
+    width: 88px;
+    height: 88px;
+    border: orange 18px solid;
+  }
+  100% {
+    width: 0px;
+    height: 0px;
+    border: orange 0px solid;
+  }
+}
+
+#planet {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  animation: planetAn 4s infinite;
+  z-index: 0;
+}
+
+@keyframes planetAn {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px);
+    z-index: 1;
+  }
+  50% {
+    opacity: 0;
+    transform: translate(0px, 0px);
+    z-index: 1;
+  }
+  58% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+    transform: translate(100px, 40px);
+    z-index: 1;
+  }
+  71% {
+    z-index: 0;
+  }
+  90% {
+    z-index: 0;
+    opacity: 1;
+    transform: translate(-10px, 70px);
+  }
+  100% {
+    transform: translate(-10px, 70px);
+    opacity: 0;
+  }
+}

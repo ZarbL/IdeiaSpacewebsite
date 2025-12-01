@@ -49,10 +49,9 @@ export default async function LocaleLayout({
       <body className={`${robotoCondensed.className} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <Header />
-          <main className="min-h-screen">
+          <main>
             {children}
           </main>
-          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -19,11 +19,109 @@
     "subtitle": "Join thousands of companies that already trust IdeiaSpace",
     "button": "Contact Us"
   },
+  "technologies": {
+    "title": "Our Technologies",
+    "description": "We develop innovative solutions that connect space to the classroom",
+    "button": "Learn More",
+    "ideiaForward": {
+      "title": "IdeiaForward",
+      "description": "Cutting-edge technology for space connectivity and education"
+    }
+  },
   "services": {
     "spaceChallenge": {
       "title": "The Space Challenge: From Classroom to Orbit",
       "description": "The Space Challenge is an Ideia Space project that connects the universe to the classroom. We transform students into protagonists, taking them from mission conception to launching a real satellite.",
       "button": "See our impact"
+    },
+    "whySpaceChallenge": {
+      "title": "Why a Space Challenge?",
+      "description1": "Brazilian education shows low performance in STEM areas (Science, Technology, Engineering and Mathematics). At the same time, the space sector is expanding and faces a shortage of qualified professionals.",
+      "description2": "We believe that the fascination with space can be the spark for an engaging learning experience. We use the space mission as a tool to empower students for the economy of the future."
+    },
+    "whatIsChallenge": {
+      "title": "What is the Space Challenge?",
+      "description": "It is a Space Mission project competition aimed at high school students (14 to 18 years old). The project is designed for one year and impacts different groups of students in progressive stages:"
+    },
+    "stats": {
+      "oneYear": "1 Year",
+      "initialStudents": "Initial Students",
+      "selectedStudents": "Selected Students",
+      "projectDuration": "Total Project Duration"
+    },
+    "methodology": {
+      "title": "Our Methodology: Learning by Doing",
+      "description": "Our philosophy is based on Project-Based Learning (PBL) and the \"Hands On\" concept. The Space Challenge is structured in a 5-step pedagogical path:",
+      "steps": {
+        "conceive": {
+          "title": "Conceive",
+          "description": "Students define the scope and objectives of the mission. They answer: 'What problem will my mission solve?'."
+        },
+        "design": {
+          "title": "Design",
+          "description": "Teams detail what the space mission will be like and what resources will be needed."
+        },
+        "build": {
+          "title": "Build",
+          "description": "Students explore the satellite development kit (SMT) and bring the mission to life."
+        },
+        "launch": {
+          "title": "Launch",
+          "description": "Selected students build the orbital satellite, conduct tests, and prepare it for launch."
+        },
+        "apply": {
+          "title": "Apply",
+          "description": "With the satellite in orbit, students use its data to solve the problem identified in the mission conception."
+        }
+      }
+    },
+    "ecosystem": {
+      "title": "Complete Learning Ecosystem",
+      "impact": {
+        "title": "Our Proven Impact",
+        "students": "+1,000 Trained Students",
+        "studentsDesc": "We've trained over a thousand students in space technology",
+        "teachers": "+140 Trained Teachers",
+        "teachersDesc": "Teachers trained in innovative methodologies",
+        "satellites": "+8 Satellites Developed",
+        "satellitesDesc": "Satellites designed and built by our students",
+        "countries": "5+ Countries Impacted",
+        "countriesDesc": "Bringing space education to the world"
+      },
+      "testimonials": {
+        "title": "What our students say",
+        "roseno": {
+          "name": "Roseno Gonçalves",
+          "message": "I had the opportunity to participate in an Ideia Space course... We were able to work with Arduino and ESP as prototyping platforms for sensors... It was very fun and enlightening."
+        },
+        "mariana": {
+          "name": "Mariana Taveira",
+          "message": "I participated in the satellite course for high school students... With the help of engineers, we designed our space mission, aiming to solve real problems with nanosatellites. It was an incredible experience that broadened my horizons in the space area."
+        }
+      }
     }
+  },
+  "leadership": {
+    "title": "Meet the Ideia Space Leadership",
+    "description": "We are a dedicated partner in training the future workforce for the space sector. Founded in 2022 by specialists with experience at the Brazilian Space Agency and +25 years of combined experience.",
+    "ceo": "CEO",
+    "coo": "COO",
+    "cpo": "CPO",
+    "cto": "CTO",
+    "cpi": "CPI (Piucho)"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Ready to revolutionize education with this Idea?",
+    "description": "We are ready to transform space education. Talk to us!",
+    "form": {
+      "heading": "Get In Touch",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message"
+    },
+    "whatsapp": "WhatsApp"
   }
 }

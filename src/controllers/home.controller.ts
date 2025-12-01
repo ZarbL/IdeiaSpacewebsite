@@ -18,6 +18,15 @@ export class HomeController {
         buttonText: t('challenge.button'),
         buttonLink: '/services',
       },
+      technologies: {
+        title: t('technologies.title'),
+        description: t('technologies.description'),
+        buttonText: t('technologies.button'),
+        ideiaForward: {
+          title: t('technologies.ideiaForward.title'),
+          description: t('technologies.ideiaForward.description'),
+        },
+      },
       cta: {
         title: t('cta.title'),
         subtitle: t('cta.subtitle'),
