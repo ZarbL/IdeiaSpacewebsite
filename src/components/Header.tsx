@@ -35,7 +35,7 @@ export default function Header() {
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center">
             <Image 
-              src="/vetorizada.png" 
+              src="/assets/vetorizada.png" 
               alt="IdeiaSpace" 
               width={300}
               height={100}
