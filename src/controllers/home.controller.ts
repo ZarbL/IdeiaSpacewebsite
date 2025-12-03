@@ -31,7 +31,7 @@ export class HomeController {
         title: t('cta.title'),
         subtitle: t('cta.subtitle'),
         buttonText: t('cta.button'),
-        buttonLink: '/contact',
+        buttonLink: '/services#methodology',
       },
     };
   }

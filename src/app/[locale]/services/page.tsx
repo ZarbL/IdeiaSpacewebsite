@@ -33,7 +33,7 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
               {t('spaceChallenge.description')}
             </p>
             <Link
-              href={`/${locale}/contact`}
+              href={`#methodology`}
               className="group flex items-center gap-3 hover:opacity-90 transition-opacity font-medium text-lg"
             >
               <span className="text-white">{t('spaceChallenge.button')}</span>
@@ -119,7 +119,7 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
       </section>
 
       {/* Fourth Section - Methodology */}
-      <section className="h-screen w-full relative bg-black">
+      <section id="methodology" className="h-screen w-full relative bg-black">
         {/* Video Background */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
           <video
