@@ -6,9 +6,10 @@
     "contact": "Contato"
   },
   "hero": {
-    "title": "Conectando o mundo com o Espaço",
+    "title": "Democratizando o Acesso ao Espaço",
     "subtitle": "",
-    "button": "Assistir vídeo"
+    "button": "Assistir vídeo",
+    "aboutButton": "Sobre Nós"
   },
   "challenge": {
     "title": "O Desafio Espacial",
@@ -52,7 +53,7 @@
   },
   "services": {
     "spaceChallenge": {
-      "title": "O Desafio Espacial: Da Sala de Aula à Órbita",
+      "title": "O Desafio Espacial",
       "description": "O Desafio Espacial é um projeto da Ideia Space que conecta o universo à sala de aula. Transformamos alunos em protagonistas, levando-os desde a concepção de uma missão até o lançamento de um satélite real.",
       "button": "Veja nosso impacto"
     },
@@ -99,6 +100,15 @@
     },
     "ecosystem": {
       "title": "Ecossistema de Aprendizagem Completo",
+      "items": [
+        "6 horas de Treinamento para Mentores e Professores",
+        "40 Planos de Aula e Guias do Professor",
+        "550 acessos à Plataforma de Conteúdos",
+        "110 Kits de Satélite de Treinamento (SMT)",
+        "1 Kit de Construção de Satélite Orbital (PocketQube)",
+        "1 Lançamento de um satélite PocketQube",
+        "40 horas de suporte online para Professores"
+      ],
       "impact": {
         "title": "Nosso Impacto Comprovado",
         "students": "+1.000 Alunos Capacitados",
@@ -126,10 +136,10 @@
   "leadership": {
     "title": "Conheça a Liderança da Ideia Space",
     "description": "Somos um parceiro dedicado na formação da futura força de trabalho para o setor espacial. Fundada em 2022 por especialistas com experiência na Agência Espacial Brasileira e +25 anos de experiência combinada.",
-    "ceo": "CEO",
-    "coo": "COO",
-    "cpo": "CPO",
-    "cto": "CTO",
+    "ceo": "Co-CEO",
+    "coo": "Co-CEO",
+    "cpo": "CPO (Produto)",
+    "cto": "CTO (Tecnologia)",
     "cpi": "CPI (Piucho)"
   },
   "contact": {
@@ -146,5 +156,17 @@
       "sending": "Enviando..."
     },
     "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "description": "Transformando ideias em soluções espaciais inovadoras. Conectando o mundo através da tecnologia.",
+    "quickLinks": "Links Rápidos",
+    "about": "Sobre Nós",
+    "services": "Serviços",
+    "technologies": "Tecnologias",
+    "contact": "Contato",
+    "followUs": "Siga-nos",
+    "rights": "Todos os direitos reservados.",
+    "terms": "Termos de Uso",
+    "privacy": "Privacidade"
   }
 }

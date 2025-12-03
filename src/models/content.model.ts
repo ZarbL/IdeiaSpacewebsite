@@ -6,6 +6,7 @@ export interface HeroContent {
   videoSrc: string;
   buttonText: string;
   buttonLink: string;
+  aboutButton: string;
 }
 
 export interface ChallengeContent {

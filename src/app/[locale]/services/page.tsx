@@ -19,7 +19,7 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
       <section 
         className="min-h-screen w-full relative flex items-center"
         style={{
-          backgroundImage: 'url(/assets/homedesafioespacial.png)',
+          backgroundImage: 'url(/assets/transporter15.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'

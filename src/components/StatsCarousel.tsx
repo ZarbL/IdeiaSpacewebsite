@@ -15,24 +15,21 @@ export default function StatsCarousel({ locale }: StatsCarouselProps) {
     {
       number: '500',
       title: t('initialStudents'),
-      background: '/assets/carrosel1.png'
     },
     {
       number: '30',
       title: t('selectedStudents'),
-      background: '/assets/carrosel2.png'
     },
     {
       number: t('oneYear'),
       title: t('projectDuration'),
-      background: '/assets/carrosel3.png'
     }
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 4000); // Muda a cada 4 segundos
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
@@ -50,9 +47,19 @@ export default function StatsCarousel({ locale }: StatsCarouselProps) {
   };
 
   return (
-    <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+    <div className="relative w-full flex justify-center">
+      {/* Keyframe animation */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `
+      }} />
+
       {/* Card Container */}
-      <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+      <div className="relative overflow-hidden" style={{ width: '280px' }}>
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -64,23 +71,60 @@ export default function StatsCarousel({ locale }: StatsCarouselProps) {
                   : 'opacity-0 translate-x-full absolute inset-0'
             }`}
           >
-            {/* Background Image */}
+            {/* Animated Card */}
             <div 
-              className="relative w-full bg-cover bg-center h-64 sm:h-72 md:h-80 lg:h-96"
+              className="group relative cursor-pointer overflow-hidden flex items-center justify-center"
               style={{
-                backgroundImage: `url(${slide.background})`,
+                width: '280px',
+                height: '320px',
+                background: '#171717',
+                boxShadow: '0px 0px 3px 1px #00000088'
               }}
             >
-              {/* Light overlay for better text visibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
+              {/* Rotating gradient border (hidden by default, visible on hover) */}
+              <div 
+                className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  width: '80px',
+                  height: '360px',
+                  background: 'linear-gradient(#ff2288, #387ef0)',
+                  animation: 'rotation 8s infinite linear',
+                  animationPlayState: 'paused'
+                }}
+                onMouseEnter={(e) => {
+                  const target = e.currentTarget as HTMLDivElement;
+                  target.style.animationPlayState = 'running';
+                }}
+                onMouseLeave={(e) => {
+                  const target = e.currentTarget as HTMLDivElement;
+                  target.style.animationPlayState = 'paused';
+                }}
+              />
               
-              {/* Content */}
-              <div className="relative h-full flex flex-col items-center justify-center text-center px-4 sm:px-6">
-                <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-2 sm:mb-3 md:mb-4" 
-                    style={{ color: '#B8377D' }}>
+              {/* Inner content */}
+              <div 
+                className="relative z-10 flex flex-col items-center justify-center rounded-md p-5"
+                style={{
+                  width: '276px',
+                  height: '316px',
+                  background: '#171717'
+                }}
+              >
+                {/* Glow effect on hover */}
+                <div 
+                  className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    width: '5px',
+                    height: '50px',
+                    background: 'white',
+                    filter: 'blur(50px)'
+                  }}
+                />
+                
+                <h3 className="text-6xl font-bold mb-4 relative z-10" style={{ color: '#ff2288' }}>
                   {slide.number}
                 </h3>
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-gray-900">
+                <p className="text-xl font-semibold text-white text-center relative z-10">
                   {slide.title}
                 </p>
               </div>
@@ -92,26 +136,26 @@ export default function StatsCarousel({ locale }: StatsCarouselProps) {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"
+        className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 z-10"
         aria-label="Anterior"
       >
-        <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
         </svg>
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 z-10"
         aria-label="Próximo"
       >
-        <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
         </svg>
       </button>
 
       {/* Dots Indicator */}
-      <div className="flex justify-center gap-2 mt-6">
+      <div className="flex justify-center gap-2 mt-6 absolute -bottom-12 left-1/2 -translate-x-1/2">
         {slides.map((_, index) => (
           <button
             key={index}

@@ -6,9 +6,10 @@
     "contact": "Contacto"
   },
   "hero": {
-    "title": "Conectando el mundo con el Espacio",
+    "title": "Democratizando el Acceso al Espacio",
     "subtitle": "",
-    "button": "Ver video"
+    "button": "Ver vídeo",
+    "aboutButton": "Sobre Nosotros"
   },
   "challenge": {
     "title": "El Desafío Espacial",
@@ -52,7 +53,7 @@
   },
   "services": {
     "spaceChallenge": {
-      "title": "El Desafío Espacial: Del Aula a la Órbita",
+      "title": "El Desafío Espacial",
       "description": "El Desafío Espacial es un proyecto de Ideia Space que conecta el universo con el aula. Transformamos a los estudiantes en protagonistas, llevándolos desde la concepción de una misión hasta el lanzamiento de un satélite real.",
       "button": "Vea nuestro impacto"
     },
@@ -99,6 +100,15 @@
     },
     "ecosystem": {
       "title": "Ecosistema de Aprendizaje Completo",
+      "items": [
+        "6 horas de Capacitación para Mentores y Profesores",
+        "40 Planes de Lecciones y Guías del Profesor",
+        "550 accesos a la Plataforma de Contenidos",
+        "110 Kits de Satélite de Entrenamiento (SMT)",
+        "1 Kit de Construcción de Satélite Orbital (PocketQube)",
+        "1 Lanzamiento de un satélite PocketQube",
+        "40 horas de soporte en línea para Profesores"
+      ],
       "impact": {
         "title": "Nuestro Impacto Comprobado",
         "students": "+1.000 Estudiantes Capacitados",
@@ -125,11 +135,11 @@
   },
   "leadership": {
     "title": "Conozca el Liderazgo de Ideia Space",
-    "description": "Somos un socio dedicado en la formación de la futura fuerza laboral para el sector espacial. Fundada en 2022 por especialistas con experiencia en la Agencia Espacial Brasileña y +25 años de experiencia combinada.",
-    "ceo": "CEO",
-    "coo": "COO",
-    "cpo": "CPO",
-    "cto": "CTO",
+    "description": "Somos un socio dedicado en la formación de la futura fuerza laboral para el sector espacial. Fundada en 2022 por expertos con experiencia en la Agencia Espacial Brasileña y +25 años de experiencia combinada.",
+    "ceo": "Co-CEO",
+    "coo": "Co-CEO",
+    "cpo": "CPO (Producto)",
+    "cto": "CTO (Tecnología)",
     "cpi": "CPI (Piucho)"
   },
   "contact": {
@@ -146,5 +156,17 @@
       "sending": "Enviando..."
     },
     "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "description": "Transformando ideas en soluciones espaciales innovadoras. Conectando el mundo a través de la tecnología.",
+    "quickLinks": "Enlaces Rápidos",
+    "about": "Sobre Nosotros",
+    "services": "Servicios",
+    "technologies": "Tecnologías",
+    "contact": "Contacto",
+    "followUs": "Síguenos",
+    "rights": "Todos los derechos reservados.",
+    "terms": "Términos de Uso",
+    "privacy": "Privacidad"
   }
 }

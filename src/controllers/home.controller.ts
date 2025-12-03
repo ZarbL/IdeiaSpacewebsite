@@ -12,6 +12,7 @@ export class HomeController {
         videoSrc: getVideoUrl('ideiaforword.mp4'),
         buttonText: t('hero.button'),
         buttonLink: '/about',
+        aboutButton: t('hero.aboutButton'),
       },
       challenge: {
         title: t('challenge.title'),

@@ -6,9 +6,10 @@
     "contact": "Contact"
   },
   "hero": {
-    "title": "Connecting the world with Space",
+    "title": "Democratizing Access to Space",
     "subtitle": "",
-    "button": "Watch video"
+    "button": "Watch video",
+    "aboutButton": "About Us"
   },
   "challenge": {
     "title": "The Space Challenge",
@@ -52,7 +53,7 @@
   },
   "services": {
     "spaceChallenge": {
-      "title": "The Space Challenge: From Classroom to Orbit",
+      "title": "The Space Challenge",
       "description": "The Space Challenge is an Ideia Space project that connects the universe to the classroom. We transform students into protagonists, taking them from mission conception to launching a real satellite.",
       "button": "See our impact"
     },
@@ -99,6 +100,15 @@
     },
     "ecosystem": {
       "title": "Complete Learning Ecosystem",
+      "items": [
+        "6 hours of Training for Mentors and Teachers",
+        "40 Lesson Plans and Teacher Guides",
+        "550 accesses to the Content Platform",
+        "110 Training Satellite Kits (SMT)",
+        "1 Orbital Satellite Construction Kit (PocketQube)",
+        "1 PocketQube satellite Launch",
+        "40 hours of online support for Teachers"
+      ],
       "impact": {
         "title": "Our Proven Impact",
         "students": "+1,000 Trained Students",
@@ -124,12 +134,12 @@
     }
   },
   "leadership": {
-    "title": "Meet the Ideia Space Leadership",
-    "description": "We are a dedicated partner in training the future workforce for the space sector. Founded in 2022 by specialists with experience at the Brazilian Space Agency and +25 years of combined experience.",
-    "ceo": "CEO",
-    "coo": "COO",
-    "cpo": "CPO",
-    "cto": "CTO",
+    "title": "Meet Ideia Space Leadership",
+    "description": "We are a dedicated partner in training the future workforce for the space sector. Founded in 2022 by experts with experience at the Brazilian Space Agency and +25 years of combined experience.",
+    "ceo": "Co-CEO",
+    "coo": "Co-CEO",
+    "cpo": "CPO (Product)",
+    "cto": "CTO (Technology)",
     "cpi": "CPI (Piucho)"
   },
   "contact": {
@@ -146,5 +156,17 @@
       "sending": "Sending..."
     },
     "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "description": "Transforming ideas into innovative space solutions. Connecting the world through technology.",
+    "quickLinks": "Quick Links",
+    "about": "About Us",
+    "services": "Services",
+    "technologies": "Technologies",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved.",
+    "terms": "Terms of Use",
+    "privacy": "Privacy"
   }
 }
