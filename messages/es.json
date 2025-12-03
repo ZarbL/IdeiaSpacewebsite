@@ -19,10 +19,32 @@
     "subtitle": "Únete a miles de empresas que ya confían en IdeiaSpace",
     "button": "Contáctanos"
   },
+  "about": {
+    "title": "Sobre IdeiaSpace",
+    "description": "¡IdeiaSpace es una empresa brasileña pionera en satélites educacionales en Brasil y en el mundo que tiene satélites en órbita! Conectamos el mundo a través de la tecnología espacial, revolucionando la educación e inspirando a la próxima generación de científicos, ingenieros y exploradores espaciales a través de experiencias reales con tecnología de punta."
+  },
   "technologies": {
     "title": "Nuestras Tecnologías",
     "description": "Desarrollamos soluciones innovadoras que conectan el espacio con el aula",
     "button": "Saber Más",
+    "pageTitle": "Tecnología Real para Aprendizaje Real",
+    "kit": {
+      "title": "Kit de Satélite (Entrenamiento - SMT)",
+      "description": "Distribuido a los estudiantes en la Fase 2 para prototipado de la misión. Incluye subsistemas reales:\n\n• O.B.D.H. (Computadora de Bordo)\n• T.T&C (Comunicación)\n• ADCS (Sistema de Orientación)\n• EPS (Sistema de Energía)\n• Payload (Carga Útil)\n• Sensores (Humedad, Temperatura, Presión, etc.)"
+    },
+    "satellite": {
+      "title": "El Satélite Orbital (PocketQube)",
+      "description": "Construido por los 30 finalistas y lanzado al espacio. Especificaciones:\n\n• Modelo: PocketQube 1P\n• Dimensiones: 50x58x64 mm\n• Masa: 193 g\n• Órbita: LEO (Órbita Baja)\n• Lanzamiento: Asociación con Falcon 9, PSLV, H3."
+    },
+    "platform": {
+      "title": "Plataforma de Programación",
+      "description": "IdeiaSpace proporciona una plataforma completa de programación en bloques para el aprendizaje de software de satélites, dentro de la plataforma el estudiante puede programar y visualizar los datos de cada componente del satélite mediante bloques.",
+      "button": "Acceder a la Plataforma"
+    },
+    "deployer": {
+      "title": "Sistema Deployer",
+      "description": "Sistema de eyección desarrollado para liberar satélites PocketQube en el espacio. Funciona como interfaz entre el cohete y los satélites, garantizando separación segura y controlada en la órbita deseada.\n\n• Capacidad: Múltiples PocketQubes\n• Mecanismo: Eyección por resorte\n• Compatibilidad: Estándar PocketQube\n• Seguridad: Sistema de bloqueo redundante"
+    },
     "ideiaForward": {
       "title": "IdeiaForward",
       "description": "Tecnología de vanguardia para conectividad espacial y educación"

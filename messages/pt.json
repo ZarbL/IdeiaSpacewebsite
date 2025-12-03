@@ -19,10 +19,32 @@
     "subtitle": "Junte-se a milhares de empresas que já confiam na IdeiaSpace",
     "button": "Entre em Contato"
   },
+  "about": {
+    "title": "Sobre o IdeiaSpace",
+    "description": "O IdeiaSpace é uma empresa brasileira pioneira em satélite educacional no Brasil e no mundo que tem satélites em órbita! Conectamos o mundo através da tecnologia espacial, revolucionando a educação e inspirando a próxima geração de cientistas, engenheiros e exploradores espaciais através de experiências reais com tecnologia de ponta."
+  },
   "technologies": {
     "title": "Nossas Tecnologias",
     "description": "Desenvolvemos soluções inovadoras que conectam o espaço à sala de aula",
     "button": "Saiba Mais",
+    "pageTitle": "Tecnologia Real para Aprendizado Real",
+    "kit": {
+      "title": "Kit de Satélite (Treinamento - SMT)",
+      "description": "Distribuído aos alunos na Fase 2 para prototipagem da missão. Inclui subsistemas reais:\n\n• O.B.D.H. (Computador de Bordo)\n• T.T&C (Comunicação)\n• ADCS (Sistema de Orientação)\n• EPS (Sistema de Energia)\n• Payload (Carga Útil)\n• Sensores (Umidade, Temperatura, Pressão, etc.)"
+    },
+    "satellite": {
+      "title": "O Satélite Orbital (PocketQube)",
+      "description": "Construído pelos 30 finalistas e lançado ao espaço. Especificações:\n\n• Modelo: PocketQube 1P\n• Dimensões: 50x58x64 mm\n• Massa: 193 g\n• Órbita: LEO (Órbita Baixa)\n• Lançamento: Parceria com Falcon 9, PSLV, H3."
+    },
+    "platform": {
+      "title": "Plataforma de Programação",
+      "description": "O IdeiaSpace disponibiliza uma plataforma de programação em blocos completa para o aprendizado de software do satélite, dentro da plataforma o aluno consegue programar e visualizar os dados de cada componente do satélite todo por blocos.",
+      "button": "Acessar Plataforma"
+    },
+    "deployer": {
+      "title": "Sistema Deployer",
+      "description": "Sistema de ejeção desenvolvido para liberar satélites PocketQube no espaço. Funciona como interface entre o foguete e os satélites, garantindo separação segura e controlada na órbita desejada.\n\n• Capacidade: Múltiplos PocketQubes\n• Mecanismo: Ejeção por mola\n• Compatibilidade: Padrão PocketQube\n• Segurança: Sistema de travamento redundante"
+    },
     "ideiaForward": {
       "title": "IdeiaForward",
       "description": "Tecnologia de ponta para conectividade espacial e educação"

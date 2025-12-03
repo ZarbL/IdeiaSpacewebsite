@@ -35,20 +35,6 @@ export default function HeroSection({ content }: HeroSectionProps) {
             <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-gray-200 max-w-2xl">
               {content.subtitle}
             </p>
-            {/* Buttons only visible on desktop */}
-            <div className="hidden md:flex items-center gap-4">
-              <Link
-                href={`/${locale}${content.buttonLink}`}
-                className="group flex items-center gap-3 hover:opacity-90 transition-opacity font-medium text-lg"
-              >
-                <span className="flex items-center justify-center w-12 h-12 rounded-full bg-white hover:bg-gray-100 transition-colors shadow-lg">
-                  <svg className="w-5 h-5 text-blue-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z"/>
-                  </svg>
-                </span>
-                <span className="text-white">{content.buttonText}</span>
-              </Link>
-            </div>
           </div>
         </div>
       </div>

@@ -22,8 +22,19 @@ export interface CTAContent {
   buttonLink: string;
 }
 
+export interface TechnologiesContent {
+  title: string;
+  description: string;
+  buttonText: string;
+  ideiaForward: {
+    title: string;
+    description: string;
+  };
+}
+
 export interface PageContent {
   hero: HeroContent;
   challenge: ChallengeContent;
+  technologies: TechnologiesContent;
   cta: CTAContent;
 }

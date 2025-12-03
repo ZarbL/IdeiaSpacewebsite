@@ -19,10 +19,32 @@
     "subtitle": "Join thousands of companies that already trust IdeiaSpace",
     "button": "Contact Us"
   },
+  "about": {
+    "title": "About IdeiaSpace",
+    "description": "IdeiaSpace is a Brazilian pioneer company in educational satellites in Brazil and worldwide with satellites in orbit! We connect the world through space technology, revolutionizing education and inspiring the next generation of scientists, engineers and space explorers through real experiences with cutting-edge technology."
+  },
   "technologies": {
     "title": "Our Technologies",
     "description": "We develop innovative solutions that connect space to the classroom",
     "button": "Learn More",
+    "pageTitle": "Real Technology for Real Learning",
+    "kit": {
+      "title": "Satellite Kit (Training - SMT)",
+      "description": "Distributed to students in Phase 2 for mission prototyping. Includes real subsystems:\n\n• O.B.D.H. (On-Board Computer)\n• T.T&C (Communication)\n• ADCS (Attitude Control System)\n• EPS (Power System)\n• Payload (Payload)\n• Sensors (Humidity, Temperature, Pressure, etc.)"
+    },
+    "satellite": {
+      "title": "Orbital Satellite (PocketQube)",
+      "description": "Built by the 30 finalists and launched into space. Specifications:\n\n• Model: PocketQube 1P\n• Dimensions: 50x58x64 mm\n• Mass: 193 g\n• Orbit: LEO (Low Earth Orbit)\n• Launch: Partnership with Falcon 9, PSLV, H3."
+    },
+    "platform": {
+      "title": "Programming Platform",
+      "description": "IdeiaSpace provides a complete block programming platform for learning satellite software, within the platform students can program and visualize data from each satellite component using blocks.",
+      "button": "Access Platform"
+    },
+    "deployer": {
+      "title": "Deployer System",
+      "description": "Ejection system developed to release PocketQube satellites into space. Works as an interface between the rocket and satellites, ensuring safe and controlled separation in the desired orbit.\n\n• Capacity: Multiple PocketQubes\n• Mechanism: Spring ejection\n• Compatibility: PocketQube standard\n• Safety: Redundant locking system"
+    },
     "ideiaForward": {
       "title": "IdeiaForward",
       "description": "Cutting-edge technology for space connectivity and education"

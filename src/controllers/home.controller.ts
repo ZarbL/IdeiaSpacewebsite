@@ -8,7 +8,7 @@ export class HomeController {
       hero: {
         title: t('hero.title'),
         subtitle: t('hero.subtitle'),
-        videoSrc: '/assets/satellite-orbit.mp4',
+        videoSrc: '/assets/ideiaforword.mp4',
         buttonText: t('hero.button'),
         buttonLink: '/about',
       },

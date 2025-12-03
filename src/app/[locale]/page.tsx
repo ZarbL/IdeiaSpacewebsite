@@ -52,7 +52,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
             </p>
           </div>
 
-          {/* Cards Container - 5 cards side by side */}
+          {/* Cards Container - 4 cards side by side */}
           <div className="flex gap-6 justify-center items-center flex-1">
             <LeadershipCard
               name="Leonardo Souza"
@@ -60,7 +60,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
               image="/assets/LiderLeonardo.png"
               socialLinks={{
                 linkedin: "#",
-                instagram: "#"
+                instagram: "https://www.instagram.com/leojulio23/"
               }}
             />
             <LeadershipCard
@@ -69,7 +69,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
               image="/assets/LiderVictorBatista.png"
               socialLinks={{
                 linkedin: "#",
-                instagram: "#"
+                instagram: "https://www.instagram.com/victor_ribeiro22/"
               }}
             />
             <LeadershipCard
@@ -78,7 +78,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
               image="/assets/LiderMatheus.png"
               socialLinks={{
                 linkedin: "#",
-                instagram: "#"
+                instagram: "https://www.instagram.com/matheussix/"
               }}
             />
             <LeadershipCard
@@ -87,16 +87,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
               image="/assets/LiderRafael.png"
               socialLinks={{
                 linkedin: "#",
-                instagram: "#"
-              }}
-            />
-            <LeadershipCard
-              name="Luis Zarbielli"
-              role={t('leadership.cpi')}
-              image="/assets/LiderLuis.png"
-              socialLinks={{
-                linkedin: "#",
-                instagram: "#"
+                instagram: "https://www.instagram.com/paiva_96/"
               }}
             />
           </div>
@@ -104,7 +95,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
       </section>
 
       {/* Contact Section */}
-      <section className="h-screen w-full relative overflow-hidden snap-start bg-black">
+      <section id="contact" className="h-screen w-full relative overflow-hidden snap-start bg-black">
         {/* Content */}
         <div className="relative z-10 h-full flex flex-col justify-start items-center px-8 md:px-16 lg:px-24 py-24 overflow-y-auto">
           <div className="max-w-4xl text-center mb-12">
@@ -120,7 +111,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
             
             {/* WhatsApp Button */}
             <div className="flex justify-center">
-              <WhatsAppButton phoneNumber="5511999999999" message={t('contact.form.heading')} />
+              <WhatsAppButton phoneNumber="5561991983152" message={t('contact.form.heading')} />
             </div>
           </div>
           
