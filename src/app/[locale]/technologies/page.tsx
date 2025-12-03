@@ -29,15 +29,15 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
         <div className="absolute inset-0 bg-black/50" />
         
         {/* Content */}
-        <div className="relative z-10 h-full flex items-start justify-start px-8 md:px-16 lg:px-24 pt-24">
+        <div className="relative z-10 h-full flex items-start justify-start px-8 md:px-16 lg:px-24 pt-24 overflow-x-auto md:overflow-x-visible">
           <div className="max-w-2xl text-white">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 leading-tight">
               {t('pageTitle')}
             </h1>
             
             {/* Technology Cards */}
-            <div className="flex gap-6">
-              <div>
+            <div className="flex gap-6 min-w-max md:min-w-0">
+              <div className="flex-shrink-0">
                 <h2 className="text-xl md:text-2xl font-bold mb-4">
                   {t('kit.title')}
                 </h2>
@@ -48,7 +48,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
                 />
               </div>
               
-              <div>
+              <div className="flex-shrink-0">
                 <h2 className="text-xl md:text-2xl font-bold mb-4">
                   {t('satellite.title')}
                 </h2>
@@ -59,7 +59,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
                 />
               </div>
               
-              <div>
+              <div className="flex-shrink-0">
                 <h2 className="text-xl md:text-2xl font-bold mb-4">
                   {t('platform.title')}
                 </h2>
@@ -76,17 +76,6 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
                 >
                   {t('platform.button')}
                 </a>
-              </div>
-              
-              <div>
-                <h2 className="text-xl md:text-2xl font-bold mb-4">
-                  {t('deployer.title')}
-                </h2>
-                <TechnologyCard
-                  title=""
-                  image="/assets/deployer.png"
-                  description={t('deployer.description')}
-                />
               </div>
             </div>
           </div>

@@ -50,7 +50,7 @@ export default function StatsCarousel({ locale }: StatsCarouselProps) {
   };
 
   return (
-    <div className="relative w-full max-w-md md:max-w-lg lg:max-w-xl">
+    <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
       {/* Card Container */}
       <div className="relative overflow-hidden rounded-2xl shadow-2xl">
         {slides.map((slide, index) => (
@@ -66,7 +66,7 @@ export default function StatsCarousel({ locale }: StatsCarouselProps) {
           >
             {/* Background Image */}
             <div 
-              className="relative w-full h-80 md:h-96 lg:h-[28rem] bg-cover bg-center"
+              className="relative w-full bg-cover bg-center h-64 sm:h-72 md:h-80 lg:h-96"
               style={{
                 backgroundImage: `url(${slide.background})`,
               }}
@@ -75,12 +75,12 @@ export default function StatsCarousel({ locale }: StatsCarouselProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
               
               {/* Content */}
-              <div className="relative h-full flex flex-col items-center justify-center text-center px-6 md:px-8">
-                <h3 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-4" 
+              <div className="relative h-full flex flex-col items-center justify-center text-center px-4 sm:px-6">
+                <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-2 sm:mb-3 md:mb-4" 
                     style={{ color: '#B8377D' }}>
                   {slide.number}
                 </h3>
-                <p className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-gray-900">
                   {slide.title}
                 </p>
               </div>

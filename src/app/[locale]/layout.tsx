@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   description: "Transforming ideas into innovative space solutions. Cutting-edge technology for global communication.",
   keywords: ["space", "technology", "satellite", "innovation", "communication"],
   authors: [{ name: "IdeiaSpace" }],
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+    viewportFit: "cover",
+  },
   openGraph: {
     title: "IdeiaSpace - Space Technology",
     description: "Transforming ideas into innovative space solutions",

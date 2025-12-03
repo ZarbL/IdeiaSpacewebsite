@@ -44,19 +44,19 @@ export default function ImpactCarousel() {
   ];
 
   return (
-    <div className="w-full overflow-x-auto scrollbar-hide pb-8">
-      <div className="flex gap-6 px-4 min-w-max">
+    <div className="w-full overflow-x-auto scrollbar-hide pb-8 -mx-4 px-4">
+      <div className="flex gap-6 min-w-max">
         {impactData.map((item) => (
           <div 
             key={item.id} 
-            className="methodology-card-wrapper"
+            className="methodology-card-wrapper flex-shrink-0"
           >
             <div 
-              className="methodology-card"
+              className="methodology-card relative"
               style={{ '--card-color': item.color } as React.CSSProperties}
               data-description={`${item.number}\n${item.text}`}
             >
-              <div className="methodology-card-front">
+              <div className="methodology-card-front overflow-hidden rounded-[15px]">
                 {/* Background Image or Video */}
                 {item.isVideo ? (
                   <video
@@ -64,7 +64,7 @@ export default function ImpactCarousel() {
                     loop
                     muted
                     playsInline
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover rounded-[15px]"
                     style={{ zIndex: 0 }}
                   >
                     <source src={item.image} type="video/mp4" />
@@ -74,12 +74,12 @@ export default function ImpactCarousel() {
                     src={item.image}
                     alt={item.text}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-[15px]"
                     style={{ zIndex: 0 }}
                   />
                 )}
                 {/* Overlay escuro para melhor legibilidade */}
-                <div className="absolute inset-0 bg-black/40" style={{ zIndex: 1 }} />
+                <div className="absolute inset-0 bg-black/40 rounded-[15px]" style={{ zIndex: 1 }} />
               </div>
             </div>
           </div>

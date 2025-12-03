@@ -96,12 +96,12 @@ export default function Header() {
               )}
             </div>
 
-            <a
-              href="#contact"
+            <Link
+              href={`/${locale}#contact`}
               className="bg-white text-blue-900 px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors font-semibold"
             >
               {t('contact')}
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -175,13 +175,13 @@ export default function Header() {
               </div>
             </div>
 
-            <a
-              href="#contact"
+            <Link
+              href={`/${locale}#contact`}
               onClick={() => setIsMenuOpen(false)}
               className="px-6 py-4 text-blue-600 hover:bg-blue-50 transition-colors font-semibold"
             >
               {t('contact')}
-            </a>
+            </Link>
           </div>
         </div>
       )}

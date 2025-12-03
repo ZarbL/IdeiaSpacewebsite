@@ -3,6 +3,26 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Responsive spacing scale */
+  --space-xs: clamp(0.5rem, 2vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 3vw, 1rem);
+  --space-md: clamp(1rem, 4vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 5vw, 2rem);
+  --space-xl: clamp(2rem, 6vw, 3rem);
+  --space-2xl: clamp(3rem, 8vw, 4rem);
+  
+  /* Responsive font sizes */
+  --text-xs: clamp(0.75rem, 2vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 2.5vw, 1rem);
+  --text-base: clamp(1rem, 3vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 3.5vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 4vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 4.5vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 5vw, 2.25rem);
+  --text-4xl: clamp(2.25rem, 6vw, 3rem);
+  --text-5xl: clamp(3rem, 7vw, 3.75rem);
+  --text-6xl: clamp(3.75rem, 8vw, 4.5rem);
 }
 
 @theme inline {
@@ -23,11 +43,39 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  
+  /* Support for notch/safe areas on mobile devices */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Prevent horizontal scroll on mobile */
+* {
+  max-width: 100%;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Scroll Snap Smooth Behavior */
 html {
   scroll-behavior: smooth;
+  /* Prevent text size adjustment on orientation change */
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Better touch scrolling on iOS */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Improve tap highlight on mobile */
+a, button, input, textarea, select {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Custom scrollbar for better UX */
@@ -95,21 +143,53 @@ html {
 /* Methodology Card Styles */
 .methodology-card-wrapper {
   flex-shrink: 0;
+  contain: layout style;
 }
 
 .methodology-card {
   position: relative;
-  width: 220px;
-  height: 320px;
+  width: 180px;
+  height: 260px;
   background: var(--card-color, mediumturquoise);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: bold;
   border-radius: 15px;
   cursor: pointer;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .methodology-card {
+    width: 160px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .methodology-card {
+    width: 140px;
+    height: 220px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .methodology-card {
+    width: 200px;
+    height: 290px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .methodology-card {
+    width: 220px;
+    height: 320px;
+  }
 }
 
 .methodology-card-front {
@@ -118,6 +198,7 @@ html {
   height: 100%;
   border-radius: 15px;
   transition: all 0.5s ease;
+  overflow: hidden;
 }
 
 .methodology-card::before,
@@ -162,10 +243,11 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 1.5rem;
   font-size: 14px;
   line-height: 1.5;
   text-align: center;
+  white-space: pre-line;
 }
 
 .methodology-card:hover .methodology-card-front {

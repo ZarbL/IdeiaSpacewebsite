@@ -9,7 +9,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
   const t = await getTranslations('about');
 
   return (
-    <div className="h-screen w-full relative overflow-hidden">
+    <div className="min-h-screen w-full relative overflow-hidden flex items-center">
       {/* Video Background */}
       <video
         autoPlay
@@ -25,21 +25,21 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
       <div className="absolute inset-0 bg-black/50" />
       
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col">
+      <div className="relative z-10 w-full max-w-[1920px] mx-auto flex flex-col py-12 md:py-16">
         {/* Title at top left */}
-        <div className="px-8 md:px-16 lg:px-24 pt-24">
+        <div className="px-4 sm:px-6 md:px-12 lg:px-24 mb-8 md:mb-12">
           <div className="max-w-3xl text-left text-white">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 md:mb-8">
               {t('title')}
             </h1>
-            <p className="text-lg md:text-xl lg:text-2xl text-gray-100 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 leading-relaxed">
               {t('description')}
             </p>
           </div>
         </div>
         
         {/* Social Media Card at center */}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex-1 flex items-center justify-center px-4">
           <SocialMediaCard />
         </div>
       </div>
