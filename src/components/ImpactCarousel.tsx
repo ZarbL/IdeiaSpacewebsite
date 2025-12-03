@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { getVideoUrl } from '@/lib/cloudinary';
 
 export default function ImpactCarousel() {
   const t = useTranslations('services.ecosystem.impact');
@@ -20,7 +21,7 @@ export default function ImpactCarousel() {
       id: 2,
       number: '+140',
       text: t('teachers'),
-      image: '/assets/impactocard2.mp4',
+      image: getVideoUrl('impactocard2.MP4'),
       color: '#7C3AED',
       isVideo: true
     },
@@ -36,7 +37,7 @@ export default function ImpactCarousel() {
       id: 4,
       number: '5+',
       text: t('countries'),
-      image: '/assets/impactocard4.mp4',
+      image: getVideoUrl('impactocard4.mp4'),
       color: '#10B981',
       isVideo: true
     }

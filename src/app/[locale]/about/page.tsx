@@ -1,6 +1,7 @@
 import SocialMediaCard from '@/components/SocialMediaCard';
 import {getTranslations} from 'next-intl/server';
 import {setRequestLocale} from 'next-intl/server';
+import { getVideoUrl } from '@/lib/cloudinary';
 
 export default async function AboutPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
@@ -17,7 +18,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
-        <source src="/assets/space.mp4" type="video/mp4" />
+        <source src={getVideoUrl('space.mp4')} type="video/mp4" />
       </video>
       
       {/* Overlay */}

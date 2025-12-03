@@ -1,5 +1,6 @@
 import {setRequestLocale} from 'next-intl/server';
 import {getTranslations} from 'next-intl/server';
+import { getVideoUrl } from '@/lib/cloudinary';
 import TechnologyCard from '@/components/TechnologyCard';
 
 export default async function TechnologiesPage({params}: {params: Promise<{locale: string}>}) {
@@ -20,7 +21,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/assets/galaxyespiral.mp4" type="video/mp4" />
+            <source src={getVideoUrl('galaxyespiral.mp4')} type="video/mp4" />
           </video>
         </div>
         

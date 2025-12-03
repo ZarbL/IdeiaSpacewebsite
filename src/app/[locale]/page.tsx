@@ -7,6 +7,7 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import ContactForm from '@/components/ContactForm';
 import {getTranslations} from 'next-intl/server';
 import {setRequestLocale} from 'next-intl/server';
+import { getVideoUrl } from '@/lib/cloudinary';
 
 export default async function HomePage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
@@ -34,7 +35,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/assets/nossalideranca.mp4" type="video/mp4" />
+            <source src={getVideoUrl('nossalideranca.mp4')} type="video/mp4" />
           </video>
         </div>
         

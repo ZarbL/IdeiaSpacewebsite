@@ -1,6 +1,7 @@
 import {setRequestLocale} from 'next-intl/server';
 import {getTranslations} from 'next-intl/server';
 import Link from 'next/link';
+import { getVideoUrl } from '@/lib/cloudinary';
 import StatsCarousel from '@/components/StatsCarousel';
 import MethodologyCarousel from '@/components/MethodologyCarousel';
 import EcosystemCard from '@/components/EcosystemCard';
@@ -58,7 +59,7 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/assets/planetaagua.mp4" type="video/mp4" />
+            <source src={getVideoUrl('planetaagua.mp4')} type="video/mp4" />
           </video>
         </div>
         
@@ -129,7 +130,7 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/assets/metodology.mp4" type="video/mp4" />
+            <source src={getVideoUrl('metodology.mp4')} type="video/mp4" />
           </video>
         </div>
         
@@ -166,7 +167,7 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/assets/Terraespaco.mp4" type="video/mp4" />
+            <source src={getVideoUrl('Terraespaco.mp4')} type="video/mp4" />
           </video>
         </div>
         
@@ -208,7 +209,7 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/assets/terranoite.mp4" type="video/mp4" />
+            <source src={getVideoUrl('terranoite.mp4')} type="video/mp4" />
           </video>
         </div>
         

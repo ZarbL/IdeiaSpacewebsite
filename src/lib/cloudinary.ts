@@ -1,17 +1,11 @@
 // Cloudinary helper utilities
 // Get your credentials from: https://console.cloudinary.com/
 
-const CLOUDINARY_CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-
-if (!CLOUDINARY_CLOUD_NAME) {
-  console.warn('⚠️ NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME is not set');
-}
+const CLOUDINARY_CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'dgyueliom';
+const USE_CLOUDINARY = process.env.NEXT_PUBLIC_USE_CLOUDINARY === 'true';
 
 /**
  * Generate Cloudinary URL for videos
- * @param publicId - The public ID of the video in Cloudinary
- * @param options - Transformation options
- * @returns Full Cloudinary URL
  */
 export function getCloudinaryVideoUrl(
   publicId: string,
@@ -51,9 +45,6 @@ export function getCloudinaryVideoUrl(
 
 /**
  * Generate Cloudinary URL for images
- * @param publicId - The public ID of the image in Cloudinary
- * @param options - Transformation options
- * @returns Full Cloudinary URL
  */
 export function getCloudinaryImageUrl(
   publicId: string,
@@ -92,10 +83,36 @@ export function getCloudinaryImageUrl(
 }
 
 /**
- * Asset paths mapping - Replace with your Cloudinary public IDs after upload
+ * Helper function to get video URL (Cloudinary or local)
+ */
+export function getVideoUrl(filename: string): string {
+  const videoMap: Record<string, string> = {
+    'ideiaforword.mp4': 'ideiaspace/videos/ideiaforword.mp4',
+    'desafioespacial.mp4': 'ideiaspace/videos/desafioespacial.mp4',
+    'galaxyespiral.mp4': 'ideiaspace/videos/galaxyespiral.mp4',
+    'planetaagua.mp4': 'ideiaspace/videos/planetaagua.mp4',
+    'metodology.mp4': 'ideiaspace/videos/metodology.mp4',
+    'nossalideranca.mp4': 'ideiaspace/videos/nossalideranca.mp4',
+    'Terraespaco.mp4': 'ideiaspace/videos/terraespaco.mp4',
+    'terraespaco.mp4': 'ideiaspace/videos/terraespaco.mp4',
+    'terranoite.mp4': 'ideiaspace/videos/terranoite.mp4',
+    'satellite-orbit.mp4': 'ideiaspace/videos/satellite-orbit.mp4',
+    'space.mp4': 'ideiaspace/videos/space.mp4',
+    'impactocard4.mp4': 'ideiaspace/videos/impactocard4.mp4',
+    'impactocard2.MP4': 'ideiaspace/videos/impactocard2.mp4',
+  };
+
+  if (USE_CLOUDINARY && videoMap[filename]) {
+    return getCloudinaryVideoUrl(videoMap[filename], { quality: 'auto', format: 'mp4' });
+  }
+  
+  return `/assets/${filename}`;
+}
+
+/**
+ * Asset paths mapping
  */
 export const cloudinaryAssets = {
-  // Videos
   videos: {
     ideiaForward: 'ideiaspace/videos/ideiaforword',
     desafioEspacial: 'ideiaspace/videos/desafioespacial',
@@ -111,43 +128,9 @@ export const cloudinaryAssets = {
     impactoCard2: 'ideiaspace/videos/impactocard2',
   },
   
-  // Images
   images: {
     logo: 'ideiaspace/images/vetorizada',
     homeDesafioEspacial: 'ideiaspace/images/homedesafioespacial',
     nebulus: 'ideiaspace/images/nebulus',
-    falcon9: 'ideiaspace/images/falcon9',
-    
-    // Leadership
-    liderLeonardo: 'ideiaspace/images/lider-leonardo',
-    liderLuis: 'ideiaspace/images/lider-luis',
-    liderMatheus: 'ideiaspace/images/lider-matheus',
-    liderRafael: 'ideiaspace/images/lider-rafael',
-    liderVictorBatista: 'ideiaspace/images/lider-victor-batista',
-    
-    // Team
-    marianaFromIdeia: 'ideiaspace/images/mariana-from-ideia-site',
-    rosenoFromIdeia: 'ideiaspace/images/roseno-from-ideia-site',
-    
-    // Cards
-    card1: 'ideiaspace/images/card1',
-    card2: 'ideiaspace/images/card2',
-    card3: 'ideiaspace/images/card3',
-    card4: 'ideiaspace/images/card4',
-    card5: 'ideiaspace/images/card5',
-    
-    // Carousel
-    carrosel1: 'ideiaspace/images/carrosel1',
-    carrosel2: 'ideiaspace/images/carrosel2',
-    carrosel3: 'ideiaspace/images/carrosel3',
-    
-    // Impact
-    impactoCard1: 'ideiaspace/images/impactocard1',
-    impactoCard3: 'ideiaspace/images/impactocard3',
-    
-    // Technologies
-    kiteducational: 'ideiaspace/images/kiteducational',
-    packetqube: 'ideiaspace/images/packetqube',
-    missionProgrammingTool: 'ideiaspace/images/mission-programming-tool',
   }
 };

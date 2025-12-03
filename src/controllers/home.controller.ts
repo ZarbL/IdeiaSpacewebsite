@@ -1,6 +1,7 @@
 // Controllers - Lógica de negócio e dados
 
 import { PageContent } from '@/models/content.model';
+import { getVideoUrl } from '@/lib/cloudinary';
 
 export class HomeController {
   static getPageContent(t: any): PageContent {
@@ -8,13 +9,13 @@ export class HomeController {
       hero: {
         title: t('hero.title'),
         subtitle: t('hero.subtitle'),
-        videoSrc: '/assets/ideiaforword.mp4',
+        videoSrc: getVideoUrl('ideiaforword.mp4'),
         buttonText: t('hero.button'),
         buttonLink: '/about',
       },
       challenge: {
         title: t('challenge.title'),
-        videoSrc: '/assets/desafioespacial.mp4',
+        videoSrc: getVideoUrl('desafioespacial.mp4'),
         buttonText: t('challenge.button'),
         buttonLink: '/services',
       },
