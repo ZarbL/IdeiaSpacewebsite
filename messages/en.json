@@ -137,12 +137,13 @@
     "subtitle": "Ready to revolutionize education with this Idea?",
     "description": "We are ready to transform space education. Talk to us!",
     "form": {
-      "heading": "Get In Touch",
+      "heading": "Contact Us",
       "name": "Name",
       "email": "Email",
       "subject": "Subject",
       "message": "Message",
-      "send": "Send Message"
+      "send": "Send Message",
+      "sending": "Sending..."
     },
     "whatsapp": "WhatsApp"
   }

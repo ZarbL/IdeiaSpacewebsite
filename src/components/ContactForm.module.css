@@ -19,6 +19,39 @@
   align-self: center;
 }
 
+.statusMessage {
+  padding: 1em;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: 500;
+  margin-bottom: 1em;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.statusMessage.success {
+  background-color: rgba(100, 255, 218, 0.1);
+  border: 1px solid #64ffda;
+  color: #64ffda;
+}
+
+.statusMessage.error {
+  background-color: rgba(255, 100, 100, 0.1);
+  border: 1px solid #ff6464;
+  color: #ff6464;
+}
+
 .formField {
   display: flex;
   align-items: center;
@@ -65,12 +98,17 @@
   transition: all ease-in-out 0.3s;
 }
 
-.sendMessageBtn:hover {
+.sendMessageBtn:hover:not(:disabled) {
   transition: all ease-in-out 0.3s;
   background-color: #64ffda;
   color: #000;
   cursor: pointer;
   box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+}
+
+.sendMessageBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .formCard1 {

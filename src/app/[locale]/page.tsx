@@ -3,7 +3,7 @@ import HeroSection from '@/views/sections/HeroSection';
 import ChallengeSection from '@/views/sections/ChallengeSection';
 import TechnologiesSection from '@/views/sections/TechnologiesSection';
 import LeadershipCard from '@/components/LeadershipCard';
-import WhatsAppButton from '@/components/WhatsAppButton';
+import SocialMediaCard from '@/components/SocialMediaCard';
 import ContactForm from '@/components/ContactForm';
 import {getTranslations} from 'next-intl/server';
 import {setRequestLocale} from 'next-intl/server';
@@ -151,13 +151,13 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-2xl mb-4 md:mb-6">
               {t('contact.title')}
             </h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 leading-relaxed mb-6 md:mb-8">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 leading-relaxed mb-8 md:mb-12">
               {t('contact.description')}
             </p>
             
-            {/* WhatsApp Button */}
-            <div className="flex justify-center">
-              <WhatsAppButton phoneNumber="5561991983152" message={t('contact.form.heading')} />
+            {/* Social Media Buttons */}
+            <div className="flex justify-center mb-8 md:mb-12">
+              <SocialMediaCard />
             </div>
           </div>
           

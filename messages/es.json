@@ -142,7 +142,8 @@
       "email": "Email",
       "subject": "Asunto",
       "message": "Mensaje",
-      "send": "Enviar Mensaje"
+      "send": "Enviar Mensaje",
+      "sending": "Enviando..."
     },
     "whatsapp": "WhatsApp"
   }
