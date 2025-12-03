@@ -36,11 +36,7 @@ export default function Header() {
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center">
             <Image 
-              src={
-                process.env.NEXT_PUBLIC_USE_CLOUDINARY === 'true'
-                  ? 'https://res.cloudinary.com/dgyueliom/image/upload/v1764733508/ideiaspace/images/vetorizada.png'
-                  : '/assets/vetorizada.png'
-              }
+              src="/assets/vetorizada.png"
               alt="IdeiaSpace" 
               width={300}
               height={100}
