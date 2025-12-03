@@ -95,11 +95,11 @@ export function getVideoUrl(filename: string): string {
     'nossalideranca.mp4': 'ideiaspace/videos/nossalideranca.mp4',
     'Terraespaco.mp4': 'ideiaspace/videos/terraespaco.mp4',
     'terraespaco.mp4': 'ideiaspace/videos/terraespaco.mp4',
-    'terranoite.mp4': 'ideiaspace/videos/terranoite.mp4',
-    'satellite-orbit.mp4': 'ideiaspace/videos/satellite-orbit.mp4',
-    'space.mp4': 'ideiaspace/videos/space.mp4',
-    'impactocard4.mp4': 'ideiaspace/videos/impactocard4.mp4',
-    'impactocard2.MP4': 'ideiaspace/videos/impactocard2.mp4',
+    'terranoite.mp4': 'terranoite_xdoswr.mp4',
+    'satellite-orbit.mp4': 'satellite-orbit.mp4',
+    'space.mp4': 'space_stfmcy.mp4',
+    'impactocard4.mp4': 'impactocard4_wbiut3.mp4',
+    'impactocard2.MP4': 'impactocard2_dewwte.mp4',
   };
 
   if (USE_CLOUDINARY && videoMap[filename]) {
