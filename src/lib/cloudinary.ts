@@ -116,6 +116,11 @@ export function getVideoUrl(filename: string): string {
  * Helper function to get image URL (Cloudinary or local)
  */
 export function getImageUrl(filename: string): string {
+  // vetorizada.png (logo) always loads from local/GitHub
+  if (filename === 'vetorizada.png') {
+    return `/assets/${filename}`;
+  }
+
   const imageMap: Record<string, string> = {
     'falcon9.jpg': 'ideiaspace/falcon9',
     'kiteducational.png': 'ideiaspace/kiteducational',
@@ -147,7 +152,6 @@ export function getImageUrl(filename: string): string {
     'partner7.png': 'ideiaspace/partner7',
     'partner8.png': 'ideiaspace/partner8',
     'transporter15.png': 'ideiaspace/transporter15',
-    'vetorizada.png': 'ideiaspace/vetorizada',
     'Recursos.png': 'ideiaspace/Recursos',
   };
 
