@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
-import { getCloudinaryImageUrl, cloudinaryAssets } from '@/lib/cloudinary';
+import { getImageUrl } from '@/lib/cloudinary';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function Header() {
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center">
             <Image 
-              src="/assets/vetorizada.png"
+              src={getImageUrl('vetorizada.png')}
               alt="IdeiaSpace" 
               width={300}
               height={100}

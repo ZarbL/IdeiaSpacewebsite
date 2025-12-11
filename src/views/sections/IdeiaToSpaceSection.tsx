@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
+import { getImageUrl } from '@/lib/cloudinary';
 
 interface IdeiaToSpaceSectionProps {
   title: string;
@@ -33,7 +34,7 @@ export default function IdeiaToSpaceSection({ title, description }: IdeiaToSpace
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/assets/falcon9.jpg"
+          src={getImageUrl('falcon9.jpg')}
           alt="Falcon 9 Launch"
           className="w-full h-full object-cover"
         />

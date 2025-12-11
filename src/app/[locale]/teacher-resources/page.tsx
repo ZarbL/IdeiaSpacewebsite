@@ -1,5 +1,6 @@
 import {setRequestLocale} from 'next-intl/server';
 import {getTranslations} from 'next-intl/server';
+import { getVideoUrl } from '@/lib/cloudinary';
 
 export default async function TeacherResourcesPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
@@ -16,7 +17,7 @@ export default async function TeacherResourcesPage({params}: {params: Promise<{l
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
-        <source src="/assets/space.mp4" type="video/mp4" />
+        <source src={getVideoUrl('space.mp4')} type="video/mp4" />
       </video>
       
       {/* Overlay */}

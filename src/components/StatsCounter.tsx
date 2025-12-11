@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+import { getImageUrl } from '@/lib/cloudinary';
 
 interface StatItemProps {
   number: string;
@@ -97,7 +98,7 @@ export default function StatsCounter({ stats, title, subtitle }: StatsCounterPro
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/assets/contador.jpg"
+          src={getImageUrl('contador.jpg')}
           alt="Space Background"
           className="w-full h-full object-cover"
         />

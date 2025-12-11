@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "compress:videos": "node scripts/compress-videos.js",
     "upload:cloudinary": "node scripts/upload-to-cloudinary.js",
     "upload:large": "node scripts/upload-large-videos.js"
   },

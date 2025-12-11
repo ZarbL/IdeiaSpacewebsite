@@ -1,6 +1,6 @@
 import {setRequestLocale} from 'next-intl/server';
 import {getTranslations} from 'next-intl/server';
-import { getVideoUrl } from '@/lib/cloudinary';
+import { getImageUrl, getVideoUrl } from '@/lib/cloudinary';
 import ScrollIndicator from '@/components/ScrollIndicator';
 import MissionBadges from '@/components/MissionBadges';
 
@@ -13,35 +13,35 @@ export default async function MissionsPage({params}: {params: Promise<{locale: s
   const missions = [
     {
       id: 1,
-      badgeImage: '/assets/badge1.png',
+      badgeImage: getImageUrl('impactocard1.png'),
       badgeName: t('badges.mission1.name'),
       studentName: t('badges.mission1.student'),
       missionDescription: t('badges.mission1.description'),
-      missionImage: '/assets/mission1.png'
+      missionImage: getImageUrl('kiteducational.png')
     },
     {
       id: 2,
-      badgeImage: '/assets/badge2.png',
+      badgeImage: getImageUrl('impactocard3.png'),
       badgeName: t('badges.mission2.name'),
       studentName: t('badges.mission2.student'),
       missionDescription: t('badges.mission2.description'),
-      missionImage: '/assets/mission2.png'
+      missionImage: getImageUrl('card1.png')
     },
     {
       id: 3,
-      badgeImage: '/assets/badge3.png',
+      badgeImage: getImageUrl('beneficio1.png'),
       badgeName: t('badges.mission3.name'),
       studentName: t('badges.mission3.student'),
       missionDescription: t('badges.mission3.description'),
-      missionImage: '/assets/mission3.png'
+      missionImage: getImageUrl('card2.png')
     },
     {
       id: 4,
-      badgeImage: '/assets/badge4.png',
+      badgeImage: getImageUrl('beneficio2.png'),
       badgeName: t('badges.mission4.name'),
       studentName: t('badges.mission4.student'),
       missionDescription: t('badges.mission4.description'),
-      missionImage: '/assets/mission4.png'
+      missionImage: getImageUrl('card3.png')
     }
   ];
 

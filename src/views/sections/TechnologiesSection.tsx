@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { getImageUrl } from '@/lib/cloudinary';
 
 export default function TechnologiesSection({ content }: { content: any }) {
   const params = useParams();
@@ -12,7 +13,7 @@ export default function TechnologiesSection({ content }: { content: any }) {
       {/* Imagem de fundo */}
       <div 
         className="absolute inset-0 w-full h-full bg-cover bg-center"
-        style={{ backgroundImage: 'url(/assets/Recursos.png)' }}
+        style={{ backgroundImage: `url(${getImageUrl('Recursos.png')})` }}
       />
 
       {/* Overlay escuro para melhor legibilidade */}

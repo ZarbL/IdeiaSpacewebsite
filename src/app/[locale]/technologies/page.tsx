@@ -1,6 +1,6 @@
 import {setRequestLocale} from 'next-intl/server';
 import {getTranslations} from 'next-intl/server';
-import { getVideoUrl } from '@/lib/cloudinary';
+import { getVideoUrl, getImageUrl } from '@/lib/cloudinary';
 import ResourceCard from '@/components/ResourceCard';
 import ScrollIndicator from '@/components/ScrollIndicator';
 
@@ -17,7 +17,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
         <div 
           className="absolute top-0 left-0 w-full h-full"
           style={{
-            backgroundImage: 'url(/assets/falcon9.jpg)',
+            backgroundImage: `url(${getImageUrl('falcon9.jpg')})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
@@ -58,63 +58,63 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
             <ResourceCard
               title={t('resources.edusat.title')}
               description={t('resources.edusat.description')}
-              image="/assets/kiteducational.png"
+              image={getImageUrl('kiteducational.png')}
               link="/edusat"
             />
             
             <ResourceCard
               title={t('resources.orbital.title')}
               description={t('resources.orbital.description')}
-              image="/assets/packetqube.png"
+              image={getImageUrl('packetqube.png')}
               link="/orbital"
             />
             
             <ResourceCard
               title={t('resources.programmingTool.title')}
               description={t('resources.programmingTool.description')}
-              image="/assets/MissionProgrammingTool.png"
+              image={getImageUrl('MissionProgrammingTool.png')}
               link="https://ideia-spacetoweb.vercel.app/"
             />
             
             <ResourceCard
               title={t('resources.methodology.title')}
               description={t('resources.methodology.description')}
-              image="/assets/card1.png"
+              image={getImageUrl('card1.png')}
               link="/methodology"
             />
             
             <ResourceCard
               title={t('resources.teacherTraining.title')}
               description={t('resources.teacherTraining.description')}
-              image="/assets/card2.png"
+              image={getImageUrl('card2.png')}
               link="/training"
             />
             
             <ResourceCard
               title={t('resources.constellation.title')}
               description={t('resources.constellation.description')}
-              image="/assets/card3.png"
+              image={getImageUrl('card3.png')}
               link="/constellation"
             />
             
             <ResourceCard
               title={t('resources.rover.title')}
               description={t('resources.rover.description')}
-              image="/assets/card4.jpg"
+              image={getImageUrl('card4.jpg')}
               isWorkInProgress={true}
             />
             
             <ResourceCard
               title={t('resources.spaceLearning.title')}
               description={t('resources.spaceLearning.description')}
-              image="/assets/card5.jpg"
+              image={getImageUrl('card5.jpg')}
               isWorkInProgress={true}
             />
             
             <ResourceCard
               title={t('resources.flatsat.title')}
               description={t('resources.flatsat.description')}
-              image="/assets/carrosel1.png"
+              image={getImageUrl('carrosel1.png')}
               isWorkInProgress={true}
             />
           </div>

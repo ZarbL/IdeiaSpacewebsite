@@ -1,6 +1,6 @@
 import {getTranslations} from 'next-intl/server';
 import {setRequestLocale} from 'next-intl/server';
-import { getVideoUrl } from '@/lib/cloudinary';
+import { getImageUrl, getVideoUrl } from '@/lib/cloudinary';
 import AboutCarousel from '@/components/AboutCarousel';
 import BenefitsCarousel from '@/components/BenefitsCarousel';
 import HistoryCarousel from '@/components/HistoryCarousel';
@@ -119,7 +119,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
                   <LeadershipCard
                     name="Leonardo Souza"
                     role={tLeadership('ceo')}
-                    image="/assets/LiderLeonardo.png"
+                    image={getImageUrl('LiderLeonardo.png')}
                     socialLinks={{
                       linkedin: "#",
                       instagram: "https://www.instagram.com/leojulio23/"
@@ -128,7 +128,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
                   <LeadershipCard
                     name="Victor Batista"
                     role={tLeadership('coo')}
-                    image="/assets/LiderVictorBatista.png"
+                    image={getImageUrl('LiderVictorBatista.png')}
                     socialLinks={{
                       linkedin: "#",
                       instagram: "https://www.instagram.com/victor_ribeiro22/"
@@ -137,7 +137,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
                   <LeadershipCard
                     name="Matheus Six"
                     role={tLeadership('cpo')}
-                    image="/assets/LiderMatheus.png"
+                    image={getImageUrl('LiderMatheus.png')}
                     socialLinks={{
                       linkedin: "#",
                       instagram: "https://www.instagram.com/matheussix/"
@@ -146,7 +146,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
                   <LeadershipCard
                     name="Rafael Paiva"
                     role={tLeadership('cto')}
-                    image="/assets/LiderRafael.png"
+                    image={getImageUrl('LiderRafael.png')}
                     socialLinks={{
                       linkedin: "#",
                       instagram: "https://www.instagram.com/paiva_96/"
@@ -160,7 +160,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
                 <LeadershipCard
                   name="Leonardo Souza"
                   role={tLeadership('ceo')}
-                  image="/assets/LiderLeonardo.png"
+                  image={getImageUrl('LiderLeonardo.png')}
                   socialLinks={{
                     linkedin: "#",
                     instagram: "https://www.instagram.com/leojulio23/"
@@ -169,7 +169,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
                 <LeadershipCard
                   name="Victor Batista"
                   role={tLeadership('coo')}
-                  image="/assets/LiderVictorBatista.png"
+                  image={getImageUrl('LiderVictorBatista.png')}
                   socialLinks={{
                     linkedin: "#",
                     instagram: "https://www.instagram.com/victor_ribeiro22/"
@@ -178,7 +178,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
                 <LeadershipCard
                   name="Matheus Six"
                   role={tLeadership('cpo')}
-                  image="/assets/LiderMatheus.png"
+                  image={getImageUrl('LiderMatheus.png')}
                   socialLinks={{
                     linkedin: "#",
                     instagram: "https://www.instagram.com/matheussix/"
@@ -187,7 +187,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
                 <LeadershipCard
                   name="Rafael Paiva"
                   role={tLeadership('cto')}
-                  image="/assets/LiderRafael.png"
+                  image={getImageUrl('LiderRafael.png')}
                   socialLinks={{
                     linkedin: "#",
                       instagram: "https://www.instagram.com/paiva_96/"

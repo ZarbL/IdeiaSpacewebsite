@@ -1,7 +1,7 @@
 import {setRequestLocale} from 'next-intl/server';
 import {getTranslations} from 'next-intl/server';
 import Link from 'next/link';
-import { getVideoUrl } from '@/lib/cloudinary';
+import { getImageUrl, getVideoUrl } from '@/lib/cloudinary';
 import StatsCarousel from '@/components/StatsCarousel';
 import MethodologyCarousel from '@/components/MethodologyCarousel';
 import EcosystemCard from '@/components/EcosystemCard';
@@ -20,61 +20,61 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
     {
       name: t('ecosystem.testimonials.roseno.name'),
       message: t('ecosystem.testimonials.roseno.message'),
-      image: '/assets/RosenofromIdeiaSite.png',
+      image: getImageUrl('RosenofromIdeiaSite.png'),
       rating: 5
     },
     {
       name: t('ecosystem.testimonials.mariana.name'),
       message: t('ecosystem.testimonials.mariana.message'),
-      image: '/assets/MarianafromIdeiaSite.png',
+      image: getImageUrl('MarianafromIdeiaSite.png'),
       rating: 5
     },
     {
       name: t('ecosystem.testimonials.student3.name'),
       message: t('ecosystem.testimonials.student3.message'),
-      image: '/assets/student3.png',
+      image: getImageUrl('student3.png'),
       rating: 5
     },
     {
       name: t('ecosystem.testimonials.student4.name'),
       message: t('ecosystem.testimonials.student4.message'),
-      image: '/assets/student4.png',
+      image: getImageUrl('student4.png'),
       rating: 5
     },
     {
       name: t('ecosystem.testimonials.student5.name'),
       message: t('ecosystem.testimonials.student5.message'),
-      image: '/assets/student5.png',
+      image: getImageUrl('student5.png'),
       rating: 5
     },
     {
       name: t('ecosystem.testimonials.student6.name'),
       message: t('ecosystem.testimonials.student6.message'),
-      image: '/assets/student6.png',
+      image: getImageUrl('student6.png'),
       rating: 5
     },
     {
       name: t('ecosystem.testimonials.student7.name'),
       message: t('ecosystem.testimonials.student7.message'),
-      image: '/assets/student7.png',
+      image: getImageUrl('student7.png'),
       rating: 5
     },
     {
       name: t('ecosystem.testimonials.student8.name'),
       message: t('ecosystem.testimonials.student8.message'),
-      image: '/assets/student8.png',
+      image: getImageUrl('student8.png'),
       rating: 5
     },
     {
       name: t('ecosystem.testimonials.student9.name'),
       message: t('ecosystem.testimonials.student9.message'),
-      image: '/assets/student9.png',
+      image: getImageUrl('student9.png'),
       rating: 5
     },
     {
       name: t('ecosystem.testimonials.student10.name'),
       message: t('ecosystem.testimonials.student10.message'),
-      image: '/assets/student10.png',
+      image: getImageUrl('student10.png'),
       rating: 5
     }
   ];
@@ -85,7 +85,7 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
       <section 
         className="min-h-screen w-full relative flex items-center"
         style={{
-          backgroundImage: 'url(/assets/transporter15.png)',
+          backgroundImage: `url(${getImageUrl('transporter15.png')})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
@@ -144,7 +144,7 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
             <InfoCard
               title={t('whySpaceChallenge.cardTitle')}
               description={t('whySpaceChallenge.cardDescription')}
-              image="/assets/satellite-orbit.mp4"
+              image={getVideoUrl('satellite-orbit.mp4')}
             />
           </div>
         </div>
@@ -159,7 +159,7 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
         <div 
           className="absolute top-0 left-0 w-full h-full"
           style={{
-            backgroundImage: 'url(/assets/nebulus.png)',
+            backgroundImage: `url(${getImageUrl('nebulus.png')})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
@@ -284,7 +284,7 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
         <div 
           className="absolute top-0 left-0 w-full h-full"
           style={{
-            backgroundImage: 'url(/assets/nebulus.png)',
+            backgroundImage: `url(${getImageUrl('nebulus.png')})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
