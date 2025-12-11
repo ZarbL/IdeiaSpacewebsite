@@ -1,19 +1,75 @@
 {
   "nav": {
     "home": "Início",
-    "about": "Sobre",
-    "services": "Serviços",
+    "about": "Sobre Nós",
+    "spaceChallenge": "Desafio\nEspacial",
+    "teacherResources": "Recurso para\nProfessores",
+    "programmingTool": "Ferramenta de\nProgramação",
     "contact": "Contato"
   },
+  "common": {
+    "scrollForMore": "ROLE PARA MAIS"
+  },
   "hero": {
-    "title": "Democratizando o Acesso ao Espaço",
+    "title": "Bem-vindo ao Ideia Space",
     "subtitle": "",
     "button": "Assistir vídeo",
     "aboutButton": "Sobre Nós"
   },
   "challenge": {
-    "title": "O Desafio Espacial",
+    "title": "Desafio Espacial",
+    "description": "É um projeto que conecta o espaço à sala de aula.<br/> Transformamos alunos em protagonistas, levando-os <br/> desde a concepção de uma missão até o lançamento <br/> de um satélite real",
     "button": "Saiba Mais"
+  },
+  "missions": {
+    "title": "Nossas Missões",
+    "description": "Conheça mais sobre as missões desenvolvidas pelos nossos alunos",
+    "button": "Saiba Mais",
+    "hero": {
+      "title": "Missões Espaciais",
+      "subtitle": ""
+    },
+    "development": {
+      "title": "Como acontece o desenvolvimento de missões?",
+      "description": "Durante o Desafio Espacial, os alunos vivenciam todas as etapas de uma missão real. Eles começam definindo um problema e o objetivo do satélite, planejam como ele irá operar e quais dados irá coletar, programam seus sensores em uma plataforma educacional e realizam testes e simulações. O projeto culmina no lançamento de um PocketQube em órbita, permitindo que os estudantes acompanhem sua operação e analisem dados reais. Ao longo do processo, desenvolvem habilidades técnicas, pensamento científico, trabalho em equipe e visão de futuro na área espacial."
+    },
+    "badges": {
+      "title": "Missões dos Nossos Alunos",
+      "mission1": {
+        "name": "Missão 1",
+        "student": "Aluno 1",
+        "description": "Descrição da missão 1 desenvolvida pelo aluno."
+      },
+      "mission2": {
+        "name": "Missão 2",
+        "student": "Aluno 2",
+        "description": "Descrição da missão 2 desenvolvida pelo aluno."
+      },
+      "mission3": {
+        "name": "Missão 3",
+        "student": "Aluno 3",
+        "description": "Descrição da missão 3 desenvolvida pelo aluno."
+      },
+      "mission4": {
+        "name": "Missão 4",
+        "student": "Aluno 4",
+        "description": "Descrição da missão 4 desenvolvida pelo aluno."
+      }
+    }
+  },
+  "stats": {
+    "title": "Abrimos o acesso ao espaço",
+    "subtitle": "Para melhorar a vida na Terra",
+    "satellites": "3",
+    "satellitesLabel": "Número de Satélites em Órbita",
+    "students": "1500+",
+    "studentsLabel": "Número de alunos atendidos globalmente",
+    "countries": "5",
+    "countriesLabel": "Número de países impactados"
+  },
+  "ideiaToSpace": {
+    "title": "Da Ideia ao Espaço",
+    "description": "Transformando o fascínio pelo espaço em missões espaciais:<br/>educamos estudantes a projetar, construir e lançar satélites reais<br/>para formar a nova geração de profissionais."
   },
   "cta": {
     "title": "Pronto para revolucionar sua conectividade?",
@@ -21,14 +77,62 @@
     "button": "Entre em Contato"
   },
   "about": {
-    "title": "Sobre o IdeiaSpace",
-    "description": "O IdeiaSpace é uma empresa brasileira pioneira em satélite educacional no Brasil e no mundo que tem satélites em órbita! Conectamos o mundo através da tecnologia espacial, revolucionando a educação e inspirando a próxima geração de cientistas, engenheiros e exploradores espaciais através de experiências reais com tecnologia de ponta."
+    "title": "Para o benefício de todos",
+    "description": "O Ideia Space oferece jornadas educacionais práticas que conectam escolas e estudantes a missões espaciais reais. Com metodologia \"mão na massa\", capacitamos jovens a projetar, montar e operar PocketQubes, transformando experiência escolar em competências técnicas e espírito empreendedor - criando uma ponte direta entre educação básica e a indústria espacial.",
+    "historyTitle": "Nossa história",
+    "historyDescription": "O Ideia Space nasceu em Brasília com o propósito de transformar como o setor educacional se conecta com a tecnologia espacial. A empresa surgiu a partir de uma visão comum: tornar o espaço mais acessível, educacionalmente relevante e próxima da realidade dos estudantes.<br/> Unindo inovação, ciência e educação, o Ideia Space desenvolve experiências práticas que aproximam escolas e instituições do ecossistema espacial, promovendo o aprendizado por meio de projetos reais, missões educacionais e tecnologias aplicadas. Sua missão é formar a próxima geração de profissionais e entusiastas do espaço, impulsionando o protagonismo brasileiro no cenário espacial global. Seus valores são pautados pela inovação, colaboração, excelência técnica e compromisso com a educação transformadora.",
+    "mvvTitle": "Missão, Visão e Valores",
+    "mvvContent": "Missão: Levar educação espacial, acessível e prática para estudantes de todo o mundo, formando competências técnicas, colaborativas e de liderança por meio de projetos reais.<br/><br/> Visão: Ser a  referência global na democratização de acesso ao espaço -  conectando escolas, universidade e indústria por meio de uma constelação educacional.<br/><br/> Valores: aprendizagem prática; inclusão e acesso à ciência; colaboração internacional; segurança e responsabilidade; inovação pedagógica baseada em projetos reais; democratização do acesso ao espaço",
+    "partnersTitle": "Nossos Parceiros",
+    "leadershipTitle": "Conheça nossas lideranças"
   },
   "technologies": {
-    "title": "Nossas Tecnologias",
-    "description": "Desenvolvemos soluções inovadoras que conectam o espaço à sala de aula",
+    "title": "Nossos Recursos Educacionais",
+    "description": "Desenvolvemos soluções inovadoras que conectam <br/> o espaço à sala de aula",
     "button": "Saiba Mais",
     "pageTitle": "Tecnologia Real para Aprendizado Real",
+    "resources": {
+      "title": "Nossos Recursos",
+      "subtitle": "Tecnologias educacionais que transformam o aprendizado espacial",
+      "scrollDown": "Role para baixo",
+      "sectionTitle": "Recursos Educacionais",
+      "edusat": {
+        "title": "EduSat",
+        "description": "Kit de satélite educacional completo para treinamento de estudantes em tecnologia espacial."
+      },
+      "orbital": {
+        "title": "Satélite Orbital",
+        "description": "Satélite PocketQube real construído por alunos e lançado ao espaço."
+      },
+      "programmingTool": {
+        "title": "Ferramenta de Programação de Missão",
+        "description": "Plataforma de programação em blocos para controle de satélites educacionais."
+      },
+      "methodology": {
+        "title": "Metodologia de Design e Conceito de Missão",
+        "description": "Metodologia completa baseada em projetos para desenvolvimento de missões espaciais."
+      },
+      "teacherTraining": {
+        "title": "Treinamento de Professores",
+        "description": "Capacitação completa para educadores em tecnologia espacial e metodologias inovadoras."
+      },
+      "constellation": {
+        "title": "Constelação de Satélites Educacionais",
+        "description": "Rede de satélites educacionais desenvolvidos por estudantes ao redor do mundo."
+      },
+      "rover": {
+        "title": "Rover Educacional",
+        "description": "Robô explorador educacional para simulações de missões planetárias."
+      },
+      "spaceLearning": {
+        "title": "Space Learning",
+        "description": "Plataforma completa de aprendizado online sobre ciência e tecnologia espacial."
+      },
+      "flatsat": {
+        "title": "FlatSat Educacional",
+        "description": "Sistema educacional de satélite plano para aprendizado de subsistemas espaciais."
+      }
+    },
     "kit": {
       "title": "Kit de Satélite (Treinamento - SMT)",
       "description": "Distribuído aos alunos na Fase 2 para prototipagem da missão. Inclui subsistemas reais:\n\n• O.B.D.H. (Computador de Bordo)\n• T.T&C (Comunicação)\n• ADCS (Sistema de Orientação)\n• EPS (Sistema de Energia)\n• Payload (Carga Útil)\n• Sensores (Umidade, Temperatura, Pressão, etc.)"
@@ -53,14 +157,14 @@
   },
   "services": {
     "spaceChallenge": {
-      "title": "O Desafio Espacial",
-      "description": "O Desafio Espacial é um projeto da Ideia Space que conecta o universo à sala de aula. Transformamos alunos em protagonistas, levando-os desde a concepção de uma missão até o lançamento de um satélite real.",
-      "button": "Veja nosso impacto"
+      "title": "Desafio Espacial",
+      "description": "",
+      "button": ""
     },
     "whySpaceChallenge": {
-      "title": "Por que um Desafio Espacial?",
-      "description1": "A educação brasileira apresenta baixo desempenho em áreas de STEM (Ciência, Tecnologia, Engenharia e Matemática). Ao mesmo tempo, o setor espacial está em expansão e enfrenta uma ausência de profissionais qualificados.",
-      "description2": "Acreditamos que o fascínio pelo espaço pode ser a fagulha para uma experiência de aprendizado engajadora. Usamos a missão espacial como uma ferramenta para capacitar estudantes para a economia do futuro."
+      "description": "O Desafio Espacial é a jornada educacional prática da Ideia Space que conecta estudantes do Ensino Fundamental II ao Ensino Superior a uma missão espacial real. Por meio de desafios interdisciplinares e projetos \"mão na massa\", os alunos desenvolvem competências em ciência, tecnologia, engenharia e trabalho em equipe, enquanto projetam, programam e operam um satélite educacional. Mais do que aprender sobre o espaço, eles fazem parte dele — adquirindo habilidades técnicas, pensamento crítico e visão de futuro alinhadas às demandas da nova economia espacial.",
+      "cardTitle": "Desafio Espacial",
+      "cardDescription": "Uma jornada educacional que transforma alunos em protagonistas da exploração espacial, desenvolvendo habilidades essenciais para o futuro."
     },
     "whatIsChallenge": {
       "title": "O que é o Desafio Espacial?",
@@ -98,6 +202,34 @@
         }
       }
     },
+    "journey": {
+      "title": "Uma Jornada de 12 Meses",
+      "preChallenge": {
+        "title": "Pré-Desafio",
+        "months": "Meses 1-4",
+        "description": "Organização do projeto, definição de regras, seleção de escolas e formação de professores."
+      },
+      "phase1": {
+        "title": "Fase 1: Concepção",
+        "months": "Meses 4-7",
+        "description": "Início do curso para os 500 alunos. Foco na análise de problemas e concepção da missão espacial (MCR)."
+      },
+      "phase2": {
+        "title": "Fase 2: Projeto",
+        "months": "Meses 7-10",
+        "description": "Alunos recebem os Kits SMT. Apresentação final dos projetos (PDR) e seleção das melhores equipes."
+      },
+      "phase3": {
+        "title": "Fase 3: Construção",
+        "months": "Meses 10-15",
+        "description": "Os 30 alunos selecionados constroem o satélite PocketQube. Testes, entrega e inserção em órbita."
+      },
+      "postChallenge": {
+        "title": "Pós-Desafio",
+        "months": "Meses 15-18",
+        "description": "Com o satélite em órbita, o Ideia Space coleta os dados e os compartilha com as instituições."
+      }
+    },
     "ecosystem": {
       "title": "Ecossistema de Aprendizagem Completo",
       "items": [
@@ -129,6 +261,38 @@
         "mariana": {
           "name": "Mariana Taveira",
           "message": "Participei do curso de satélites para alunos do Ensino Médio... Com a ajuda de engenheiros, projetamos nossa missão espacial, objetivando resolver problemas reais com nanossatélites. Foi uma experiência incrível que ampliou meus horizontes na área espacial."
+        },
+        "student3": {
+          "name": "Joel Maximiano",
+          "message": "Participei da edição 2025 do Desafio Espacial e, para mim, foi uma das melhores experiências da minha vida. Pude ter contato direto com nanosatélites e entender, na prática, como funcionam os processos de montagem, programação e até mesmo as etapas envolvidas no lançamento.O Ideia Space foi um verdadeiro divisor de águas: ali percebi que eu podia contribuir com a ciência e que a Biologia era realmente o caminho que eu queria seguir. Saí do curso mais confiante, motivada e com a certeza de que quero continuar explorando o universo da tecnologia e das ciências naturais. Foi transformador."
+        },
+        "student4": {
+          "name": "Aluno 4",
+          "message": "Texto do depoimento do aluno 4."
+        },
+        "student5": {
+          "name": "Aluno 5",
+          "message": "Texto do depoimento do aluno 5."
+        },
+        "student6": {
+          "name": "Aluno 6",
+          "message": "Texto do depoimento do aluno 6."
+        },
+        "student7": {
+          "name": "Aluno 7",
+          "message": "Texto do depoimento do aluno 7."
+        },
+        "student8": {
+          "name": "Aluno 8",
+          "message": "Texto do depoimento do aluno 8."
+        },
+        "student9": {
+          "name": "Aluno 9",
+          "message": "Texto do depoimento do aluno 9."
+        },
+        "student10": {
+          "name": "Aluno 10",
+          "message": "Texto do depoimento do aluno 10."
         }
       }
     }

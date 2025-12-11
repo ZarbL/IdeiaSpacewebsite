@@ -110,6 +110,24 @@ export function getVideoUrl(filename: string): string {
 }
 
 /**
+ * Helper function to get image URL (Cloudinary or local)
+ */
+export function getImageUrl(filename: string): string {
+  const imageMap: Record<string, string> = {
+    'falcon9.jpg': 'ideiaspace/images/falcon9.jpg',
+    'homedesafioespacial.png': 'ideiaspace/images/homedesafioespacial.png',
+    'transporter15.png': 'ideiaspace/images/transporter15.png',
+    'nebulus.jpg': 'ideiaspace/images/nebulus.jpg',
+  };
+
+  if (USE_CLOUDINARY && imageMap[filename]) {
+    return getCloudinaryImageUrl(imageMap[filename], { quality: 'auto', format: 'auto' });
+  }
+  
+  return `/assets/${filename}`;
+}
+
+/**
  * Asset paths mapping
  */
 export const cloudinaryAssets = {

@@ -1,19 +1,75 @@
 {
   "nav": {
     "home": "Inicio",
-    "about": "Acerca de",
-    "services": "Servicios",
+    "about": "Sobre Nosotros",
+    "spaceChallenge": "Desafío\nEspacial",
+    "teacherResources": "Recursos para\nProfesores",
+    "programmingTool": "Herramienta de\nProgramación",
     "contact": "Contacto"
   },
+  "common": {
+    "scrollForMore": "DESPLÁZATE PARA MÁS"
+  },
   "hero": {
-    "title": "Democratizando el Acceso al Espacio",
+    "title": "Bienvenido a Ideia Space",
     "subtitle": "",
     "button": "Ver vídeo",
     "aboutButton": "Sobre Nosotros"
   },
   "challenge": {
     "title": "El Desafío Espacial",
+    "description": "El Desafío Espacial es un proyecto de Ideia Space que conecta<br/>el universo con el aula. Transformamos a los estudiantes en<br/>protagonistas, llevándolos desde la concepción de una misión<br/>hasta el lanzamiento de un satélite real",
     "button": "Saber Más"
+  },
+  "missions": {
+    "title": "Nuestras Misiones",
+    "description": "Conoce más sobre las misiones desarrolladas por nuestros estudiantes",
+    "button": "Saber Más",
+    "hero": {
+      "title": "Misiones Espaciales",
+      "subtitle": ""
+    },
+    "development": {
+      "title": "¿Cómo ocurre el desarrollo de misiones?",
+      "description": "Durante el Desafío Espacial, los estudiantes experimentan todas las etapas de una misión real. Comienzan definiendo un problema y el objetivo del satélite, planifican cómo operará y qué datos recopilará, programan sus sensores en una plataforma educativa y realizan pruebas y simulaciones. El proyecto culmina en el lanzamiento de un PocketQube en órbita, permitiendo que los estudiantes monitoreen su operación y analicen datos reales. A lo largo del proceso, desarrollan habilidades técnicas, pensamiento científico, trabajo en equipo y visión de futuro en el área espacial."
+    },
+    "badges": {
+      "title": "Misiones de Nuestros Estudiantes",
+      "mission1": {
+        "name": "Misión 1",
+        "student": "Estudiante 1",
+        "description": "Descripción de la misión 1 desarrollada por el estudiante."
+      },
+      "mission2": {
+        "name": "Misión 2",
+        "student": "Estudiante 2",
+        "description": "Descripción de la misión 2 desarrollada por el estudiante."
+      },
+      "mission3": {
+        "name": "Misión 3",
+        "student": "Estudiante 3",
+        "description": "Descripción de la misión 3 desarrollada por el estudiante."
+      },
+      "mission4": {
+        "name": "Misión 4",
+        "student": "Estudiante 4",
+        "description": "Descripción de la misión 4 desarrollada por el estudiante."
+      }
+    }
+  },
+  "stats": {
+    "title": "Abrimos el acceso al espacio",
+    "subtitle": "Para mejorar la vida en la Tierra",
+    "satellites": "3",
+    "satellitesLabel": "Satélites en Órbita",
+    "students": "1500+",
+    "studentsLabel": "Estudiantes atendidos globalmente",
+    "countries": "5",
+    "countriesLabel": "Países impactados"
+  },
+  "ideiaToSpace": {
+    "title": "De la Ideia al Espacio",
+    "description": "Transformando la fascinación por el espacio en misiones espaciales:<br/>educamos a estudiantes para diseñar, construir y lanzar satélites reales<br/>para formar la nueva generación de profesionales."
   },
   "cta": {
     "title": "¿Listo para revolucionar tu conectividad?",
@@ -21,14 +77,62 @@
     "button": "Contáctanos"
   },
   "about": {
-    "title": "Sobre IdeiaSpace",
-    "description": "¡IdeiaSpace es una empresa brasileña pionera en satélites educacionales en Brasil y en el mundo que tiene satélites en órbita! Conectamos el mundo a través de la tecnología espacial, revolucionando la educación e inspirando a la próxima generación de científicos, ingenieros y exploradores espaciales a través de experiencias reales con tecnología de punta."
+    "title": "Los valores que nos llevan al espacio ",
+    "description": "Ideia Space ofrece jornadas educativas prácticas que conectan escuelas y estudiantes a misiones espaciales reales. Con metodología 'manos a la obra', capacitamos a jóvenes para diseñar, montar y operar PocketQubes, transformando la experiencia escolar en competencias técnicas y espíritu emprendedor - creando un puente directo entre educación básica y la industria espacial.",
+    "historyTitle": "Nuestra historia",
+    "historyDescription": "Ideia Space nació en Brasilia con el propósito de transformar cómo el sector educativo se conecta con la tecnología espacial. La empresa surgió a partir de una visión común: hacer el espacio más accesible, educativamente relevante y cercano a la realidad de los estudiantes. Uniendo innovación, ciencia y educación, Ideia Space desarrolla experiencias prácticas que acercan escuelas e instituciones al ecosistema espacial, promoviendo el aprendizaje a través de proyectos reales, misiones educativas y tecnologías aplicadas. Su misión es formar la próxima generación de profesionales y entusiastas del espacio, impulsando el protagonismo brasileño en el escenario espacial global. Sus valores están guiados por la innovación, colaboración, excelencia técnica y compromiso con la educación transformadora.",
+    "mvvTitle": "Misión, Visión y Valores",
+    "mvvContent": "Misión: Llevar educación espacial, accesible y práctica para estudiantes de todo el mundo, formando competencias técnicas, colaborativas y de liderazgo por medio de proyectos reales.<br/><br/>Visión: Ser la referencia global en la democratización de acceso al espacio - conectando escuelas, universidades e industria por medio de una constelación educacional.<br/><br/>Valores: aprendizaje práctico; inclusión y acceso a la ciencia; colaboración internacional; seguridad y responsabilidad; innovación pedagógica basada en proyectos reales; democratización del acceso al espacio",
+    "partnersTitle": "Nuestros Socios",
+    "leadershipTitle": "Conozca nuestro liderazgo"
   },
   "technologies": {
     "title": "Nuestras Tecnologías",
     "description": "Desarrollamos soluciones innovadoras que conectan el espacio con el aula",
     "button": "Saber Más",
     "pageTitle": "Tecnología Real para Aprendizaje Real",
+    "resources": {
+      "title": "Nuestros Recursos",
+      "subtitle": "Tecnologías educativas que transforman el aprendizaje espacial",
+      "scrollDown": "Desplazar hacia abajo",
+      "sectionTitle": "Recursos Educativos",
+      "edusat": {
+        "title": "EduSat",
+        "description": "Kit completo de satélite educativo para capacitación de estudiantes en tecnología espacial."
+      },
+      "orbital": {
+        "title": "Satélite Orbital",
+        "description": "Satélite PocketQube real construido por alumnos y lanzado al espacio."
+      },
+      "programmingTool": {
+        "title": "Herramienta de Programación de Misiones",
+        "description": "Plataforma de programación por bloques para control de satélites educativos."
+      },
+      "methodology": {
+        "title": "Metodología de Diseño y Concepto de Misión",
+        "description": "Metodología completa basada en proyectos para desarrollo de misiones espaciales."
+      },
+      "teacherTraining": {
+        "title": "Capacitación de Profesores",
+        "description": "Capacitación completa para educadores en tecnología espacial y metodologías innovadoras."
+      },
+      "constellation": {
+        "title": "Constelación de Satélites Educativos",
+        "description": "Red de satélites educativos desarrollados por estudiantes alrededor del mundo."
+      },
+      "rover": {
+        "title": "Rover Educativo",
+        "description": "Robot explorador educativo para simulaciones de misiones planetarias."
+      },
+      "spaceLearning": {
+        "title": "Space Learning",
+        "description": "Plataforma completa de aprendizaje en línea sobre ciencia y tecnología espacial."
+      },
+      "flatsat": {
+        "title": "FlatSat Educativo",
+        "description": "Sistema educativo de satélite plano para aprendizaje de subsistemas espaciales."
+      }
+    },
     "kit": {
       "title": "Kit de Satélite (Entrenamiento - SMT)",
       "description": "Distribuido a los estudiantes en la Fase 2 para prototipado de la misión. Incluye subsistemas reales:\n\n• O.B.D.H. (Computadora de Bordo)\n• T.T&C (Comunicación)\n• ADCS (Sistema de Orientación)\n• EPS (Sistema de Energía)\n• Payload (Carga Útil)\n• Sensores (Humedad, Temperatura, Presión, etc.)"
@@ -58,9 +162,9 @@
       "button": "Vea nuestro impacto"
     },
     "whySpaceChallenge": {
-      "title": "¿Por qué un Desafío Espacial?",
-      "description1": "La educación brasileña presenta un bajo rendimiento en áreas STEM (Ciencia, Tecnología, Ingeniería y Matemáticas). Al mismo tiempo, el sector espacial está en expansión y enfrenta una escasez de profesionales cualificados.",
-      "description2": "Creemos que la fascinación por el espacio puede ser la chispa para una experiencia de aprendizaje atractiva. Utilizamos la misión espacial como herramienta para capacitar a los estudiantes para la economía del futuro."
+      "description": "El Desafío Espacial es el viaje educativo práctico de Ideia Space que conecta a estudiantes de la Escuela Secundaria a la Educación Superior con una misión espacial real. A través de desafíos interdisciplinarios y proyectos prácticos, los alumnos desarrollan competencias en ciencia, tecnología, ingeniería y trabajo en equipo, mientras diseñan, programan y operan un satélite educativo. Más que aprender sobre el espacio, forman parte de él — adquiriendo habilidades técnicas, pensamiento crítico y visión de futuro alineadas con las demandas de la nueva economía espacial.",
+      "cardTitle": "Desafío Espacial",
+      "cardDescription": "Un viaje educativo que transforma a los alumnos en protagonistas de la exploración espacial, desarrollando habilidades esenciales para el futuro."
     },
     "whatIsChallenge": {
       "title": "¿Qué es el Desafío Espacial?",
@@ -98,6 +202,34 @@
         }
       }
     },
+    "journey": {
+      "title": "Un Viaje de 12 Meses",
+      "preChallenge": {
+        "title": "Pre-Desafío",
+        "months": "Meses 1-4",
+        "description": "Organización del proyecto, definición de reglas, selección de escuelas y formación de profesores."
+      },
+      "phase1": {
+        "title": "Fase 1: Concepción",
+        "months": "Meses 4-7",
+        "description": "Inicio del curso para los 500 alumnos. Enfoque en análisis de problemas y concepción de la misión espacial (MCR)."
+      },
+      "phase2": {
+        "title": "Fase 2: Diseño",
+        "months": "Meses 7-10",
+        "description": "Los alumnos reciben los Kits SMT. Presentación final de proyectos (PDR) y selección de los mejores equipos."
+      },
+      "phase3": {
+        "title": "Fase 3: Construcción",
+        "months": "Meses 10-15",
+        "description": "Los 30 alumnos seleccionados construyen el satélite PocketQube. Pruebas, entrega e inserción en órbita."
+      },
+      "postChallenge": {
+        "title": "Post-Desafío",
+        "months": "Meses 15-18",
+        "description": "Con el satélite en órbita, Ideia Space recopila los datos y los comparte con las instituciones."
+      }
+    },
     "ecosystem": {
       "title": "Ecosistema de Aprendizaje Completo",
       "items": [
@@ -129,6 +261,38 @@
         "mariana": {
           "name": "Mariana Taveira",
           "message": "Participé en el curso de satélites para estudiantes de secundaria... Con la ayuda de ingenieros, diseñamos nuestra misión espacial, con el objetivo de resolver problemas reales con nanosatélites. Fue una experiencia increíble que amplió mis horizontes en el área espacial."
+        },
+        "student3": {
+          "name": "Estudiante 3",
+          "message": "Texto del testimonio del estudiante 3."
+        },
+        "student4": {
+          "name": "Estudiante 4",
+          "message": "Texto del testimonio del estudiante 4."
+        },
+        "student5": {
+          "name": "Estudiante 5",
+          "message": "Texto del testimonio del estudiante 5."
+        },
+        "student6": {
+          "name": "Estudiante 6",
+          "message": "Texto del testimonio del estudiante 6."
+        },
+        "student7": {
+          "name": "Estudiante 7",
+          "message": "Texto del testimonio del estudiante 7."
+        },
+        "student8": {
+          "name": "Estudiante 8",
+          "message": "Texto del testimonio del estudiante 8."
+        },
+        "student9": {
+          "name": "Estudiante 9",
+          "message": "Texto del testimonio del estudiante 9."
+        },
+        "student10": {
+          "name": "Estudiante 10",
+          "message": "Texto del testimonio del estudiante 10."
         }
       }
     }

@@ -6,12 +6,78 @@ import StatsCarousel from '@/components/StatsCarousel';
 import MethodologyCarousel from '@/components/MethodologyCarousel';
 import EcosystemCard from '@/components/EcosystemCard';
 import ImpactCarousel from '@/components/ImpactCarousel';
-import TestimonialCard from '@/components/TestimonialCard';
+import TestimonialsCarousel from '@/components/TestimonialsCarousel';
+import ScrollIndicator from '@/components/ScrollIndicator';
+import JourneyCard from '@/components/JourneyCard';
+import InfoCard from '@/components/InfoCard';
 
 export default async function ServicesPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
   setRequestLocale(locale);
   const t = await getTranslations('services');
+
+  const testimonials = [
+    {
+      name: t('ecosystem.testimonials.roseno.name'),
+      message: t('ecosystem.testimonials.roseno.message'),
+      image: '/assets/RosenofromIdeiaSite.png',
+      rating: 5
+    },
+    {
+      name: t('ecosystem.testimonials.mariana.name'),
+      message: t('ecosystem.testimonials.mariana.message'),
+      image: '/assets/MarianafromIdeiaSite.png',
+      rating: 5
+    },
+    {
+      name: t('ecosystem.testimonials.student3.name'),
+      message: t('ecosystem.testimonials.student3.message'),
+      image: '/assets/student3.png',
+      rating: 5
+    },
+    {
+      name: t('ecosystem.testimonials.student4.name'),
+      message: t('ecosystem.testimonials.student4.message'),
+      image: '/assets/student4.png',
+      rating: 5
+    },
+    {
+      name: t('ecosystem.testimonials.student5.name'),
+      message: t('ecosystem.testimonials.student5.message'),
+      image: '/assets/student5.png',
+      rating: 5
+    },
+    {
+      name: t('ecosystem.testimonials.student6.name'),
+      message: t('ecosystem.testimonials.student6.message'),
+      image: '/assets/student6.png',
+      rating: 5
+    },
+    {
+      name: t('ecosystem.testimonials.student7.name'),
+      message: t('ecosystem.testimonials.student7.message'),
+      image: '/assets/student7.png',
+      rating: 5
+    },
+    {
+      name: t('ecosystem.testimonials.student8.name'),
+      message: t('ecosystem.testimonials.student8.message'),
+      image: '/assets/student8.png',
+      rating: 5
+    },
+    {
+      name: t('ecosystem.testimonials.student9.name'),
+      message: t('ecosystem.testimonials.student9.message'),
+      image: '/assets/student9.png',
+      rating: 5
+    },
+    {
+      name: t('ecosystem.testimonials.student10.name'),
+      message: t('ecosystem.testimonials.student10.message'),
+      image: '/assets/student10.png',
+      rating: 5
+    }
+  ];
 
   return (
     <div className="overflow-y-auto">
@@ -30,26 +96,24 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
               {t('spaceChallenge.title')}
             </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed mb-6 md:mb-8">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed">
               {t('spaceChallenge.description')}
             </p>
-            <Link
-              href={`#methodology`}
-              className="group inline-flex items-center gap-3 hover:opacity-90 transition-opacity font-medium text-base md:text-lg"
-            >
-              <span className="text-white">{t('spaceChallenge.button')}</span>
-              <span className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-white hover:bg-gray-100 transition-colors shadow-lg">
-                <svg className="w-4 h-4 md:w-5 md:h-5 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </span>
-            </Link>
           </div>
+        </div>
+
+        {/* Separator Line with Scroll Indicator */}
+        <div className="absolute bottom-0 left-0 w-full flex flex-col items-center">
+          <ScrollIndicator />
+          <div className="w-full h-[4px] bg-gradient-to-r from-transparent via-[#e80074] to-transparent" />
         </div>
       </section>
 
-      {/* Second Section - Video Background with Text */}
+      {/* Second Section - Video Background with Text and Card */}
       <section className="min-h-screen w-full relative bg-black flex items-center">
+        {/* Separator Line at Top */}
+        <div className="absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r from-transparent via-[#e80074] to-transparent z-10" />
+        
         {/* Video Background */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
           <video
@@ -67,21 +131,26 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
         <div className="absolute inset-0 bg-black/50" />
 
         {/* Content */}
-        <div className="relative z-10 w-full max-w-[1920px] mx-auto flex flex-col justify-center px-4 sm:px-6 md:px-12 lg:px-24 py-12">
-          <div className="max-w-3xl text-white">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8">
-              {t('whySpaceChallenge.title')}
-            </h2>
-            <div className="space-y-4 md:space-y-6 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 leading-relaxed">
-              <p>
-                {t('whySpaceChallenge.description1')}
-              </p>
-              <p>
-                {t('whySpaceChallenge.description2')}
-              </p>
-            </div>
+        <div className="relative z-10 w-full max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center px-4 sm:px-6 md:px-12 lg:px-24 py-12">
+          {/* Left - Text */}
+          <div className="text-white">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 leading-relaxed">
+              {t('whySpaceChallenge.description')}
+            </p>
+          </div>
+
+          {/* Right - Info Card */}
+          <div className="flex justify-center lg:justify-end">
+            <InfoCard
+              title={t('whySpaceChallenge.cardTitle')}
+              description={t('whySpaceChallenge.cardDescription')}
+              image="/assets/satellite-orbit.mp4"
+            />
           </div>
         </div>
+
+        {/* Separator Line at Bottom */}
+        <div className="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-transparent via-[#e80074] to-transparent z-10" />
       </section>
 
       {/* Third Section - Image with Text and Carousel */}
@@ -119,6 +188,9 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
             <StatsCarousel locale={locale} />
           </div>
         </div>
+
+        {/* Separator Line */}
+        <div className="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-transparent via-[#e80074] to-transparent z-10" />
       </section>
 
       {/* Fourth Section - Methodology */}
@@ -156,6 +228,9 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
             <MethodologyCarousel />
           </div>
         </div>
+
+        {/* Separator Line */}
+        <div className="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-transparent via-[#e80074] to-transparent z-10" />
       </section>
 
       {/* Fifth Section - Video Background */}
@@ -198,10 +273,75 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
             <ImpactCarousel />
           </div>
         </div>
+
+        {/* Separator Line */}
+        <div className="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-transparent via-[#e80074] to-transparent z-10" />
+      </section>
+
+      {/* Journey Section - 12 Months */}
+      <section className="min-h-screen w-full relative overflow-hidden flex items-center py-12">
+        {/* Background Image */}
+        <div 
+          className="absolute top-0 left-0 w-full h-full"
+          style={{
+            backgroundImage: 'url(/assets/nebulus.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+        
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/50" />
+        
+        {/* Content */}
+        <div className="relative z-10 w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24 py-12">
+          {/* Title */}
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-2xl mb-12 text-center">
+            {t('journey.title')}
+          </h2>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <JourneyCard
+              title={t('journey.preChallenge.title')}
+              months={t('journey.preChallenge.months')}
+              description={t('journey.preChallenge.description')}
+              color="#9B59B6"
+            />
+            <JourneyCard
+              title={t('journey.phase1.title')}
+              months={t('journey.phase1.months')}
+              description={t('journey.phase1.description')}
+              color="#E91E63"
+            />
+            <JourneyCard
+              title={t('journey.phase2.title')}
+              months={t('journey.phase2.months')}
+              description={t('journey.phase2.description')}
+              color="#E91E63"
+            />
+            <JourneyCard
+              title={t('journey.phase3.title')}
+              months={t('journey.phase3.months')}
+              description={t('journey.phase3.description')}
+              color="#E91E63"
+            />
+            <JourneyCard
+              title={t('journey.postChallenge.title')}
+              months={t('journey.postChallenge.months')}
+              description={t('journey.postChallenge.description')}
+              color="#9B59B6"
+            />
+          </div>
+        </div>
+
+        {/* Separator Line */}
+        <div className="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-transparent via-[#e80074] to-transparent z-10" />
       </section>
 
       {/* Sixth Section - Testimonials */}
-      <section className="min-h-screen w-full relative overflow-hidden flex items-center py-12">
+      <section className="min-h-screen w-full relative overflow-hidden flex flex-col py-12">
         {/* Video Background */}
         <div className="absolute top-0 left-0 w-full h-full">
           <video
@@ -218,31 +358,22 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/60" />
         
-        {/* Content */}
-        <div className="relative z-10 w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24">
-          <div className="max-w-6xl w-full mx-auto">
-            {/* Title */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-2xl mb-8 md:mb-12 text-center">
-              {t('ecosystem.testimonials.title')}
-            </h2>
+        {/* Title at Top */}
+        <div className="relative z-10 w-full px-4 sm:px-6 md:px-12 lg:px-24 pt-12 md:pt-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-2xl text-center">
+            {t('ecosystem.testimonials.title')}
+          </h2>
+        </div>
 
-            {/* Testimonial Cards - Responsive Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 justify-items-center max-w-4xl mx-auto">
-              <TestimonialCard
-                name={t('ecosystem.testimonials.roseno.name')}
-                message={t('ecosystem.testimonials.roseno.message')}
-                image="/assets/RosenofromIdeiaSite.png"
-                rating={5}
-              />
-              <TestimonialCard
-                name={t('ecosystem.testimonials.mariana.name')}
-                message={t('ecosystem.testimonials.mariana.message')}
-                image="/assets/MarianafromIdeiaSite.png"
-                rating={5}
-              />
-            </div>
+        {/* Carousel Centered */}
+        <div className="relative z-10 w-full flex-1 flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24">
+          <div className="w-full max-w-6xl">
+            <TestimonialsCarousel testimonials={testimonials} />
           </div>
         </div>
+
+        {/* Separator Line */}
+        <div className="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-transparent via-[#e80074] to-transparent z-10" />
       </section>
     </div>
   );

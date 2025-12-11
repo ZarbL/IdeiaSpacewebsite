@@ -11,6 +11,7 @@ export interface HeroContent {
 
 export interface ChallengeContent {
   title: string;
+  description: string;
   videoSrc: string;
   buttonText: string;
   buttonLink: string;

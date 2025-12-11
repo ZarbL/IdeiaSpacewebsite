@@ -16,6 +16,7 @@ export class HomeController {
       },
       challenge: {
         title: t('challenge.title'),
+        description: t('challenge.description'),
         videoSrc: getVideoUrl('desafioespacial.mp4'),
         buttonText: t('challenge.button'),
         buttonLink: '/services',

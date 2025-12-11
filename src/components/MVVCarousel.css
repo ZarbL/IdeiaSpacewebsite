@@ -1,0 +1,41 @@
+.mvv-carousel-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.mvv-carousel-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.mvv-card {
+  width: 280px;
+  height: 300px;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+              0 0  0 2px rgb(190,190,190),
+              0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+
+.mvv-card:hover {
+  border-radius: 20px;
+}
+
+.mvv-image,
+.mvv-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

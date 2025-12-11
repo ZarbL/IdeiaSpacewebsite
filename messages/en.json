@@ -1,19 +1,75 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
-    "services": "Services",
+    "about": "About Us",
+    "spaceChallenge": "Space\nChallenge",
+    "teacherResources": "Teacher\nResources",
+    "programmingTool": "Programming\nTool",
     "contact": "Contact"
   },
+  "common": {
+    "scrollForMore": "SCROLL FOR MORE"
+  },
   "hero": {
-    "title": "Democratizing Access to Space",
+    "title": "Welcome to Ideia Space",
     "subtitle": "",
     "button": "Watch video",
     "aboutButton": "About Us"
   },
   "challenge": {
-    "title": "The Space Challenge",
+    "title": "Space Challenge",
+    "description": "Space Challenge is an Ideia Space project that connects<br/>the universe to the classroom. We transform students into<br/>protagonists, taking them from mission conception<br/>to the launch of a real satellite",
     "button": "Learn More"
+  },
+  "missions": {
+    "title": "Our Missions",
+    "description": "Learn more about the missions developed by our students",
+    "button": "Learn More",
+    "hero": {
+      "title": "Space Missions",
+      "subtitle": ""
+    },
+    "development": {
+      "title": "How does mission development happen?",
+      "description": "During the Space Challenge, students experience all stages of a real mission. They start by defining a problem and the satellite's objective, plan how it will operate and what data it will collect, program their sensors on an educational platform, and perform tests and simulations. The project culminates in the launch of a PocketQube into orbit, allowing students to monitor its operation and analyze real data. Throughout the process, they develop technical skills, scientific thinking, teamwork, and a vision for the future in the space field."
+    },
+    "badges": {
+      "title": "Our Students' Missions",
+      "mission1": {
+        "name": "Mission 1",
+        "student": "Student 1",
+        "description": "Description of mission 1 developed by the student."
+      },
+      "mission2": {
+        "name": "Mission 2",
+        "student": "Student 2",
+        "description": "Description of mission 2 developed by the student."
+      },
+      "mission3": {
+        "name": "Mission 3",
+        "student": "Student 3",
+        "description": "Description of mission 3 developed by the student."
+      },
+      "mission4": {
+        "name": "Mission 4",
+        "student": "Student 4",
+        "description": "Description of mission 4 developed by the student."
+      }
+    }
+  },
+  "stats": {
+    "title": "We open access to space",
+    "subtitle": "To improve life on Earth",
+    "satellites": "3",
+    "satellitesLabel": "Satellites in Orbit",
+    "students": "1500+",
+    "studentsLabel": "Students served globally",
+    "countries": "5",
+    "countriesLabel": "Countries impacted"
+  },
+  "ideiaToSpace": {
+    "title": "From Ideia to Space",
+    "description": "Transforming fascination with space into space missions:<br/>we educate students to design, build and launch real satellites<br/>to train the new generation of professionals."
   },
   "cta": {
     "title": "Ready to revolutionize your connectivity?",
@@ -21,14 +77,62 @@
     "button": "Contact Us"
   },
   "about": {
-    "title": "About IdeiaSpace",
-    "description": "IdeiaSpace is a Brazilian pioneer company in educational satellites in Brazil and worldwide with satellites in orbit! We connect the world through space technology, revolutionizing education and inspiring the next generation of scientists, engineers and space explorers through real experiences with cutting-edge technology."
+    "title": "The values that take us to space ",
+    "description": "Ideia Space offers practical educational journeys that connect schools and students to real space missions. With a 'hands-on' methodology, we empower young people to design, assemble and operate PocketQubes, transforming school experience into technical skills and entrepreneurial spirit - creating a direct bridge between basic education and the space industry.",
+    "historyTitle": "Our history",
+    "historyDescription": "Ideia Space was born in Brasília with the purpose of transforming how the educational sector connects with space technology. The company emerged from a common vision: to make space more accessible, educationally relevant and closer to students' reality. Combining innovation, science and education, Ideia Space develops practical experiences that bring schools and institutions closer to the space ecosystem, promoting learning through real projects, educational missions and applied technologies. Its mission is to train the next generation of space professionals and enthusiasts, boosting Brazilian leadership in the global space scenario. Its values are guided by innovation, collaboration, technical excellence and commitment to transformative education.",
+    "mvvTitle": "Mission, Vision and Values",
+    "mvvContent": "Mission: To bring accessible and practical space education to students around the world, developing technical, collaborative and leadership skills through real projects.<br/><br/>Vision: To be the global reference in democratizing access to space - connecting schools, universities and industry through an educational constellation.<br/><br/>Values: hands-on learning; inclusion and access to science; international collaboration; safety and responsibility; pedagogical innovation based on real projects; democratization of access to space",
+    "partnersTitle": "Our Partners",
+    "leadershipTitle": "Meet our leadership"
   },
   "technologies": {
-    "title": "Our Technologies",
-    "description": "We develop innovative solutions that connect space to the classroom",
+    "title": "Educational resources",
+    "description": "We develop innovative solutions that connect <br/> space to the classroom",
     "button": "Learn More",
     "pageTitle": "Real Technology for Real Learning",
+    "resources": {
+      "title": "Our Resources",
+      "subtitle": "Educational technologies that transform space learning",
+      "scrollDown": "Scroll down",
+      "sectionTitle": "Educational Resources",
+      "edusat": {
+        "title": "EduSat",
+        "description": "Complete educational satellite kit for training students in space technology."
+      },
+      "orbital": {
+        "title": "Orbital Satellite",
+        "description": "Real PocketQube satellite built by students and launched into space."
+      },
+      "programmingTool": {
+        "title": "Mission Programming Tool",
+        "description": "Block-based programming platform for controlling educational satellites."
+      },
+      "methodology": {
+        "title": "Mission Design and Concept Methodology",
+        "description": "Complete project-based methodology for developing space missions."
+      },
+      "teacherTraining": {
+        "title": "Teacher Training",
+        "description": "Complete training for educators in space technology and innovative methodologies."
+      },
+      "constellation": {
+        "title": "Educational Satellite Constellation",
+        "description": "Network of educational satellites developed by students around the world."
+      },
+      "rover": {
+        "title": "Educational Rover",
+        "description": "Educational exploration robot for planetary mission simulations."
+      },
+      "spaceLearning": {
+        "title": "Space Learning",
+        "description": "Complete online learning platform about space science and technology."
+      },
+      "flatsat": {
+        "title": "Educational FlatSat",
+        "description": "Flat satellite educational system for learning about space subsystems."
+      }
+    },
     "kit": {
       "title": "Satellite Kit (Training - SMT)",
       "description": "Distributed to students in Phase 2 for mission prototyping. Includes real subsystems:\n\n• O.B.D.H. (On-Board Computer)\n• T.T&C (Communication)\n• ADCS (Attitude Control System)\n• EPS (Power System)\n• Payload (Payload)\n• Sensors (Humidity, Temperature, Pressure, etc.)"
@@ -53,14 +157,14 @@
   },
   "services": {
     "spaceChallenge": {
-      "title": "The Space Challenge",
-      "description": "The Space Challenge is an Ideia Space project that connects the universe to the classroom. We transform students into protagonists, taking them from mission conception to launching a real satellite.",
+      "title": "Space Challenge",
+      "description": "",
       "button": "See our impact"
     },
     "whySpaceChallenge": {
-      "title": "Why a Space Challenge?",
-      "description1": "Brazilian education shows low performance in STEM areas (Science, Technology, Engineering and Mathematics). At the same time, the space sector is expanding and faces a shortage of qualified professionals.",
-      "description2": "We believe that the fascination with space can be the spark for an engaging learning experience. We use the space mission as a tool to empower students for the economy of the future."
+      "description": "The Space Challenge is Ideia Space's practical educational journey that connects students from Middle School to Higher Education to a real space mission. Through interdisciplinary challenges and hands-on projects, students develop skills in science, technology, engineering and teamwork, while designing, programming and operating an educational satellite. More than learning about space, they become part of it — acquiring technical skills, critical thinking and future vision aligned with the demands of the new space economy.",
+      "cardTitle": "Space Challenge",
+      "cardDescription": "An educational journey that transforms students into protagonists of space exploration, developing essential skills for the future."
     },
     "whatIsChallenge": {
       "title": "What is the Space Challenge?",
@@ -98,6 +202,34 @@
         }
       }
     },
+    "journey": {
+      "title": "A 12-Month Journey",
+      "preChallenge": {
+        "title": "Pre-Challenge",
+        "months": "Months 1-4",
+        "description": "Project organization, rule definition, school selection and teacher training."
+      },
+      "phase1": {
+        "title": "Phase 1: Conception",
+        "months": "Months 4-7",
+        "description": "Course begins for 500 students. Focus on problem analysis and space mission conception (MCR)."
+      },
+      "phase2": {
+        "title": "Phase 2: Design",
+        "months": "Months 7-10",
+        "description": "Students receive SMT Kits. Final project presentation (PDR) and selection of best teams."
+      },
+      "phase3": {
+        "title": "Phase 3: Construction",
+        "months": "Months 10-15",
+        "description": "The 30 selected students build the PocketQube satellite. Testing, delivery and orbit insertion."
+      },
+      "postChallenge": {
+        "title": "Post-Challenge",
+        "months": "Months 15-18",
+        "description": "With the satellite in orbit, Ideia Space collects data and shares it with institutions."
+      }
+    },
     "ecosystem": {
       "title": "Complete Learning Ecosystem",
       "items": [
@@ -129,6 +261,38 @@
         "mariana": {
           "name": "Mariana Taveira",
           "message": "I participated in the satellite course for high school students... With the help of engineers, we designed our space mission, aiming to solve real problems with nanosatellites. It was an incredible experience that broadened my horizons in the space area."
+        },
+        "student3": {
+          "name": "Student 3",
+          "message": "Student 3 testimonial text."
+        },
+        "student4": {
+          "name": "Student 4",
+          "message": "Student 4 testimonial text."
+        },
+        "student5": {
+          "name": "Student 5",
+          "message": "Student 5 testimonial text."
+        },
+        "student6": {
+          "name": "Student 6",
+          "message": "Student 6 testimonial text."
+        },
+        "student7": {
+          "name": "Student 7",
+          "message": "Student 7 testimonial text."
+        },
+        "student8": {
+          "name": "Student 8",
+          "message": "Student 8 testimonial text."
+        },
+        "student9": {
+          "name": "Student 9",
+          "message": "Student 9 testimonial text."
+        },
+        "student10": {
+          "name": "Student 10",
+          "message": "Student 10 testimonial text."
         }
       }
     }

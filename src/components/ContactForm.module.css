@@ -6,14 +6,14 @@
   gap: 10px;
   padding-inline: 2em;
   padding-bottom: 0.4em;
-  background-color: #171717;
+  background-color: #f2f2f7;
   border-radius: 20px;
 }
 
 .formHeading {
   text-align: center;
   margin: 2em;
-  color: #64ffda;
+  color: #e31c79;
   font-size: 1.2em;
   background-color: transparent;
   align-self: center;
@@ -41,9 +41,9 @@
 }
 
 .statusMessage.success {
-  background-color: rgba(100, 255, 218, 0.1);
-  border: 1px solid #64ffda;
-  color: #64ffda;
+  background-color: rgba(227, 28, 121, 0.1);
+  border: 1px solid #e31c79;
+  color: #e31c79;
 }
 
 .statusMessage.error {
@@ -61,9 +61,9 @@
   padding: 0.6em;
   border: none;
   outline: none;
-  color: white;
-  background-color: #171717;
-  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  color: #000;
+  background-color: #fff;
+  box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.05);
   width: 100%;
   box-sizing: border-box;
 }
@@ -73,7 +73,7 @@
   border: none;
   outline: none;
   width: 100%;
-  color: #ccd6f6;
+  color: #000;
   padding-inline: 1em;
   resize: vertical;
   box-sizing: border-box;
@@ -81,7 +81,7 @@
 }
 
 .inputField::placeholder {
-  color: #8892b0;
+  color: #666;
 }
 
 .sendMessageBtn {
@@ -92,16 +92,16 @@
   border: none;
   outline: none;
   background-color: transparent;
-  color: #64ffda;
+  color: #e31c79;
   font-weight: bold;
-  outline: 1px solid #64ffda;
+  outline: 1px solid #e31c79;
   transition: all ease-in-out 0.3s;
 }
 
 .sendMessageBtn:hover:not(:disabled) {
   transition: all ease-in-out 0.3s;
-  background-color: #64ffda;
-  color: #000;
+  background-color: #e31c79;
+  color: #fff;
   cursor: pointer;
   box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
 }
@@ -112,13 +112,13 @@
 }
 
 .formCard1 {
-  background-image: linear-gradient(163deg, #64ffda 0%, #64ffda 100%);
+  background-image: linear-gradient(163deg, #e31c79 0%, #e31c79 100%);
   border-radius: 22px;
   transition: all 0.3s;
 }
 
 .formCard1:hover {
-  box-shadow: 0px 0px 30px 1px rgba(100, 255, 218, 0.3);
+  box-shadow: 0px 0px 30px 1px rgba(227, 28, 121, 0.3);
 }
 
 .formCard2 {

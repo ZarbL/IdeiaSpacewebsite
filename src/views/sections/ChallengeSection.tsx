@@ -10,7 +10,7 @@ export default function ChallengeSection({ content }: ChallengeSectionProps) {
   const locale = useLocale();
 
   return (
-    <section className="snap-start min-h-screen w-full bg-white relative flex-shrink-0 flex items-center md:items-end">
+    <section className="snap-start min-h-screen w-full bg-white relative flex-shrink-0 flex items-center">
       {/* Video Background */}
       <video
         autoPlay
@@ -26,12 +26,16 @@ export default function ChallengeSection({ content }: ChallengeSectionProps) {
       <div className="absolute inset-0 bg-black/40"></div>
       
       {/* Content */}
-      <div className="relative z-10 w-full px-4 sm:px-6 md:px-12 lg:px-16 xl:px-24 pb-16 sm:pb-20 md:pb-24">
-        <div className="max-w-4xl ml-auto text-center md:text-right">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8 tracking-wide">
+      <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <div className="max-w-4xl text-center md:text-left flex flex-col items-center md:items-start">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 tracking-wide">
             {content.title}
           </h2>
-          <div className="flex items-center gap-3 md:gap-4 justify-center md:justify-end">
+          <p 
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-100 leading-relaxed mb-6 sm:mb-8 drop-shadow-lg max-w-full lg:max-w-[600px] xl:max-w-[700px]"
+            dangerouslySetInnerHTML={{ __html: content.description }}
+          />
+          <div className="flex items-center gap-3 md:gap-4 justify-center md:justify-start">
             <Link
               href={`/${locale}${content.buttonLink}`}
               className="group inline-flex items-center gap-2 md:gap-3 hover:opacity-90 transition-opacity font-medium text-base md:text-lg"

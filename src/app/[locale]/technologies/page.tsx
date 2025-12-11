@@ -1,7 +1,8 @@
 import {setRequestLocale} from 'next-intl/server';
 import {getTranslations} from 'next-intl/server';
 import { getVideoUrl } from '@/lib/cloudinary';
-import TechnologyCard from '@/components/TechnologyCard';
+import ResourceCard from '@/components/ResourceCard';
+import ScrollIndicator from '@/components/ScrollIndicator';
 
 export default async function TechnologiesPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
@@ -9,75 +10,113 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
   const t = await getTranslations('technologies');
 
   return (
-    <div className="overflow-y-auto">
-      {/* First Section - Hero with Video Background */}
-      <section className="h-screen w-full relative overflow-hidden">
-        {/* Video Background */}
-        <div className="absolute top-0 left-0 w-full h-full">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          >
-            <source src={getVideoUrl('galaxyespiral.mp4')} type="video/mp4" />
-          </video>
-        </div>
+    <div className="overflow-y-auto bg-white">
+      {/* Cover Section */}
+      <section className="h-screen w-full relative overflow-hidden flex flex-col">
+        {/* Background Image */}
+        <div 
+          className="absolute top-0 left-0 w-full h-full"
+          style={{
+            backgroundImage: 'url(/assets/falcon9.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
         
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/60" />
         
         {/* Content */}
-        <div className="relative z-10 h-full flex items-start justify-start px-8 md:px-16 lg:px-24 pt-24 overflow-x-auto md:overflow-x-visible">
-          <div className="max-w-2xl text-white">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 leading-tight">
-              {t('pageTitle')}
-            </h1>
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-8 text-center text-white">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+            {t('resources.title')}
+          </h1>
+          <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 max-w-3xl">
+            {t('resources.subtitle')}
+          </p>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="relative z-10 pb-8">
+          <ScrollIndicator />
+        </div>
+
+        {/* Pink Separator Line */}
+        <div className="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-transparent via-[#e80074] to-transparent z-10" />
+      </section>
+
+      {/* Resources Grid Section */}
+      <section className="min-h-screen w-full py-16 px-4 sm:px-6 md:px-12 lg:px-24">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">
+            {t('resources.sectionTitle')}
+          </h2>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <ResourceCard
+              title={t('resources.edusat.title')}
+              description={t('resources.edusat.description')}
+              image="/assets/kiteducational.png"
+              link="/edusat"
+            />
             
-            {/* Technology Cards */}
-            <div className="flex gap-6 min-w-max md:min-w-0">
-              <div className="flex-shrink-0">
-                <h2 className="text-xl md:text-2xl font-bold mb-4">
-                  {t('kit.title')}
-                </h2>
-                <TechnologyCard
-                  title=""
-                  image="/assets/kiteducational.png"
-                  description={t('kit.description')}
-                />
-              </div>
-              
-              <div className="flex-shrink-0">
-                <h2 className="text-xl md:text-2xl font-bold mb-4">
-                  {t('satellite.title')}
-                </h2>
-                <TechnologyCard
-                  title=""
-                  image="/assets/packetqube.png"
-                  description={t('satellite.description')}
-                />
-              </div>
-              
-              <div className="flex-shrink-0">
-                <h2 className="text-xl md:text-2xl font-bold mb-4">
-                  {t('platform.title')}
-                </h2>
-                <TechnologyCard
-                  title=""
-                  image="/assets/MissionProgrammingTool.png"
-                  description={t('platform.description')}
-                />
-                <a
-                  href="https://ideia-spacetoweb.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block mt-4 bg-white text-black px-6 py-3 rounded-full text-base font-semibold hover:bg-gray-200 transition-colors duration-300 shadow-lg hover:shadow-xl"
-                >
-                  {t('platform.button')}
-                </a>
-              </div>
-            </div>
+            <ResourceCard
+              title={t('resources.orbital.title')}
+              description={t('resources.orbital.description')}
+              image="/assets/packetqube.png"
+              link="/orbital"
+            />
+            
+            <ResourceCard
+              title={t('resources.programmingTool.title')}
+              description={t('resources.programmingTool.description')}
+              image="/assets/MissionProgrammingTool.png"
+              link="https://ideia-spacetoweb.vercel.app/"
+            />
+            
+            <ResourceCard
+              title={t('resources.methodology.title')}
+              description={t('resources.methodology.description')}
+              image="/assets/card1.png"
+              link="/methodology"
+            />
+            
+            <ResourceCard
+              title={t('resources.teacherTraining.title')}
+              description={t('resources.teacherTraining.description')}
+              image="/assets/card2.png"
+              link="/training"
+            />
+            
+            <ResourceCard
+              title={t('resources.constellation.title')}
+              description={t('resources.constellation.description')}
+              image="/assets/card3.png"
+              link="/constellation"
+            />
+            
+            <ResourceCard
+              title={t('resources.rover.title')}
+              description={t('resources.rover.description')}
+              image="/assets/card4.jpg"
+              isWorkInProgress={true}
+            />
+            
+            <ResourceCard
+              title={t('resources.spaceLearning.title')}
+              description={t('resources.spaceLearning.description')}
+              image="/assets/card5.jpg"
+              isWorkInProgress={true}
+            />
+            
+            <ResourceCard
+              title={t('resources.flatsat.title')}
+              description={t('resources.flatsat.description')}
+              image="/assets/carrosel1.png"
+              isWorkInProgress={true}
+            />
           </div>
         </div>
       </section>

@@ -49,22 +49,36 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href={`/${locale}`}
-              className="text-white hover:text-gray-300 transition-colors font-medium"
+              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-pre-line text-center"
             >
               {t('home')}
             </Link>
             <Link
               href={`/${locale}/about`}
-              className="text-white hover:text-gray-300 transition-colors font-medium"
+              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-pre-line text-center"
             >
               {t('about')}
             </Link>
             <Link
               href={`/${locale}/services`}
-              className="text-white hover:text-gray-300 transition-colors font-medium"
+              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-pre-line text-center"
             >
-              {t('services')}
+              {t('spaceChallenge')}
             </Link>
+            <Link
+              href={`/${locale}/teacher-resources`}
+              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-pre-line text-center"
+            >
+              {t('teacherResources')}
+            </Link>
+            <a
+              href="https://ideia-spacetoweb.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-pre-line text-center"
+            >
+              {t('programmingTool')}
+            </a>
 
             {/* Language Dropdown */}
             <div className="relative">
@@ -153,8 +167,24 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
                 className="px-6 py-4 text-gray-900 hover:bg-blue-50 transition-colors font-medium border-b border-gray-100"
               >
-              {t('services')}
-            </Link>
+                {t('spaceChallenge')}
+              </Link>
+              <Link
+                href={`/${locale}/teacher-resources`}
+                onClick={() => setIsMenuOpen(false)}
+                className="px-6 py-4 text-gray-900 hover:bg-blue-50 transition-colors font-medium border-b border-gray-100"
+              >
+                {t('teacherResources')}
+              </Link>
+              <a
+                href="https://ideia-spacetoweb.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className="px-6 py-4 text-gray-900 hover:bg-blue-50 transition-colors font-medium border-b border-gray-100"
+              >
+                {t('programmingTool')}
+              </a>
               
             {/* Language Switcher Mobile */}
             <div className="px-6 py-4 border-b border-gray-100">
