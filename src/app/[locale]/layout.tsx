@@ -1,7 +1,7 @@
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {setRequestLocale} from 'next-intl/server';
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Roboto_Condensed } from "next/font/google";
 import "../globals.css";
 import Header from "@/components/Header";
@@ -14,18 +14,19 @@ const robotoCondensed = Roboto_Condensed({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
   title: "IdeiaSpace - Connecting the World through Space Technology",
   description: "Transforming ideas into innovative space solutions. Cutting-edge technology for global communication.",
   keywords: ["space", "technology", "satellite", "innovation", "communication"],
   authors: [{ name: "IdeiaSpace" }],
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-    viewportFit: "cover",
-  },
   openGraph: {
     title: "IdeiaSpace - Space Technology",
     description: "Transforming ideas into innovative space solutions",
