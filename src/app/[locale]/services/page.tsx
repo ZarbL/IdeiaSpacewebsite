@@ -36,7 +36,7 @@ export default async function ServicesPage({params}: {params: Promise<{locale: s
     {
       name: t('ecosystem.testimonials.student4.name'),
       message: t('ecosystem.testimonials.student4.message'),
-      image: getImageUrl('student4.png'),
+      image: '/assets/student4.png',
       rating: 5
     }
   ];
