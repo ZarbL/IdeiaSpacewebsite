@@ -66,7 +66,7 @@ export default function Header() {
               {t('spaceChallenge')}
             </Link>
             <Link
-              href={`/${locale}/teacher-resources`}
+              href={`/${locale}/technologies`}
               className="text-white hover:text-gray-300 transition-colors font-medium whitespace-pre-line text-center"
             >
               {t('teacherResources')}
@@ -170,7 +170,7 @@ export default function Header() {
                 {t('spaceChallenge')}
               </Link>
               <Link
-                href={`/${locale}/teacher-resources`}
+                href={`/${locale}/technologies`}
                 onClick={() => setIsMenuOpen(false)}
                 className="px-6 py-4 text-gray-900 hover:bg-blue-50 transition-colors font-medium border-b border-gray-100"
               >

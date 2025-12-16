@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { HeroContent } from '@/models/content.model';
+import OptimizedVideo from '@/components/OptimizedVideo';
 
 interface HeroSectionProps {
   content: HeroContent;
@@ -12,15 +13,11 @@ export default function HeroSection({ content }: HeroSectionProps) {
   return (
     <section className="snap-start min-h-screen w-full relative text-white flex-shrink-0 flex items-end py-12 md:py-0">
       {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
+      <OptimizedVideo
+        src={content.videoSrc}
         className="absolute top-0 left-0 w-full h-full object-cover"
-      >
-        <source src={content.videoSrc} type="video/mp4" />
-      </video>
+        priority={true}
+      />
       
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/30"></div>

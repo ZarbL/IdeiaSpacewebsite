@@ -30,9 +30,23 @@ export default function TechnologiesSection({ content }: { content: any }) {
         />
         <Link
           href={`/${locale}/technologies`}
-          className="inline-block bg-white text-black px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg font-semibold hover:bg-gray-200 transition-colors duration-300 shadow-xl hover:shadow-2xl"
+          className="inline-flex items-center gap-4 text-white pl-0 pr-0 py-0 text-base md:text-lg font-semibold hover:opacity-90 transition-opacity duration-300"
+          style={{ 
+            textDecoration: 'none', 
+            border: 'none', 
+            outline: 'none',
+            boxShadow: 'none',
+            background: 'transparent',
+            WebkitTapHighlightColor: 'transparent'
+          }}
         >
-          {content.buttonText}
+          <span className="drop-shadow-lg">{content.buttonText}</span>
+          <div className="flex items-center justify-center bg-white rounded-full w-10 h-10 md:w-12 md:h-12 flex-shrink-0" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </div>
         </Link>
       </div>
     </section>

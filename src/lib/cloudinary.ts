@@ -20,9 +20,8 @@ export function getCloudinaryVideoUrl(
   
   const transformations: string[] = [];
   
-  if (options?.quality) {
-    transformations.push(`q_${options.quality}`);
-  }
+  // Default to auto:eco for better performance
+  transformations.push(`q_${options?.quality || 'auto:eco'}`);
   
   if (options?.width) {
     transformations.push(`w_${options.width}`);
@@ -32,9 +31,8 @@ export function getCloudinaryVideoUrl(
     transformations.push(`h_${options.height}`);
   }
   
-  if (options?.format) {
-    transformations.push(`f_${options.format}`);
-  }
+  // Default to auto format for best compression
+  transformations.push(`f_${options?.format || 'auto'}`);
   
   const transformString = transformations.length > 0 
     ? `/${transformations.join(',')}/` 
@@ -49,7 +47,7 @@ export function getCloudinaryVideoUrl(
 export function getCloudinaryImageUrl(
   publicId: string,
   options?: {
-    quality?: 'auto' | 'auto:best' | 'auto:good' | 'auto:eco' | 'auto:low';
+    quality?: 'auto' | 'auto:best' | 'auto:good' | 'auto:eco' | 'auto:low' | number;
     format?: 'png' | 'jpg' | 'webp' | 'avif' | 'auto';
     width?: number;
     height?: number;
@@ -59,9 +57,8 @@ export function getCloudinaryImageUrl(
   
   const transformations: string[] = [];
   
-  if (options?.quality) {
-    transformations.push(`q_${options.quality}`);
-  }
+  // Use quality 80 for better performance while maintaining good quality
+  transformations.push(`q_${options?.quality || 80}`);
   
   if (options?.width) {
     transformations.push(`w_${options.width}`);
@@ -71,9 +68,8 @@ export function getCloudinaryImageUrl(
     transformations.push(`h_${options.height}`);
   }
   
-  if (options?.format) {
-    transformations.push(`f_${options.format}`);
-  }
+  // Default to auto format (WebP/AVIF when supported)
+  transformations.push(`f_${options?.format || 'auto'}`);
   
   const transformString = transformations.length > 0 
     ? `/${transformations.join(',')}/` 
@@ -101,12 +97,13 @@ export function getVideoUrl(filename: string): string {
     'historia1.mp4': 'ideiaspace/historia1',
     'historia2.mp4': 'ideiaspace/historia2',
     'historia3.mp4': 'ideiaspace/historia3',
+    'satellite-orbit.mp4': 'ideiaspace/galaxyespiral',
     'impactocard4.mp4': 'ideiaspace/impactocard4',
     'impactocard2.MP4': 'ideiaspace/impactocard2',
   };
 
   if (USE_CLOUDINARY && videoMap[filename]) {
-    return getCloudinaryVideoUrl(videoMap[filename], { quality: 'auto', format: 'mp4' });
+    return getCloudinaryVideoUrl(videoMap[filename], { quality: 'auto:eco', format: 'auto' });
   }
   
   return `/assets/${filename}`;
@@ -156,7 +153,7 @@ export function getImageUrl(filename: string): string {
   };
 
   if (USE_CLOUDINARY && imageMap[filename]) {
-    return getCloudinaryImageUrl(imageMap[filename], { quality: 'auto', format: 'auto' });
+    return getCloudinaryImageUrl(imageMap[filename], { quality: 80, format: 'auto' });
   }
   
   return `/assets/${filename}`;

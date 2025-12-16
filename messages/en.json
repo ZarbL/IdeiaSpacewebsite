@@ -3,7 +3,7 @@
     "home": "Home",
     "about": "About Us",
     "spaceChallenge": "Space\nChallenge",
-    "teacherResources": "Teacher\nResources",
+    "teacherResources": "Educational\nResources",
     "programmingTool": "Programming\nTool",
     "contact": "Contact"
   },
@@ -36,24 +36,29 @@
     "badges": {
       "title": "Our Students' Missions",
       "mission1": {
-        "name": "Mission 1",
-        "student": "Student 1",
-        "description": "Description of mission 1 developed by the student."
+        "name": "UAI-SAT",
+        "student": "Mission Summary",
+        "description": "UaiSat is a PocketQube space equipment, shaped as a 5 cm cube on each side. Besides being the first from Minas Gerais state, it is the first PocketQube developed by a Brazilian university and launched into space. It will orbit the planet at an average altitude of 500 to 600 km, with an expected lifespan of 2 years.\n\n**Mission Objective**\n\nUaiSat's main mission is to validate technology in orbit in addition to collecting data on agriculture and other productive sectors in Minas Gerais, such as soil data, temperature, humidity, among others. It will also monitor lightning and storms, using technology developed in partnership with the National Institute for Space Research (INPE). The main mission is the validation of technology in the space environment."
       },
       "mission2": {
-        "name": "Mission 2",
-        "student": "Student 2",
-        "description": "Description of mission 2 developed by the student."
+        "name": "SARI-1",
+        "student": "Mission Summary",
+        "description": "The mission is part of a project developed by university students, which aims to use the satellite to connect IoT sensors in Brazil and Saudi Arabia. The satellite is equipped with a payload consisting of an SD card to store data received from ground stations and a radio system dedicated to transmitting and relaying collected information. By combining accessible space technology and practical application, the project offers students practical experience in space engineering, from development to mission operation.\n\n**Mission Objective**\n\nThe objective of this mission is to connect a network of IoT sensors through a picosatellite developed by students, providing data to assist the population while promoting technical training for those involved in applied space engineering."
       },
       "mission3": {
-        "name": "Mission 3",
-        "student": "Student 3",
-        "description": "Description of mission 3 developed by the student."
+        "name": "Galaxy Explorer",
+        "student": "Mission Summary",
+        "description": "Galaxy Explorer aims to perform radiation measurements and connect to IoT sensors in Brazil. The Radio Payload consists of a Store and Forward system in which the satellite is able to receive messages from ground transmitters, store them, and transmit them when flying over a ground station. The mission also carries a radiation sensor capable of measuring Alpha and Beta radiation. This sensor is especially interesting because it was developed nationally to be low-cost and relatively accurate. This is possible using photodiodes.\n\n**Mission Objective**\n\nGalaxy Explorer is a technological mission that aims to conduct radiation measurement experiments using low-cost photodiode-based sensors. The mission will also demonstrate the in-orbit operation of a 1P PocketQube platform developed in Brazil in a partnership between All2Space and entrepreneur Kevin Tang Xilai."
       },
       "mission4": {
-        "name": "Mission 4",
-        "student": "Student 4",
-        "description": "Description of mission 4 developed by the student."
+        "name": "ANISC-1",
+        "student": "Mission Summary",
+        "description": "The mission is part of a project developed by high school students, which aims to use the satellite to connect IoT sensors. The satellite is equipped with a payload consisting of an SD card to store data received from ground stations and a radio system dedicated to transmitting and relaying collected information. By combining accessible space technology and practical application, the project offers students practical experience in space engineering, from development to mission operation.\n\n**Mission Objective**\n\nThe objective of this mission is to connect a network of IoT sensors through a picosatellite developed by students, providing data to assist the population while promoting technical training for those involved in applied space engineering."
+      },
+      "mission5": {
+        "name": "EduSat",
+        "student": "Mission Summary",
+        "description": "The mission is part of a project developed by high school students, which aims to use the satellite to connect IoT sensors in Brazil. The satellite is equipped with a payload consisting of an SD card to store data received from ground stations and a radio system dedicated to transmitting and relaying collected information. By combining accessible space technology and practical application, the project offers students practical experience in space engineering, from development to mission operation.\n\n**Mission Objective**\n\nThe objective of this mission is to monitor the quality of Brazilian soil during crop and off-season cycles through a picosatellite developed by students, providing data to assist rural producers in crop selection and adoption of sustainable management practices, while promoting technical training for those involved in applied space engineering."
       }
     }
   },
@@ -165,6 +170,22 @@
       "description": "The Space Challenge is Ideia Space's practical educational journey that connects students from Middle School to Higher Education to a real space mission. Through interdisciplinary challenges and hands-on projects, students develop skills in science, technology, engineering and teamwork, while designing, programming and operating an educational satellite. More than learning about space, they become part of it — acquiring technical skills, critical thinking and future vision aligned with the demands of the new space economy.",
       "cardTitle": "Space Challenge",
       "cardDescription": "An educational journey that transforms students into protagonists of space exploration, developing essential skills for the future."
+    },
+    "howItWorks": {
+      "title": "How does it work?",
+      "description": "The Space Challenge is structured in three progressive phases that lead students from initial understanding of the space sector to the concrete experience of designing and monitoring the launch of a real orbital satellite. Each phase was designed to develop technical skills, systemic thinking and student leadership in a challenging and highly applied environment.",
+      "phase1": {
+        "title": "Phase 1: Space Mission Concept and Design",
+        "description": "Students learn the fundamentals of space missions, understand how objectives, orbits and payloads influence the project, and define the purpose of the mission their team will develop."
+      },
+      "phase2": {
+        "title": "Phase 2: Project Concept and Design",
+        "description": "Based on the mission, students use the Educational Satellite Kit to understand a satellite's subsystems and design the main functionalities of the orbital model, connecting technical decisions to the defined purpose."
+      },
+      "phase3": {
+        "title": "Phase 3: Orbital Satellite and Launch",
+        "description": "Selected teams develop, integrate and test the orbital satellite. After final preparation, the satellite is sent to the launch vehicle and placed in orbit, where students monitor its real operation."
+      }
     },
     "whatIsChallenge": {
       "title": "What is the Space Challenge?",

@@ -3,7 +3,7 @@
     "home": "Início",
     "about": "Sobre Nós",
     "spaceChallenge": "Desafio\nEspacial",
-    "teacherResources": "Recurso para\nProfessores",
+    "teacherResources": "Recursos\nEducacionais",
     "programmingTool": "Ferramenta de\nProgramação",
     "contact": "Contato"
   },
@@ -36,24 +36,29 @@
     "badges": {
       "title": "Missões dos Nossos Alunos",
       "mission1": {
-        "name": "Missão 1",
-        "student": "Aluno 1",
-        "description": "Descrição da missão 1 desenvolvida pelo aluno."
+        "name": "UAI-SAT",
+        "student": "Resumo da Missão",
+        "description": "UaiSat é um equipamento espacial do tipo PocketQube, com o formato de um cubo de 5 cm em cada lateral. Além de ser o primeiro do estado de Minas Gerais, é o primeiro PocketQube desenvolvido por uma universidade do Brasil e lançado ao espaço. Ele vai orbitar o planeta a uma altitude média de 500 a 600 km, com expectativa de vida útil de 2 anos.\n\n**Objetivo da Missão**\n\nO UaiSat tem como principal missão a validação de tecnologia em órbita além da coleta de dados sobre a agropecuária e outros setores produtivos de Minas Gerais, como dados do solo, temperatura, umidade, entre outros. Também vai monitorar raios e tempestades, utilizando tecnologia desenvolvida em conjunto com o Instituto Nacional de Pesquisas Espaciais (INPE). E a principal missão que é a validação de tecnologia no ambiente espacial."
       },
       "mission2": {
-        "name": "Missão 2",
-        "student": "Aluno 2",
-        "description": "Descrição da missão 2 desenvolvida pelo aluno."
+        "name": "SARI-1",
+        "student": "Resumo da Missão",
+        "description": "A missão faz parte de um projeto desenvolvido por estudantes universitários, que visa usar o satélite para conectar sensores de IoT no Brasil e na Arábia Saudita. O satélite é equipado com uma carga útil composta por um cartão SD para armazenar dados recebidos de estações terrestres e um sistema de rádio dedicado à transmissão e retransmissão das informações coletadas. Ao combinar tecnologia espacial acessível e aplicação prática, o projeto oferece aos alunos experiência prática em engenharia espacial, desde o desenvolvimento até a operação da missão.\n\n**Objetivo da Missão**\n\nO objetivo desta missão é conectar uma rede de sensores de IoT por meio de um picossatélite desenvolvido por estudantes, fornecendo dados que auxiliem a população e, ao mesmo tempo, promovendo a capacitação técnica dos envolvidos na engenharia espacial aplicada."
       },
       "mission3": {
-        "name": "Missão 3",
-        "student": "Aluno 3",
-        "description": "Descrição da missão 3 desenvolvida pelo aluno."
+        "name": "Galaxy Explorer",
+        "student": "Resumo da Missão",
+        "description": "O Galaxy Explorer tem como objetivo realizar medições de radiação e se conectar a sensores de IoT no Brasil. A Carga Útil de Rádio consiste em um sistema de Armazenamento e Retransmissão no qual o satélite é capaz de receber mensagens de transmissores em terra, armazená-las e transmiti-las ao sobrevoar uma estação terrestre. A missão também carrega um sensor de radiação capaz de medir radiação Alfa e Beta. Este sensor é especialmente interessante porque foi desenvolvido nacionalmente para ser de baixo custo e relativamente preciso. Isso é possível utilizando fotodiodos.\n\n**Objetivo da Missão**\n\nO Galaxy Explorer é uma missão tecnológica que visa realizar experimentos de medição de radiação usando sensores baseados em fotodiodos de baixo custo. A missão também demonstrará a operação em órbita de uma plataforma PocketQube 1P desenvolvida no Brasil em uma parceria entre a All2Space e o empreendedor Kevin Tang Xilai."
       },
       "mission4": {
-        "name": "Missão 4",
-        "student": "Aluno 4",
-        "description": "Descrição da missão 4 desenvolvida pelo aluno."
+        "name": "ANISC-1",
+        "student": "Resumo da Missão",
+        "description": "A missão faz parte de um projeto desenvolvido por estudantes do ensino médio, que visa usar o satélite para conectar sensores de IoT. O satélite é equipado com uma carga útil composta por um cartão SD para armazenar dados recebidos de estações terrestres e um sistema de rádio dedicado à transmissão e retransmissão das informações coletadas. Ao combinar tecnologia espacial acessível e aplicação prática, o projeto oferece aos alunos experiência prática em engenharia espacial, desde o desenvolvimento até a operação da missão.\n\n**Objetivo da Missão**\n\nO objetivo desta missão é conectar uma rede de sensores de IoT por meio de um picossatélite desenvolvido por estudantes, fornecendo dados que auxiliem a população e, ao mesmo tempo, promovendo a capacitação técnica dos envolvidos na engenharia espacial aplicada."
+      },
+      "mission5": {
+        "name": "EduSat",
+        "student": "Resumo da Missão",
+        "description": "A missão faz parte de um projeto desenvolvido por estudantes do ensino médio, que visa usar o satélite para conectar sensores de IoT no Brasil. O satélite é equipado com uma carga útil composta por um cartão SD para armazenar dados recebidos de estações terrestres e um sistema de rádio dedicado à transmissão e retransmissão das informações coletadas. Ao combinar tecnologia espacial acessível e aplicação prática, o projeto oferece aos alunos experiência prática em engenharia espacial, desde o desenvolvimento até a operação da missão.\n\n**Objetivo da Missão**\n\nO objetivo da presente missão é monitorar a qualidade do solo brasileiro durante os ciclos de safra e entressafra por meio de um picosatélite desenvolvido por estudantes, fornecendo dados que auxiliem os produtores rurais na seleção de culturas e na adoção de práticas de manejo sustentável, enquanto promove a capacitação técnica dos envolvidos em engenharia espacial aplicada."
       }
     }
   },
@@ -162,13 +167,25 @@
       "button": ""
     },
     "whySpaceChallenge": {
-      "description": "O Desafio Espacial é a jornada educacional prática da Ideia Space que conecta estudantes do Ensino Fundamental II ao Ensino Superior a uma missão espacial real. Por meio de desafios interdisciplinares e projetos \"mão na massa\", os alunos desenvolvem competências em ciência, tecnologia, engenharia e trabalho em equipe, enquanto projetam, programam e operam um satélite educacional. Mais do que aprender sobre o espaço, eles fazem parte dele — adquirindo habilidades técnicas, pensamento crítico e visão de futuro alinhadas às demandas da nova economia espacial.",
+      "description": "O Desafio Espacial é um programa educacional único que capacita jovens estudantes do Ensino Fundamental II a se tornarem os próximos líderes em inovação espacial. Através de três trilhas formativas — Missões Espaciais, Design de Satélites e Construção de Satélites Orbitais —, os participantes terão a oportunidade de desenvolver habilidades práticas, trabalhar em equipe e, no final, lançar um satélite real no espaço!",
       "cardTitle": "Desafio Espacial",
       "cardDescription": "Uma jornada educacional que transforma alunos em protagonistas da exploração espacial, desenvolvendo habilidades essenciais para o futuro."
     },
-    "whatIsChallenge": {
-      "title": "O que é o Desafio Espacial?",
-      "description": "Trata-se de uma competição de projetos de Missão Espacial voltada para alunos do Ensino Médio (14 a 18 anos). O projeto é desenhado para um ano e impacta diferentes grupos de alunos em etapas progressivas:"
+    "howItWorks": {
+      "title": "Como funciona?",
+      "description": "O Desafio Espacial é estruturado em três fases progressivas que conduzem o estudante da compreensão inicial sobre o setor espacial até a experiência concreta de projetar e acompanhar o lançamento de um satélite orbital real. Cada fase foi desenhada para desenvolver competências técnicas, pensamento sistêmico e protagonismo estudantil em um ambiente desafiador e altamente aplicado.",
+      "phase1": {
+        "title": "Fase 1: Conceito e Design da Missão Espacial",
+        "description": "Os estudantes aprendem os fundamentos de missões espaciais, compreendem como objetivos, órbitas e cargas úteis influenciam o projeto, e definem o propósito da missão que sua equipe irá desenvolver."
+      },
+      "phase2": {
+        "title": "Fase 2: Conceito e Design do Projeto",
+        "description": "Com base na missão, os alunos utilizam o Kit de Satélites Educacionais para entender os subsistemas de um satélite e projetar as funcionalidades principais do modelo orbital, conectando decisões técnicas ao propósito definido."
+      },
+      "phase3": {
+        "title": "Fase 3: Satélite Orbital e Lançamento",
+        "description": "As equipes selecionadas desenvolvem, integram e testam o satélite orbital. Após a preparação final, o satélite é enviado ao veículo lançador e colocado em órbita, onde os estudantes acompanham sua operação real."
+      }
     },
     "stats": {
       "oneYear": "1 Ano",
@@ -267,32 +284,8 @@
           "message": "Participei da edição 2025 do Desafio Espacial e, para mim, foi uma das melhores experiências da minha vida. Pude ter contato direto com nanosatélites e entender, na prática, como funcionam os processos de montagem, programação e até mesmo as etapas envolvidas no lançamento.O Ideia Space foi um verdadeiro divisor de águas: ali percebi que eu podia contribuir com a ciência e que a Biologia era realmente o caminho que eu queria seguir. Saí do curso mais confiante, motivada e com a certeza de que quero continuar explorando o universo da tecnologia e das ciências naturais. Foi transformador."
         },
         "student4": {
-          "name": "Aluno 4",
-          "message": "Texto do depoimento do aluno 4."
-        },
-        "student5": {
-          "name": "Aluno 5",
-          "message": "Texto do depoimento do aluno 5."
-        },
-        "student6": {
-          "name": "Aluno 6",
-          "message": "Texto do depoimento do aluno 6."
-        },
-        "student7": {
-          "name": "Aluno 7",
-          "message": "Texto do depoimento do aluno 7."
-        },
-        "student8": {
-          "name": "Aluno 8",
-          "message": "Texto do depoimento do aluno 8."
-        },
-        "student9": {
-          "name": "Aluno 9",
-          "message": "Texto do depoimento do aluno 9."
-        },
-        "student10": {
-          "name": "Aluno 10",
-          "message": "Texto do depoimento do aluno 10."
+          "name": "Pollyana Feitosa Siqueira",
+          "message": "Fiz um curso de satélite e a experiência foi muito incrível. Aprendi sobre nanossatélites, como eles funcionam e como podem ser usados para ajudar o meio ambiente e a sociedade. Durante o curso, conheci pessoas muito legais, interessadas em ciência, com quem pude trocar ideias e aprender ainda mais. Essa vivência me deixou mais motivada e com ainda mais vontade de seguir na área científica e participar de projetos que façam a diferença."
         }
       }
     }

@@ -1,6 +1,7 @@
 import {getTranslations} from 'next-intl/server';
 import {setRequestLocale} from 'next-intl/server';
 import { getImageUrl, getVideoUrl } from '@/lib/cloudinary';
+import OptimizedVideo from '@/components/OptimizedVideo';
 import AboutCarousel from '@/components/AboutCarousel';
 import BenefitsCarousel from '@/components/BenefitsCarousel';
 import HistoryCarousel from '@/components/HistoryCarousel';
@@ -18,15 +19,11 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
   return (
     <div className="min-h-screen w-full relative overflow-hidden">
       {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
+      <OptimizedVideo
+        src={getVideoUrl('space.mp4')}
         className="absolute top-0 left-0 w-full h-full object-cover"
-      >
-        <source src={getVideoUrl('space.mp4')} type="video/mp4" />
-      </video>
+        priority={true}
+      />
       
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/50" />
@@ -72,7 +69,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
           </div>
         </section>
         {/* Section 3 - Mission, Vision and Values */}
-        <section className="h-screen w-full snap-start flex items-center">
+        <section className="h-screen w-full snap-start flex items-center relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
             <div className="flex flex-col justify-center py-12 md:py-16 px-4 sm:px-6 md:px-12 lg:px-16 xl:px-24">
               <div className="text-left text-white">
@@ -92,17 +89,19 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
         </section>
 
         {/* Section 4 - Partners */}
-        <section className="h-screen w-full snap-start flex items-center">
-          <div className="w-full flex flex-col items-center justify-center py-12 md:py-16 px-4 sm:px-6 md:px-12 lg:px-16 xl:px-24">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-12 md:mb-16 text-white text-center">
+        <section className="min-h-screen w-full snap-start flex items-center relative z-10 py-8 md:py-0">
+          <div className="w-full flex flex-col items-center justify-center py-12 md:py-16 px-2 sm:px-4 md:px-12 lg:px-16 xl:px-24">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8 md:mb-12 lg:mb-16 text-white text-center">
               {t('partnersTitle')}
             </h2>
-            <PartnersCarousel />
+            <div className="w-full relative z-10 max-w-full overflow-hidden">
+              <PartnersCarousel />
+            </div>
           </div>
         </section>
 
         {/* Section 5 - Leadership */}
-        <section className="h-screen w-full snap-start">
+        <section className="h-screen w-full snap-start relative z-10">
           {/* Content */}
           <div className="h-full flex flex-col justify-start px-4 sm:px-6 md:px-12 lg:px-24 py-8 md:py-12">
             <div className="max-w-4xl mb-8 md:mb-12 mx-auto text-center mt-6 md:mt-8">

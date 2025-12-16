@@ -1,6 +1,7 @@
 import {setRequestLocale} from 'next-intl/server';
 import {getTranslations} from 'next-intl/server';
 import { getImageUrl, getVideoUrl } from '@/lib/cloudinary';
+import OptimizedVideo from '@/components/OptimizedVideo';
 import ScrollIndicator from '@/components/ScrollIndicator';
 import MissionBadges from '@/components/MissionBadges';
 
@@ -13,35 +14,43 @@ export default async function MissionsPage({params}: {params: Promise<{locale: s
   const missions = [
     {
       id: 1,
-      badgeImage: getImageUrl('impactocard1.png'),
+      badgeImage: getImageUrl('missionbagde1.png'),
       badgeName: t('badges.mission1.name'),
       studentName: t('badges.mission1.student'),
       missionDescription: t('badges.mission1.description'),
-      missionImage: getImageUrl('kiteducational.png')
+      missionImage: getImageUrl('missionbagde1.png')
     },
     {
       id: 2,
-      badgeImage: getImageUrl('impactocard3.png'),
+      badgeImage: getImageUrl('missionbagde2.png'),
       badgeName: t('badges.mission2.name'),
       studentName: t('badges.mission2.student'),
       missionDescription: t('badges.mission2.description'),
-      missionImage: getImageUrl('card1.png')
+      missionImage: getImageUrl('missionbagde2.png')
     },
     {
       id: 3,
-      badgeImage: getImageUrl('beneficio1.png'),
+      badgeImage: getImageUrl('missionbagde3.png'),
       badgeName: t('badges.mission3.name'),
       studentName: t('badges.mission3.student'),
       missionDescription: t('badges.mission3.description'),
-      missionImage: getImageUrl('card2.png')
+      missionImage: getImageUrl('missionbagde3.png')
     },
     {
       id: 4,
-      badgeImage: getImageUrl('beneficio2.png'),
+      badgeImage: getImageUrl('missionbagde4.png'),
       badgeName: t('badges.mission4.name'),
       studentName: t('badges.mission4.student'),
       missionDescription: t('badges.mission4.description'),
-      missionImage: getImageUrl('card3.png')
+      missionImage: getImageUrl('missionbagde4.png')
+    },
+    {
+      id: 5,
+      badgeImage: getImageUrl('missionbagde5.png'),
+      badgeName: t('badges.mission5.name'),
+      studentName: t('badges.mission5.student'),
+      missionDescription: t('badges.mission5.description'),
+      missionImage: getImageUrl('missionbagde5.png')
     }
   ];
 
@@ -51,15 +60,11 @@ export default async function MissionsPage({params}: {params: Promise<{locale: s
       <section className="min-h-screen w-full relative flex flex-col items-center justify-center">
         {/* Video Background */}
         <div className="absolute top-0 left-0 w-full h-full">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
+          <OptimizedVideo
+            src={getVideoUrl('emblema.mp4')}
             className="w-full h-full object-cover"
-          >
-            <source src={getVideoUrl('emblema.mp4')} type="video/mp4" />
-          </video>
+            priority={true}
+          />
         </div>
         
         {/* Overlay */}
@@ -88,15 +93,10 @@ export default async function MissionsPage({params}: {params: Promise<{locale: s
       <section className="min-h-screen w-full relative flex items-center">
         {/* Video Background */}
         <div className="absolute top-0 left-0 w-full h-full">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
+          <OptimizedVideo
+            src={getVideoUrl('space.mp4')}
             className="w-full h-full object-cover"
-          >
-            <source src={getVideoUrl('space.mp4')} type="video/mp4" />
-          </video>
+          />
         </div>
         
         {/* Overlay */}
@@ -119,26 +119,10 @@ export default async function MissionsPage({params}: {params: Promise<{locale: s
       </section>
 
       {/* Block 5.3 - Mission Badges */}
-      <section className="min-h-screen w-full relative flex items-center py-12">
-        {/* Video Background */}
-        <div className="absolute top-0 left-0 w-full h-full">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          >
-            <source src={getVideoUrl('terranoite.mp4')} type="video/mp4" />
-          </video>
-        </div>
-        
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/60" />
-        
+      <section className="min-h-screen w-full relative flex items-center py-12" style={{ backgroundColor: '#ffffff' }}>
         {/* Content */}
         <div className="relative z-10 w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-12 text-center drop-shadow-2xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-12 text-center">
             {t('badges.title')}
           </h2>
           <MissionBadges missions={missions} />

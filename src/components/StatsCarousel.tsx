@@ -47,123 +47,73 @@ export default function StatsCarousel({ locale }: StatsCarouselProps) {
   };
 
   return (
-    <div className="relative w-full flex justify-center">
-      {/* Keyframe animation */}
-      <style dangerouslySetInnerHTML={{
-        __html: `
-          @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-        `
-      }} />
-
+    <div className="relative w-full max-w-[800px] mx-auto overflow-hidden px-16 py-10">
       {/* Card Container */}
-      <div className="relative overflow-hidden" style={{ width: '280px' }}>
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`transition-all duration-700 ease-in-out ${
-              index === currentSlide 
-                ? 'opacity-100 translate-x-0' 
-                : index < currentSlide 
-                  ? 'opacity-0 -translate-x-full absolute inset-0' 
-                  : 'opacity-0 translate-x-full absolute inset-0'
-            }`}
-          >
-            {/* Animated Card */}
-            <div 
-              className="group relative cursor-pointer overflow-hidden flex items-center justify-center"
-              style={{
-                width: '280px',
-                height: '320px',
-                background: '#171717',
-                boxShadow: '0px 0px 3px 1px #00000088'
-              }}
+      <div className="relative overflow-hidden rounded-3xl">
+        <div 
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        >
+          {slides.map((slide, index) => (
+            <div
+              key={index}
+              className="min-w-full bg-white rounded-3xl p-12 text-center"
+              style={{ boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)' }}
             >
-              {/* Rotating gradient border (hidden by default, visible on hover) */}
+              {/* Number in Pink Circle */}
               <div 
-                className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="flex items-center justify-center mx-auto mb-8"
                 style={{
-                  width: '80px',
-                  height: '360px',
-                  background: 'linear-gradient(#ff2288, #387ef0)',
-                  animation: 'rotation 8s infinite linear',
-                  animationPlayState: 'paused'
-                }}
-                onMouseEnter={(e) => {
-                  const target = e.currentTarget as HTMLDivElement;
-                  target.style.animationPlayState = 'running';
-                }}
-                onMouseLeave={(e) => {
-                  const target = e.currentTarget as HTMLDivElement;
-                  target.style.animationPlayState = 'paused';
-                }}
-              />
-              
-              {/* Inner content */}
-              <div 
-                className="relative z-10 flex flex-col items-center justify-center rounded-md p-5"
-                style={{
-                  width: '276px',
-                  height: '316px',
-                  background: '#171717'
+                  width: '120px',
+                  height: '120px',
+                  background: '#e91e63',
+                  borderRadius: '50%',
+                  boxShadow: '0 4px 12px rgba(233, 30, 99, 0.3)'
                 }}
               >
-                {/* Glow effect on hover */}
-                <div 
-                  className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    width: '5px',
-                    height: '50px',
-                    background: 'white',
-                    filter: 'blur(50px)'
-                  }}
-                />
-                
-                <h3 className="text-6xl font-bold mb-4 relative z-10" style={{ color: '#ff2288' }}>
+                <span className="text-white text-3xl font-bold px-2">
                   {slide.number}
-                </h3>
-                <p className="text-xl font-semibold text-white text-center relative z-10">
-                  {slide.title}
-                </p>
+                </span>
               </div>
+
+              {/* Title */}
+              <p className="text-2xl font-bold text-gray-800 leading-snug max-w-xl mx-auto">
+                {slide.title}
+              </p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 z-10"
+        className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white border-2 border-[#e91e63] text-[#e91e63] rounded-full flex items-center justify-center transition-all hover:bg-[#e91e63] hover:text-white hover:scale-110 z-10 text-3xl"
+        style={{ boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}
         aria-label="Anterior"
       >
-        <svg className="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
-        </svg>
+        ‹
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 z-10"
+        className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white border-2 border-[#e91e63] text-[#e91e63] rounded-full flex items-center justify-center transition-all hover:bg-[#e91e63] hover:text-white hover:scale-110 z-10 text-3xl"
+        style={{ boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}
         aria-label="Próximo"
       >
-        <svg className="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
-        </svg>
+        ›
       </button>
 
       {/* Dots Indicator */}
-      <div className="flex justify-center gap-2 mt-6 absolute -bottom-12 left-1/2 -translate-x-1/2">
+      <div className="flex justify-center gap-3 mt-8">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`transition-all duration-300 rounded-full ${
+            className={`transition-all duration-300 rounded-full border-none cursor-pointer p-0 ${
               index === currentSlide 
-                ? 'w-8 h-3 bg-white' 
-                : 'w-3 h-3 bg-white/50 hover:bg-white/75'
+                ? 'w-8 h-3 bg-[#e91e63] rounded-md' 
+                : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
             }`}
             aria-label={`Ir para slide ${index + 1}`}
           />

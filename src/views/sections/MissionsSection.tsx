@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { getVideoUrl } from '@/lib/cloudinary';
+import OptimizedVideo from '@/components/OptimizedVideo';
 
 interface MissionsSectionProps {
   title: string;
@@ -15,15 +16,10 @@ export default function MissionsSection({ title, description, buttonText }: Miss
     <section className="h-screen w-full relative overflow-hidden snap-start flex items-center justify-center lg:justify-start">
       {/* Video Background */}
       <div className="absolute inset-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
+        <OptimizedVideo
+          src={getVideoUrl('emblema.mp4')}
           className="w-full h-full object-cover"
-        >
-          <source src={getVideoUrl('emblema.mp4')} type="video/mp4" />
-        </video>
+        />
       </div>
 
       {/* Dark Overlay */}

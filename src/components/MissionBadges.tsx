@@ -20,6 +20,13 @@ interface MissionBadgesProps {
 export default function MissionBadges({ missions }: MissionBadgesProps) {
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
 
+  // Convert markdown-style formatting to HTML
+  const formatDescription = (text: string) => {
+    return text
+      .replace(/\n\n/g, '<br/><br/>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong class="mission-objective">$1</strong>');
+  };
+
   return (
     <div className="mission-badges-container">
       {/* Badges Grid */}
@@ -49,7 +56,7 @@ export default function MissionBadges({ missions }: MissionBadgesProps) {
           <div className="mission-details-content">
             <div className="mission-text">
               <h3 className="mission-student-name">{selectedMission.studentName}</h3>
-              <p className="mission-description">{selectedMission.missionDescription}</p>
+              <p className="mission-description" dangerouslySetInnerHTML={{ __html: formatDescription(selectedMission.missionDescription) }} />
             </div>
             <div className="mission-image-wrapper">
               <Image

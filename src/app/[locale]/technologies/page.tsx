@@ -60,13 +60,15 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
               description={t('resources.edusat.description')}
               image={getImageUrl('kiteducational.png')}
               link="/edusat"
+              isWorkInProgress={true}
             />
             
             <ResourceCard
               title={t('resources.orbital.title')}
               description={t('resources.orbital.description')}
-              image={getImageUrl('packetqube.png')}
+              image={getImageUrl('sat.png')}
               link="/orbital"
+              isWorkInProgress={true}
             />
             
             <ResourceCard
@@ -74,6 +76,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
               description={t('resources.programmingTool.description')}
               image={getImageUrl('MissionProgrammingTool.png')}
               link="https://ideia-spacetoweb.vercel.app/"
+              isWorkInProgress={true}
             />
             
             <ResourceCard
@@ -81,6 +84,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
               description={t('resources.methodology.description')}
               image={getImageUrl('card1.png')}
               link="/methodology"
+              isWorkInProgress={true}
             />
             
             <ResourceCard
@@ -88,6 +92,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
               description={t('resources.teacherTraining.description')}
               image={getImageUrl('card2.png')}
               link="/training"
+              isWorkInProgress={true}
             />
             
             <ResourceCard
@@ -95,6 +100,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
               description={t('resources.constellation.description')}
               image={getImageUrl('card3.png')}
               link="/constellation"
+              isWorkInProgress={true}
             />
             
             <ResourceCard
@@ -114,7 +120,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
             <ResourceCard
               title={t('resources.flatsat.title')}
               description={t('resources.flatsat.description')}
-              image={getImageUrl('carrosel1.png')}
+              image={getImageUrl('sat.png')}
               isWorkInProgress={true}
             />
           </div>

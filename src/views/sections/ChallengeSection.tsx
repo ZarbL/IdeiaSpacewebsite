@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { ChallengeContent } from '@/models/content.model';
+import OptimizedVideo from '@/components/OptimizedVideo';
 
 interface ChallengeSectionProps {
   content: ChallengeContent;
@@ -12,15 +13,10 @@ export default function ChallengeSection({ content }: ChallengeSectionProps) {
   return (
     <section className="snap-start min-h-screen w-full bg-white relative flex-shrink-0 flex items-center">
       {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
+      <OptimizedVideo
+        src={content.videoSrc}
         className="absolute top-0 left-0 w-full h-full object-cover"
-      >
-        <source src={content.videoSrc} type="video/mp4" />
-      </video>
+      />
       
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40"></div>

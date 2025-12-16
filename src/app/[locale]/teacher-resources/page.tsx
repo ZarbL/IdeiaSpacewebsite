@@ -1,6 +1,7 @@
 import {setRequestLocale} from 'next-intl/server';
 import {getTranslations} from 'next-intl/server';
 import { getVideoUrl } from '@/lib/cloudinary';
+import OptimizedVideo from '@/components/OptimizedVideo';
 
 export default async function TeacherResourcesPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
@@ -10,15 +11,11 @@ export default async function TeacherResourcesPage({params}: {params: Promise<{l
   return (
     <div className="h-screen w-full relative overflow-hidden">
       {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
+      <OptimizedVideo
+        src={getVideoUrl('space.mp4')}
         className="absolute top-0 left-0 w-full h-full object-cover"
-      >
-        <source src={getVideoUrl('space.mp4')} type="video/mp4" />
-      </video>
+        priority={true}
+      />
       
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/50" />
