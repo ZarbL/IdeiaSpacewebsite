@@ -14,7 +14,7 @@ const PartnersCarousel = () => {
     { logo: getImageUrl('partner6.png'), name: 'Partner 6' },
     { logo: getImageUrl('partner7.png'), name: 'Partner 7' },
     { logo: getImageUrl('partner8.png'), name: 'Partner 8' },
-    { logo: getImageUrl('partner9.png'), name: 'Partner 9' }
+    { logo: '/assets/partner9.png', name: 'Partner 9' }
   ];
 
   return (
