@@ -58,7 +58,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
             <ResourceCard
               title={t('resources.edusat.title')}
               description={t('resources.edusat.description')}
-              image={getImageUrl('kiteducational.png')}
+              image="/assets/sat.png"
               link="/edusat"
               isWorkInProgress={true}
             />
@@ -66,7 +66,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
             <ResourceCard
               title={t('resources.orbital.title')}
               description={t('resources.orbital.description')}
-              image={getImageUrl('sat.png')}
+              image="/assets/kiteducational.png"
               link="/orbital"
               isWorkInProgress={true}
             />
@@ -74,7 +74,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
             <ResourceCard
               title={t('resources.programmingTool.title')}
               description={t('resources.programmingTool.description')}
-              image={getImageUrl('MissionProgrammingTool.png')}
+              image="/assets/missionprogrammintool.png"
               link="https://ideia-spacetoweb.vercel.app/"
               isWorkInProgress={true}
             />
@@ -82,7 +82,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
             <ResourceCard
               title={t('resources.methodology.title')}
               description={t('resources.methodology.description')}
-              image={getImageUrl('card1.png')}
+              image="/assets/metodologiaeconceitodemissao.jpeg"
               link="/methodology"
               isWorkInProgress={true}
             />
@@ -90,7 +90,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
             <ResourceCard
               title={t('resources.teacherTraining.title')}
               description={t('resources.teacherTraining.description')}
-              image={getImageUrl('card2.png')}
+              image="/assets/treinamentodeprofessores.png"
               link="/training"
               isWorkInProgress={true}
             />
@@ -98,7 +98,7 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
             <ResourceCard
               title={t('resources.constellation.title')}
               description={t('resources.constellation.description')}
-              image={getImageUrl('card3.png')}
+              image="/assets/card3.png"
               link="/constellation"
               isWorkInProgress={true}
             />
@@ -106,21 +106,21 @@ export default async function TechnologiesPage({params}: {params: Promise<{local
             <ResourceCard
               title={t('resources.rover.title')}
               description={t('resources.rover.description')}
-              image={getImageUrl('card4.jpg')}
+              image="/assets/card4.jpg"
               isWorkInProgress={true}
             />
             
             <ResourceCard
               title={t('resources.spaceLearning.title')}
               description={t('resources.spaceLearning.description')}
-              image={getImageUrl('card5.jpg')}
+              image="/assets/card5.jpg"
               isWorkInProgress={true}
             />
             
             <ResourceCard
               title={t('resources.flatsat.title')}
               description={t('resources.flatsat.description')}
-              image={getImageUrl('sat.png')}
+              image="/assets/sat.png"
               isWorkInProgress={true}
             />
           </div>

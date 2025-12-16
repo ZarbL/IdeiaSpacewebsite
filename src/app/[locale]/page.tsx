@@ -54,13 +54,10 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
       <TechnologiesSection content={pageContent.technologies} />
 
       {/* Contact Section */}
-      <section id="contact" className="min-h-screen w-full relative overflow-hidden snap-start bg-black flex items-center py-12">
+      <section id="contact" className="min-h-screen w-full relative overflow-hidden snap-start bg-black flex items-center py-12 pt-32">
         {/* Content */}
         <div className="relative z-10 w-full max-w-[1920px] mx-auto flex flex-col justify-center items-center px-4 sm:px-6 md:px-12 lg:px-24">
           <div className="max-w-4xl text-center mb-8 md:mb-12">
-            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white mb-6 md:mb-8">
-              {t('contact.subtitle')}
-            </p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-2xl mb-4 md:mb-6">
               {t('contact.title')}
             </h2>
