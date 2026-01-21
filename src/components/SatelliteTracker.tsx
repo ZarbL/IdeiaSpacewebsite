@@ -109,6 +109,8 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
               color = '#ff6b35'; // Laranja para Starlink
             } else if (category === 'active') {
               color = '#00bfff'; // Azul para Satélites Meteorológicos
+            } else if (category === 'ideiaspace') {
+              color = '#e80074'; // Rosa IdeiaSpace
             }
             
             sats.push({
@@ -148,6 +150,7 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
         { category: 'stations', group: 'stations' },
         { category: 'starlink', group: 'starlink' },
         { category: 'active', group: 'weather' }, // Satélites meteorológicos ativos
+        { category: 'ideiaspace', group: 'ideiaspace' }, // Satélites IdeiaSpace
       ];
       
       const allSats: SatelliteData[] = [];
@@ -319,6 +322,20 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-[#00bfff] shadow-sm shadow-[#00bfff]/50"></div>
                 <span>Satélites Meteorológicos</span>
+              </div>
+            </button>
+
+            <button
+              onClick={() => toggleFilter('ideiaspace')}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all shadow-sm ${
+                activeFilters.has('ideiaspace')
+                  ? 'bg-[#e80074] text-white shadow-[#e80074]/30'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#e80074] shadow-sm shadow-[#e80074]/50"></div>
+                <span>Satélites IdeiaSpace</span>
               </div>
             </button>
           </div>

@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 
 const N2YO_API_KEY = process.env.N2YO_API_KEY;
+const SPACETRACK_USERNAME = process.env.SPACETRACK_USERNAME;
+const SPACETRACK_PASSWORD = process.env.SPACETRACK_PASSWORD;
 
 // Cache em memória para dados TLE
 interface CacheEntry {
@@ -13,6 +15,11 @@ const CACHE_DURATION = 8 * 60 * 60 * 1000; // 8 horas
 
 // Mapeamento de categorias para NORAD IDs específicos
 const SATELLITE_IDS: Record<string, number[]> = {
+  ideiaspace: [
+    66668, // UAI-SAT / SARI-1 / Galaxy Explorer
+    66669, // ANISC-1
+    66670, // EduSat
+  ],
   stations: [
     25544, // ISS (ZARYA)
     48274, // Tiangong (CSS)
@@ -64,6 +71,15 @@ const SATELLITE_IDS: Record<string, number[]> = {
 
 // Dados de fallback com mais satélites para melhor visualização
 const FALLBACK_DATA: Record<string, string> = {
+  ideiaspace: `UAISAT
+1 66668U 25000A   26021.50000000  .00001000  00000+0  50000-4 0  9990
+2 66668  97.5000  45.0000 0005000  90.0000 270.0000 15.10000000  1234
+ANISC-1
+1 66669U 25000B   26021.50000000  .00001000  00000+0  50000-4 0  9991
+2 66669  97.5000  50.0000 0005000  95.0000 265.0000 15.10000000  1235
+EDUSAT
+1 66670U 25000C   26021.50000000  .00001000  00000+0  50000-4 0  9992
+2 66670  97.5000  55.0000 0005000 100.0000 260.0000 15.10000000  1236`,
   stations: `ISS (ZARYA)
 1 25544U 98067A   24020.53241898  .00012796  00000+0  22948-3 0  9997
 2 25544  51.6416 339.8041 0001086  61.8339  64.2352 15.49861416435025
@@ -156,12 +172,63 @@ function isValidTLE(data: string): boolean {
   return true;
 }
 
+// Autenticar e buscar TLEs do Space-Track.org
+async function fetchFromSpaceTrack(noradIds: number[]): Promise<string> {
+  if (!SPACETRACK_USERNAME || !SPACETRACK_PASSWORD) {
+    throw new Error('Space-Track credentials not configured');
+  }
+
+  // Autenticar
+  const authResponse = await fetch('https://www.space-track.org/ajaxauth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `identity=${encodeURIComponent(SPACETRACK_USERNAME)}&password=${encodeURIComponent(SPACETRACK_PASSWORD)}`,
+  });
+
+  if (!authResponse.ok) {
+    throw new Error('Space-Track authentication failed');
+  }
+
+  // Buscar TLEs
+  const noradIdsList = noradIds.join(',');
+  const tleResponse = await fetch(
+    `https://www.space-track.org/basicspacedata/query/class/gp/NORAD_CAT_ID/${noradIdsList}/orderby/TLE_LINE1 ASC/format/3le`,
+    {
+      headers: {
+        Cookie: authResponse.headers.get('set-cookie') || '',
+      },
+    }
+  );
+
+  if (!tleResponse.ok) {
+    throw new Error('Failed to fetch TLEs from Space-Track');
+  }
+
+  return await tleResponse.text();
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const groups = searchParams.get('groups') || 'stations';
 
-  // Verificar se API key está configurada
-  if (!N2YO_API_KEY) {
+  // IdeiaSpace usa Space-Track, outros usam N2YO
+  const useSpaceTrack = groups === 'ideiaspace';
+
+  // Verificar credenciais
+  if (useSpaceTrack && (!SPACETRACK_USERNAME || !SPACETRACK_PASSWORD)) {
+    console.error('❌ Space-Track credentials não configuradas');
+    return new NextResponse(FALLBACK_DATA[groups] || FALLBACK_DATA.stations, {
+      headers: {
+        'Content-Type': 'text/plain',
+        'X-Cache-Status': 'FALLBACK',
+        'X-Data-Source': 'fallback-no-credentials',
+      },
+    });
+  }
+
+  if (!useSpaceTrack && !N2YO_API_KEY) {
     console.error('❌ N2YO_API_KEY não configurada');
     return new NextResponse(FALLBACK_DATA[groups] || FALLBACK_DATA.stations, {
       headers: {
@@ -186,106 +253,120 @@ export async function GET(request: Request) {
       });
     }
 
-    console.log(`🌐 Buscando dados TLE de ${groups} do N2YO...`);
+    console.log(`🌐 Buscando dados TLE de ${groups} do ${useSpaceTrack ? 'Space-Track' : 'N2YO'}...`);
 
     const satelliteIds = SATELLITE_IDS[groups] || SATELLITE_IDS.stations;
-    const tleLines: string[] = [];
+    let tleData = '';
 
-    // Buscar TLE de cada satélite
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 20000); // 20 segundos
+    // Buscar do Space-Track (IdeiaSpace) ou N2YO (outros)
+    if (useSpaceTrack) {
+      // Space-Track.org para satélites IdeiaSpace
+      try {
+        tleData = await fetchFromSpaceTrack(satelliteIds);
+      } catch (error) {
+        console.error('❌ Erro ao buscar do Space-Track:', error);
+        throw error;
+      }
+    } else {
+      // N2YO para outros satélites
+      const tleLines: string[] = [];
 
-    try {
-      for (const satId of satelliteIds) {
-        try {
-          const response = await fetch(
-            `https://api.n2yo.com/rest/v1/satellite/tle/${satId}&apiKey=${N2YO_API_KEY}`,
-            {
-              headers: {
-                'Accept': 'application/json',
-              },
-              signal: controller.signal,
+      // Buscar TLE de cada satélite
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 20000); // 20 segundos
+
+      try {
+        for (const satId of satelliteIds) {
+          try {
+            const response = await fetch(
+              `https://api.n2yo.com/rest/v1/satellite/tle/${satId}&apiKey=${N2YO_API_KEY}`,
+              {
+                headers: {
+                  'Accept': 'application/json',
+                },
+                signal: controller.signal,
+              }
+            );
+
+            if (response.ok) {
+              const data = await response.json();
+              if (data.tle) {
+                // Adicionar nome + TLE linha 1 + TLE linha 2
+                tleLines.push(data.info?.satname || `SAT-${satId}`);
+                tleLines.push(data.tle.split('\r\n')[0]);
+                tleLines.push(data.tle.split('\r\n')[1]);
+              }
             }
-          );
-
-          if (response.ok) {
-            const data = await response.json();
-            if (data.tle) {
-              // Adicionar nome + TLE linha 1 + TLE linha 2
-              tleLines.push(data.info?.satname || `SAT-${satId}`);
-              tleLines.push(data.tle.split('\r\n')[0]);
-              tleLines.push(data.tle.split('\r\n')[1]);
-            }
+            
+            // Pequeno delay para não sobrecarregar API
+            await new Promise(resolve => setTimeout(resolve, 100));
+          } catch (err) {
+            console.warn(`⚠️ Erro ao buscar satélite ${satId}:`, err);
           }
-          
-          // Pequeno delay para não sobrecarregar API
-          await new Promise(resolve => setTimeout(resolve, 100));
-        } catch (err) {
-          console.warn(`⚠️ Erro ao buscar satélite ${satId}:`, err);
-        }
-      }
-
-      clearTimeout(timeoutId);
-
-      if (tleLines.length === 0) {
-        throw new Error('Nenhum TLE recebido');
-      }
-
-      const tleData = tleLines.join('\n');
-
-      // Validar TLE
-      if (!isValidTLE(tleData)) {
-        console.error(`❌ Dados TLE inválidos recebidos de ${groups}`);
-        
-        if (cached) {
-          console.log(`📦 Usando cache expirado (dados inválidos recebidos)`);
-          return new NextResponse(cached.data, {
-            headers: {
-              'Content-Type': 'text/plain',
-              'X-Cache-Status': 'STALE',
-              'X-Data-Source': 'n2yo-stale',
-            },
-          });
         }
 
-        throw new Error('Invalid TLE data');
+        clearTimeout(timeoutId);
+
+        if (tleLines.length === 0) {
+          throw new Error('Nenhum TLE recebido');
+        }
+
+        tleData = tleLines.join('\n');
+      } catch (error) {
+        clearTimeout(timeoutId);
+        throw error;
       }
+    }
 
-      // Sucesso! Atualizar cache
-      cache[groups] = {
-        data: tleData,
-        timestamp: Date.now(),
-      };
-
-      const tleCount = tleData.split('\n').filter(line => line.startsWith('1 ')).length;
-      console.log(`✅ ${tleCount} satélites TLE de ${groups} recebidos do N2YO e armazenados em cache`);
-
-      return new NextResponse(tleData, {
-        headers: {
-          'Content-Type': 'text/plain',
-          'X-Cache-Status': 'MISS',
-          'X-Data-Source': 'n2yo',
-        },
-      });
-    } catch (error) {
-      clearTimeout(timeoutId);
+    // Validar TLE
+    if (!isValidTLE(tleData)) {
+      console.error(`❌ Dados TLE inválidos recebidos de ${groups}`);
       
-      // Se temos cache antigo (mesmo expirado), usar ele
       if (cached) {
-        console.log(`📦 Usando cache expirado de ${groups} (erro na API)`);
+        console.log(`📦 Usando cache expirado (dados inválidos recebidos)`);
         return new NextResponse(cached.data, {
           headers: {
             'Content-Type': 'text/plain',
             'X-Cache-Status': 'STALE',
-            'X-Data-Source': 'n2yo-stale',
+            'X-Data-Source': useSpaceTrack ? 'spacetrack-stale' : 'n2yo-stale',
           },
         });
       }
 
-      throw error;
+      throw new Error('Invalid TLE data');
     }
+
+    // Sucesso! Atualizar cache
+    cache[groups] = {
+      data: tleData,
+      timestamp: Date.now(),
+    };
+
+    const tleCount = tleData.split('\n').filter(line => line.startsWith('1 ')).length;
+    console.log(`✅ ${tleCount} satélites TLE de ${groups} recebidos do ${useSpaceTrack ? 'Space-Track' : 'N2YO'} e armazenados em cache`);
+
+    return new NextResponse(tleData, {
+      headers: {
+        'Content-Type': 'text/plain',
+        'X-Cache-Status': 'MISS',
+        'X-Data-Source': useSpaceTrack ? 'spacetrack' : 'n2yo',
+      },
+    });
   } catch (err) {
     console.error(`❌ Erro ao buscar satélites de ${groups}:`, err);
+    
+    // Verificar cache para fallback
+    const cached = cache[groups];
+    if (cached) {
+      console.log(`📦 Usando cache expirado de ${groups} (erro na API)`);
+      return new NextResponse(cached.data, {
+        headers: {
+          'Content-Type': 'text/plain',
+          'X-Cache-Status': 'STALE',
+          'X-Data-Source': useSpaceTrack ? 'spacetrack-stale' : 'n2yo-stale',
+        },
+      });
+    }
     
     // Fallback para dados estáticos
     console.log(`📦 Usando dados de fallback para ${groups}`);
