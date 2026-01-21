@@ -18,7 +18,10 @@
     "next-intl": "^4.5.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "resend": "^6.5.2"
+    "react-globe.gl": "^2.37.0",
+    "resend": "^6.5.2",
+    "satellite.js": "^6.0.2",
+    "three": "^0.182.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

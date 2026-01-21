@@ -60,6 +60,16 @@
         "student": "Mission Summary",
         "description": "The mission is part of a project developed by high school students, which aims to use the satellite to connect IoT sensors in Brazil. The satellite is equipped with a payload consisting of an SD card to store data received from ground stations and a radio system dedicated to transmitting and relaying collected information. By combining accessible space technology and practical application, the project offers students practical experience in space engineering, from development to mission operation.\n\n**Mission Objective**\n\nThe objective of this mission is to monitor the quality of Brazilian soil during crop and off-season cycles through a picosatellite developed by students, providing data to assist rural producers in crop selection and adoption of sustainable management practices, while promoting technical training for those involved in applied space engineering."
       }
+    },
+    "tracker": {
+      "title": "Real-Time Satellite Tracking",
+      "description": "Track the position of satellites around Earth in real-time, including the International Space Station and other space missions.",
+      "filters": {
+        "stations": "Space Stations",
+        "starlink": "Starlink",
+        "active": "Active Satellites"
+      },
+      "count": "satellites being tracked in real-time"
     }
   },
   "stats": {

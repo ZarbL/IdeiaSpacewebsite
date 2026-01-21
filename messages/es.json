@@ -58,6 +58,16 @@
         "name": "EduSat",
         "student": "Resumen de la Misión",
         "description": "La misión forma parte de un proyecto desarrollado por estudiantes de secundaria, que tiene como objetivo usar el satélite para conectar sensores IoT en Brasil. El satélite está equipado con una carga útil compuesta por una tarjeta SD para almacenar datos recibidos de estaciones terrestres y un sistema de radio dedicado a la transmisión y retransmisión de la información recopilada. Al combinar tecnología espacial accesible y aplicación práctica, el proyecto ofrece a los estudiantes experiencia práctica en ingeniería espacial, desde el desarrollo hasta la operación de la misión.\n\n**Objetivo de la Misión**\n\nEl objetivo de esta misión es monitorear la calidad del suelo brasileño durante los ciclos de cosecha y entrecosecha a través de un picossatélite desarrollado por estudiantes, proporcionando datos que ayuden a los productores rurales en la selección de cultivos y en la adopción de prácticas de manejo sostenible, mientras promueve la capacitación técnica de los involucrados en ingeniería espacial aplicada."      }
+    },
+    "tracker": {
+      "title": "Rastreo de Satélites en Tiempo Real",
+      "description": "Rastrea la posición de satélites alrededor de la Tierra en tiempo real, incluida la Estación Espacial Internacional y otras misiones espaciales.",
+      "filters": {
+        "stations": "Estaciones Espaciales",
+        "starlink": "Starlink",
+        "active": "Satélites Activos"
+      },
+      "count": "satélites siendo rastreados en tiempo real"
     }
   },
   "stats": {

@@ -4,6 +4,7 @@ import { getImageUrl, getVideoUrl } from '@/lib/cloudinary';
 import OptimizedVideo from '@/components/OptimizedVideo';
 import ScrollIndicator from '@/components/ScrollIndicator';
 import MissionBadges from '@/components/MissionBadges';
+import SatelliteTracker from '@/components/SatelliteTracker';
 
 export default async function MissionsPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
@@ -55,7 +56,7 @@ export default async function MissionsPage({params}: {params: Promise<{locale: s
   ];
 
   return (
-    <div className="overflow-y-auto">
+    <div>
       {/* Block 5.1 - Hero Cover with Scroll Indicator */}
       <section className="min-h-screen w-full relative flex flex-col items-center justify-center">
         {/* Video Background */}
@@ -130,6 +131,17 @@ export default async function MissionsPage({params}: {params: Promise<{locale: s
 
         {/* Separator Line */}
         <div className="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-transparent via-[#e80074] to-transparent z-10" />
+      </section>
+
+      {/* Block 5.4 - Satellite Tracker */}
+      <section className="min-h-screen w-full relative flex items-center py-16" style={{ backgroundColor: '#0a0a0a' }}>
+        {/* Content */}
+        <div className="relative z-10 w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24">
+          <SatelliteTracker 
+            title={t('tracker.title')}
+            description={t('tracker.description')}
+          />
+        </div>
       </section>
     </div>
   );

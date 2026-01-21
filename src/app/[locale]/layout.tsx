@@ -5,8 +5,8 @@ import type { Metadata, Viewport } from "next";
 import { Roboto_Condensed } from "next/font/google";
 import "../globals.css";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import {routing} from '@/routing';
+import ConditionalFooter from "@/components/ConditionalFooter";
 
 const robotoCondensed = Roboto_Condensed({
   subsets: ["latin"],
@@ -60,7 +60,7 @@ export default async function LocaleLayout({
           <main>
             {children}
           </main>
-          <Footer />
+          <ConditionalFooter />
         </NextIntlClientProvider>
       </body>
     </html>

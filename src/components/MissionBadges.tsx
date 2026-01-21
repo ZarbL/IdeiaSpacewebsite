@@ -42,6 +42,7 @@ export default function MissionBadges({ missions }: MissionBadgesProps) {
                 src={mission.badgeImage}
                 alt={mission.badgeName}
                 fill
+                sizes="(max-width: 768px) 150px, 200px"
                 className="badge-image"
               />
             </div>
@@ -63,6 +64,7 @@ export default function MissionBadges({ missions }: MissionBadgesProps) {
                 src={selectedMission.missionImage}
                 alt={selectedMission.studentName}
                 fill
+                sizes="(max-width: 768px) 100vw, 600px"
                 className="mission-image"
               />
             </div>

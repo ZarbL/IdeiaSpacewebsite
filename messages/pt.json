@@ -60,6 +60,16 @@
         "student": "Resumo da Missão",
         "description": "A missão faz parte de um projeto desenvolvido por estudantes do ensino médio, que visa usar o satélite para conectar sensores de IoT no Brasil. O satélite é equipado com uma carga útil composta por um cartão SD para armazenar dados recebidos de estações terrestres e um sistema de rádio dedicado à transmissão e retransmissão das informações coletadas. Ao combinar tecnologia espacial acessível e aplicação prática, o projeto oferece aos alunos experiência prática em engenharia espacial, desde o desenvolvimento até a operação da missão.\n\n**Objetivo da Missão**\n\nO objetivo da presente missão é monitorar a qualidade do solo brasileiro durante os ciclos de safra e entressafra por meio de um picosatélite desenvolvido por estudantes, fornecendo dados que auxiliem os produtores rurais na seleção de culturas e na adoção de práticas de manejo sustentável, enquanto promove a capacitação técnica dos envolvidos em engenharia espacial aplicada."
       }
+    },
+    "tracker": {
+      "title": "Rastreamento de Satélites em Tempo Real",
+      "description": "Acompanhe a posição de satélites ao redor da Terra em tempo real, incluindo a Estação Espacial Internacional e outras missões espaciais.",
+      "filters": {
+        "stations": "Estações Espaciais",
+        "starlink": "Starlink",
+        "active": "Satélites Ativos"
+      },
+      "count": "satélites sendo rastreados em tempo real"
     }
   },
   "stats": {
