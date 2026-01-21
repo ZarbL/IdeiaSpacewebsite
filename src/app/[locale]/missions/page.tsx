@@ -134,7 +134,7 @@ export default async function MissionsPage({params}: {params: Promise<{locale: s
       </section>
 
       {/* Block 5.4 - Satellite Tracker */}
-      <section className="min-h-screen w-full relative flex items-center py-16" style={{ backgroundColor: '#0a0a0a' }}>
+      <section id="satellites" className="min-h-screen w-full relative flex items-center py-16" style={{ backgroundColor: '#0a0a0a' }}>
         {/* Content */}
         <div className="relative z-10 w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24">
           <SatelliteTracker 

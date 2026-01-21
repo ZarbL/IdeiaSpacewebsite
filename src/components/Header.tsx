@@ -49,25 +49,31 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href={`/${locale}`}
-              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-pre-line text-center"
+              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-nowrap"
             >
               {t('home')}
             </Link>
             <Link
               href={`/${locale}/about`}
-              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-pre-line text-center"
+              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-nowrap"
             >
               {t('about')}
             </Link>
             <Link
+              href={`/${locale}/missions`}
+              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-nowrap"
+            >
+              {t('missions')}
+            </Link>
+            <Link
               href={`/${locale}/services`}
-              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-pre-line text-center"
+              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-nowrap"
             >
               {t('spaceChallenge')}
             </Link>
             <Link
               href={`/${locale}/technologies`}
-              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-pre-line text-center"
+              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-nowrap"
             >
               {t('teacherResources')}
             </Link>
@@ -75,10 +81,16 @@ export default function Header() {
               href="https://ideia-spacetoweb.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-pre-line text-center"
+              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-nowrap"
             >
               {t('programmingTool')}
             </a>
+            <Link
+              href={`/${locale}/missions#satellites`}
+              className="text-white hover:text-gray-300 transition-colors font-medium whitespace-nowrap"
+            >
+              {t('satellites')}
+            </Link>
 
             {/* Language Dropdown */}
             <div className="relative">
@@ -163,6 +175,13 @@ export default function Header() {
                 {t('about')}
               </Link>
               <Link
+                href={`/${locale}/missions`}
+                onClick={() => setIsMenuOpen(false)}
+                className="px-6 py-4 text-gray-900 hover:bg-blue-50 transition-colors font-medium border-b border-gray-100"
+              >
+                {t('missions')}
+              </Link>
+              <Link
                 href={`/${locale}/services`}
                 onClick={() => setIsMenuOpen(false)}
                 className="px-6 py-4 text-gray-900 hover:bg-blue-50 transition-colors font-medium border-b border-gray-100"
@@ -185,6 +204,13 @@ export default function Header() {
               >
                 {t('programmingTool')}
               </a>
+              <Link
+                href={`/${locale}/missions#satellites`}
+                onClick={() => setIsMenuOpen(false)}
+                className="px-6 py-4 text-gray-900 hover:bg-blue-50 transition-colors font-medium border-b border-gray-100"
+              >
+                {t('satellites')}
+              </Link>
               
             {/* Language Switcher Mobile */}
             <div className="px-6 py-4 border-b border-gray-100">

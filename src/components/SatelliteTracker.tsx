@@ -24,6 +24,14 @@ interface OrbitPath {
   name: string;
 }
 
+interface GroundStation {
+  lat: number;
+  lng: number;
+  name: string;
+  city: string;
+  color: string;
+}
+
 interface SatelliteTrackerProps {
   title?: string;
   description?: string;
@@ -40,8 +48,25 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeFilters, setActiveFilters] = useState<Set<SatelliteCategory>>(new Set(['stations', 'ideiaspace']));
-  const [showOrbits, setShowOrbits] = useState(true);
   const globeEl = useRef<any>(null);
+
+  // GroundStations do IdeiaSpace no Brasil
+  const groundStations: GroundStation[] = [
+    {
+      lat: -25.4284,
+      lng: -49.2733,
+      name: 'Curitiba Ground Station',
+      city: 'Curitiba, PR',
+      color: '#FFD700' // Dourado
+    },
+    {
+      lat: -23.5505,
+      lng: -46.6333,
+      name: 'São Paulo Ground Station',
+      city: 'São Paulo, SP',
+      color: '#FFD700'
+    }
+  ];
 
   const calculateOrbitPath = (satrec: any, name: string, color: string, now: Date): OrbitPath => {
     const coords: [number, number, number][] = [];
@@ -266,15 +291,11 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
     );
     setFilteredSatellites(filtered);
     
-    // Filtrar órbitas baseado nos satélites filtrados e no estado showOrbits
-    if (showOrbits) {
-      const filteredSatNames = new Set(filtered.map(s => s.name));
-      const filteredOrbs = allOrbits.filter(orbit => filteredSatNames.has(orbit.name));
-      setFilteredOrbits(filteredOrbs);
-    } else {
-      setFilteredOrbits([]);
-    }
-  }, [allSatellites, allOrbits, activeFilters, showOrbits]);
+    // Filtrar órbitas baseado nos satélites filtrados (sempre mostrar trajetos)
+    const filteredSatNames = new Set(filtered.map(s => s.name));
+    const filteredOrbs = allOrbits.filter(orbit => filteredSatNames.has(orbit.name));
+    setFilteredOrbits(filteredOrbs);
+  }, [allSatellites, allOrbits, activeFilters]);
 
   const toggleFilter = (category: SatelliteCategory) => {
     setActiveFilters(prev => {
@@ -333,27 +354,6 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
         <>
           {/* Filtros */}
           <div className="mb-6 flex flex-wrap items-center justify-center gap-3">
-            {/* Filtro de Trajetos */}
-            <button
-              onClick={() => setShowOrbits(!showOrbits)}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all shadow-sm ${
-                showOrbits
-                  ? 'bg-[#e80074] text-white shadow-[#e80074]/30'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {showOrbits ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                  )}
-                </svg>
-                <span>{showOrbits ? 'Ocultar Trajetos' : 'Trajetos'}</span>
-              </div>
-            </button>
-            
             <button
               onClick={() => toggleFilter('stations')}
               className={`px-4 py-2 rounded-full text-sm font-semibold transition-all shadow-sm ${
@@ -422,20 +422,23 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
                     </div>`;
                   }}
                   
-                  pathsData={filteredOrbits}
-                  pathPoints="coords"
-                  pathPointLat={(p: any) => p[0]}
-                  pathPointLng={(p: any) => p[1]}
-                  pathColor="color"
-                  pathStroke={2}
-                  pathDashLength={0.4}
-                  pathDashGap={0.2}
-                  pathDashAnimateTime={0}
-                  pathTransitionDuration={0}
-                  pathLabel={(d: any) => {
-                    return `<div style="background: black; padding: 8px; color: white; font-family: Arial;">
-                      <strong>${d.name}</strong><br/>
-                      <span>Trajeto próximas 24h</span>
+                  labelsData={groundStations}
+                  labelLat="lat"
+                  labelLng="lng"
+                  labelText="name"
+                  labelSize={1.5}
+                  labelDotRadius={0.5}
+                  labelColor={() => '#FFD700'}
+                  labelResolution={2}
+                  labelAltitude={0.01}
+                  labelLabel={(d: any) => {
+                    return `<div style="background: #1a1a1a; padding: 12px 16px; color: white; font-family: Arial; border: 2px solid #FFD700; border-radius: 8px;">
+                      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                        <span style="font-size: 20px;">📡</span>
+                        <strong style="font-size: 16px;">${d.name}</strong>
+                      </div>
+                      <span style="color: #FFD700; font-size: 14px;">${d.city}</span><br/>
+                      <span style="color: #888; font-size: 12px;">Lat: ${d.lat.toFixed(4)}° | Lng: ${d.lng.toFixed(4)}°</span>
                     </div>`;
                   }}
                   

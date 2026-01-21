@@ -2,9 +2,11 @@
   "nav": {
     "home": "Inicio",
     "about": "Sobre Nosotros",
-    "spaceChallenge": "Desafío\nEspacial",
-    "teacherResources": "Recursos\nEducacionales",
-    "programmingTool": "Herramienta de\nProgramación",
+    "missions": "Misiones",
+    "spaceChallenge": "Desafío",
+    "teacherResources": "Recursos",
+    "programmingTool": "Programación",
+    "satellites": "Nuestros Satélites",
     "contact": "Contacto"
   },
   "common": {
