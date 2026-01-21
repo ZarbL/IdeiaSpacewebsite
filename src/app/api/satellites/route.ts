@@ -16,9 +16,9 @@ const CACHE_DURATION = 8 * 60 * 60 * 1000; // 8 horas
 // Mapeamento de categorias para NORAD IDs específicos
 const SATELLITE_IDS: Record<string, number[]> = {
   ideiaspace: [
-    66668, // UAI-SAT / SARI-1 / Galaxy Explorer
-    66669, // ANISC-1
-    66670, // EduSat
+    66668, // SARI-1
+    66669, // SARI-2
+    66670, // ANISC
   ],
   stations: [
     25544, // ISS (ZARYA)
@@ -71,13 +71,13 @@ const SATELLITE_IDS: Record<string, number[]> = {
 
 // Dados de fallback com mais satélites para melhor visualização
 const FALLBACK_DATA: Record<string, string> = {
-  ideiaspace: `UAISAT
+  ideiaspace: `SARI-1
 1 66668U 25000A   26021.50000000  .00001000  00000+0  50000-4 0  9990
 2 66668  97.5000  45.0000 0005000  90.0000 270.0000 15.10000000  1234
-ANISC-1
+SARI-2
 1 66669U 25000B   26021.50000000  .00001000  00000+0  50000-4 0  9991
 2 66669  97.5000  50.0000 0005000  95.0000 265.0000 15.10000000  1235
-EDUSAT
+ANISC
 1 66670U 25000C   26021.50000000  .00001000  00000+0  50000-4 0  9992
 2 66670  97.5000  55.0000 0005000 100.0000 260.0000 15.10000000  1236`,
   stations: `ISS (ZARYA)
@@ -343,8 +343,7 @@ export async function GET(request: Request) {
     };
 
     const tleCount = tleData.split('\n').filter(line => line.startsWith('1 ')).length;
-    console.log(`✅ ${tleCount} satélites TLE de ${groups} recebidos do ${useSpaceTrack ? 'Space-Track' : 'N2YO'} e armazenados em cache`);
-
+    console.log(`✅ ${tleCount} satélites TLE de ${groups} recebidos do ${useSpaceTrack ? 'Space-Track' : 'N2YO'} e armazenados em cache`);      console.log(`📊 IDs solicitados: ${satelliteIds.length}, TLEs recebidos: ${tleCount}`);
     return new NextResponse(tleData, {
       headers: {
         'Content-Type': 'text/plain',

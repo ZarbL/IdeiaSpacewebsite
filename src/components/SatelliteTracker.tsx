@@ -15,10 +15,11 @@ interface SatelliteData {
   name: string;
   color: string;
   category: string;
+  size?: number; // Tamanho para objetos 3D
 }
 
 interface OrbitPath {
-  coords: [number, number][];
+  coords: [number, number, number][];  // [lat, lng, timestamp]
   color: string;
   name: string;
 }
@@ -28,7 +29,7 @@ interface SatelliteTrackerProps {
   description?: string;
 }
 
-type SatelliteCategory = 'stations' | 'starlink' | 'active';
+type SatelliteCategory = 'stations' | 'ideiaspace';
 
 export default function SatelliteTracker({ title, description }: SatelliteTrackerProps) {
   const t = useTranslations('missions.tracker');
@@ -38,20 +39,32 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
   const [filteredOrbits, setFilteredOrbits] = useState<OrbitPath[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeFilters, setActiveFilters] = useState<Set<SatelliteCategory>>(new Set(['stations']));
+  const [activeFilters, setActiveFilters] = useState<Set<SatelliteCategory>>(new Set(['stations', 'ideiaspace']));
   const [showOrbits, setShowOrbits] = useState(true);
   const globeEl = useRef<any>(null);
 
-  const calculateOrbitPath = (satrec: any, name: string, color: string, now: Date, numPoints: number = 120): OrbitPath => {
-    const coords: [number, number][] = [];
+  const calculateOrbitPath = (satrec: any, name: string, color: string, now: Date): OrbitPath => {
+    const coords: [number, number, number][] = [];
+    const seenCoords = new Set<string>();
     
-    // Calcular período orbital (minutos por órbita completa)
-    const meanMotion = satrec.no; // revoluções por dia
-    const periodMinutes = (1440 / meanMotion);
+    // Calcular trajeto para as próximas 24 horas
+    const hoursToShow = 24;
+    const numPoints = 144; // Um ponto a cada 10 minutos (24h * 6)
+    const minutesPerPoint = (hoursToShow * 60) / numPoints;
     
-    // Calcular pontos ao longo de 1 órbita completa a partir de agora
+    // Limites do Brasil para detectar passagens
+    const brazilBounds = {
+      latMin: -34,
+      latMax: 5,
+      lngMin: -74,
+      lngMax: -35
+    };
+    
+    let passagensBrasil = 0;
+    
+    // Calcular pontos ao longo das próximas 24 horas
     for (let i = 0; i < numPoints; i++) {
-      const minutesAhead = (periodMinutes * i) / numPoints;
+      const minutesAhead = i * minutesPerPoint;
       const orbitTime = new Date(now.getTime() + minutesAhead * 60 * 1000);
       
       try {
@@ -59,16 +72,30 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
         
         if (positionAndVelocity && positionAndVelocity.position && typeof positionAndVelocity.position !== 'boolean') {
           const positionEci = positionAndVelocity.position;
-          // Calcular GMST correto para cada ponto - mostra onde satélite realmente passa sobre a Terra
           const gmst = satellite.gstime(orbitTime);
           const positionGd = satellite.eciToGeodetic(positionEci, gmst);
           
           const lat = (positionGd.latitude * 180) / Math.PI;
           const lng = (positionGd.longitude * 180) / Math.PI;
           
-          // Validar coordenadas
-          if (!isNaN(lat) && !isNaN(lng) && Math.abs(lat) <= 90 && Math.abs(lng) <= 180) {
-            coords.push([lat, lng]);
+          if (!isNaN(lat) && !isNaN(lng) && 
+              Math.abs(lat) <= 90 && Math.abs(lng) <= 180 &&
+              isFinite(lat) && isFinite(lng)) {
+            
+            // Adicionar ponto (sem deduplicar para manter trajeto contínuo)
+            coords.push([lat, lng, orbitTime.getTime()]);
+            
+            // Detectar passagem sobre o Brasil
+            if (lat >= brazilBounds.latMin && lat <= brazilBounds.latMax &&
+                lng >= brazilBounds.lngMin && lng <= brazilBounds.lngMax) {
+              passagensBrasil++;
+              const timeStr = orbitTime.toLocaleTimeString('pt-BR', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                timeZone: 'America/Sao_Paulo'
+              });
+              console.log(`🇧🇷 ${name} passará sobre Brasil às ${timeStr} - Lat: ${lat.toFixed(2)}°, Lng: ${lng.toFixed(2)}°`);
+            }
           }
         }
       } catch (err) {
@@ -76,21 +103,53 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
       }
     }
     
+    if (passagensBrasil > 0) {
+      console.log(`🛰️ ${name}: ${passagensBrasil} passagens detectadas sobre o Brasil nas próximas 24h`);
+    }
+    
     return { coords, color, name };
   };
 
   const processTLEData = (data: string, category: SatelliteCategory, now: Date): { satellites: SatelliteData[], orbits: OrbitPath[] } => {
-    const lines = data.split('\n');
+    const lines = data.split('\n').filter(line => line.trim() !== '');
     const sats: SatelliteData[] = [];
     const orbits: OrbitPath[] = [];
+    const processedSatellites = new Map<string, boolean>(); // Garantir único processamento
     
-    // Processar cada satélite (TLE vem em grupos de 3 linhas)
+    // Mapeamento de NORAD ID para nomes customizados dos satélites IdeiaSpace
+    const satelliteNameMap: Record<string, string> = {
+      '66668': 'SARI-1',
+      '66669': 'SARI-2', 
+      '66670': 'ANISC'
+    };
+    
+    // Processar cada satélite (TLE vem em grupos de 3 linhas: nome, linha1, linha2)
     for (let i = 0; i < lines.length; i += 3) {
       if (lines[i] && lines[i + 1] && lines[i + 2]) {
         try {
-          const name = lines[i].trim();
-          const tleLine1 = lines[i + 1];
-          const tleLine2 = lines[i + 2];
+          let name = lines[i].trim();
+          const tleLine1 = lines[i + 1].trim();
+          const tleLine2 = lines[i + 2].trim();
+          
+          // Extrair NORAD ID da linha 1 do TLE (posições 3-7)
+          const noradId = tleLine1.substring(2, 7).trim();
+          
+          // Se for satélite IdeiaSpace, usar nome customizado
+          if (category === 'ideiaspace' && satelliteNameMap[noradId]) {
+            name = satelliteNameMap[noradId];
+          }
+          
+          // Verificar se já foi processado
+          if (processedSatellites.has(name)) {
+            console.warn(`⚠️ Satélite duplicado ignorado: ${name}`);
+            continue;
+          }
+          
+          // Validar formato TLE
+          if (!tleLine1.startsWith('1 ') || !tleLine2.startsWith('2 ')) {
+            console.warn(`⚠️ TLE inválido para ${name}`);
+            continue;
+          }
           
           // Criar registro de satélite
           const satrec = satellite.twoline2satrec(tleLine1, tleLine2);
@@ -101,41 +160,38 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
             const gmst = satellite.gstime(now);
             const positionGd = satellite.eciToGeodetic(positionEci, gmst);
             
-            // Determinar cor baseada na categoria - uma cor por tipo
-            let color = '#00ff00'; // Verde padrão
-            if (category === 'stations') {
-              color = '#00ff00'; // Verde brilhante para Estações Espaciais
-            } else if (category === 'starlink') {
-              color = '#ff6b35'; // Laranja para Starlink
-            } else if (category === 'active') {
-              color = '#00bfff'; // Azul para Satélites Meteorológicos
-            } else if (category === 'ideiaspace') {
-              color = '#e80074'; // Rosa IdeiaSpace
-            }
+            // Determinar cor e tamanho
+            const color = category === 'ideiaspace' ? '#e80074' : '#00ff00';
+            const size = category === 'ideiaspace' ? 8 : 5; // Cubos maiores para IdeiaSpace
             
+            // Adicionar satélite
             sats.push({
               lat: (positionGd.latitude * 180) / Math.PI,
               lng: (positionGd.longitude * 180) / Math.PI,
               alt: 0.01,
               name: name,
               color: color,
-              category: category
+              category: category,
+              size: size
             });
             
-            // Calcular órbita para todas as categorias
-            // Usar menos pontos para Starlink (muitos satélites) para melhor performance
-            const numPoints = category === 'starlink' ? 60 : 120;
-            const orbit = calculateOrbitPath(satrec, name, color, now, numPoints);
-            if (orbit.coords.length > 10) { // Mínimo 10 pontos válidos
+            // Calcular órbita (apenas uma vez por satélite)
+            const orbit = calculateOrbitPath(satrec, name, color, now);
+            if (orbit.coords.length >= 10) {
               orbits.push(orbit);
+              processedSatellites.set(name, true);
+              console.log(`✅ ${name}: ${orbit.coords.length} pontos orbitais`);
+            } else {
+              console.warn(`⚠️ ${name}: órbita com poucos pontos (${orbit.coords.length})`);
             }
           }
         } catch (err) {
-          console.warn('Erro ao processar satélite:', err);
+          console.error('❌ Erro ao processar satélite:', err);
         }
       }
     }
     
+    console.log(`📊 Categoria ${category}: ${sats.length} satélites, ${orbits.length} órbitas`);
     return { satellites: sats, orbits };
   };
 
@@ -145,12 +201,10 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
       // Usar um único timestamp para TODOS os satélites e órbitas
       const syncTime = new Date();
       
-      // Grupos que retornam mais satélites reais
+      // Buscar apenas Estações Espaciais e satélites IdeiaSpace
       const categoryMap: Array<{category: SatelliteCategory, group: string}> = [
         { category: 'stations', group: 'stations' },
-        { category: 'starlink', group: 'starlink' },
-        { category: 'active', group: 'weather' }, // Satélites meteorológicos ativos
-        { category: 'ideiaspace', group: 'ideiaspace' }, // Satélites IdeiaSpace
+        { category: 'ideiaspace', group: 'ideiaspace' },
       ];
       
       const allSats: SatelliteData[] = [];
@@ -173,7 +227,24 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
       }
       
       if (allSats.length > 0) {
-        console.log(`✅ ${allSats.length} satélites e ${allOrbs.length} órbitas carregados com sucesso`);
+        // Log detalhado por categoria
+        const satsByCategory = allSats.reduce((acc, sat) => {
+          acc[sat.category] = (acc[sat.category] || 0) + 1;
+          return acc;
+        }, {} as Record<string, number>);
+        
+        const orbsByCategory = allOrbs.reduce((acc, orb) => {
+          const sat = allSats.find(s => s.name === orb.name);
+          if (sat) {
+            acc[sat.category] = (acc[sat.category] || 0) + 1;
+          }
+          return acc;
+        }, {} as Record<string, number>);
+        
+        console.log(`✅ Total: ${allSats.length} satélites, ${allOrbs.length} órbitas`);
+        console.log('📊 Satélites por categoria:', satsByCategory);
+        console.log('🛰️ Órbitas por categoria:', orbsByCategory);
+        
         setAllSatellites(allSats);
         setAllOrbits(allOrbs);
         setError(null);
@@ -296,34 +367,6 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
                 <span>Estações Espaciais</span>
               </div>
             </button>
-            
-            <button
-              onClick={() => toggleFilter('starlink')}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all shadow-sm ${
-                activeFilters.has('starlink')
-                  ? 'bg-[#ff6b35] text-white shadow-[#ff6b35]/30'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-[#ff6b35] shadow-sm shadow-[#ff6b35]/50"></div>
-                <span>Starlink</span>
-              </div>
-            </button>
-            
-            <button
-              onClick={() => toggleFilter('active')}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all shadow-sm ${
-                activeFilters.has('active')
-                  ? 'bg-[#00bfff] text-black shadow-[#00bfff]/30'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-[#00bfff] shadow-sm shadow-[#00bfff]/50"></div>
-                <span>Satélites Meteorológicos</span>
-              </div>
-            </button>
 
             <button
               onClick={() => toggleFilter('ideiaspace')}
@@ -363,7 +406,7 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
                   pointLng="lng"
                   pointAltitude="alt"
                   pointColor="color"
-                  pointRadius={5}
+                  pointRadius={(d: any) => d.category === 'ideiaspace' ? 3.5 : 2.0}
                   pointResolution={32}
                   pointsMerge={false}
                   onPointHover={(point: any) => {
@@ -373,27 +416,28 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
                     }
                   }}
                   pointLabel={(d: any) => {
-                    return `<div style="background: rgba(0,0,0,0.9); padding: 10px; border-radius: 6px; color: white; font-family: Arial, sans-serif;">
-                      <strong style="font-size: 14px;">${d.name}</strong><br/>
-                      <span style="font-size: 12px;">Lat: ${d.lat.toFixed(2)}°</span><br/>
-                      <span style="font-size: 12px;">Lng: ${d.lng.toFixed(2)}°</span>
+                    return `<div style="background: black; padding: 8px 12px; color: white; font-family: Arial;">
+                      <strong>${d.name}</strong><br/>
+                      <span>Lat: ${d.lat.toFixed(2)}° | Lng: ${d.lng.toFixed(2)}°</span>
                     </div>`;
                   }}
                   
                   pathsData={filteredOrbits}
                   pathPoints="coords"
-                  pathPointLat={p => p[0]}
-                  pathPointLng={p => p[1]}
+                  pathPointLat={(p: any) => p[0]}
+                  pathPointLng={(p: any) => p[1]}
                   pathColor="color"
-                  pathStroke={1.5}
-                  pathDashLength={0.3}
-                  pathDashGap={0.15}
+                  pathStroke={2}
+                  pathDashLength={0.4}
+                  pathDashGap={0.2}
                   pathDashAnimateTime={0}
                   pathTransitionDuration={0}
-                  pathLabel={(d: any) => `<div style="background: rgba(0,0,0,0.9); padding: 8px; border-radius: 4px; color: white;">
-                    <strong>${d.name}</strong><br/>
-                    <span style="font-size: 11px;">Órbita prevista</span>
-                  </div>`}
+                  pathLabel={(d: any) => {
+                    return `<div style="background: black; padding: 8px; color: white; font-family: Arial;">
+                      <strong>${d.name}</strong><br/>
+                      <span>Trajeto próximas 24h</span>
+                    </div>`;
+                  }}
                   
                   animateIn={true}
                 />
