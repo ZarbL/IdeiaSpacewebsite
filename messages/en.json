@@ -64,8 +64,8 @@
       }
     },
     "tracker": {
-      "title": "Real-Time Satellite Tracking",
-      "description": "Track the position of satellites around Earth in real-time, including the International Space Station and other space missions.",
+      "title": "Satellite Tracking",
+      "description": "Track the position of satellites around the Earth, Updated every 5 minutes.",
       "filters": {
         "stations": "Space Stations",
         "starlink": "Starlink",
