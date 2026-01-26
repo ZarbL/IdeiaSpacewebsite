@@ -65,7 +65,7 @@
     },
     "tracker": {
       "title": "Rastreamento de Satélites",
-      "description": "Acompanhe a posição dos satélites ao redor da Terra, Atualização a cada 5 minutos.",
+      "description": "Acompanhe a posição dos satélites ao redor da Terra, atualização a cada 5 minutos.",
       "filters": {
         "stations": "Estações Espaciais",
         "starlink": "Starlink",
