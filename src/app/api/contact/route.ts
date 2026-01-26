@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
           success: true, 
           message: 'Mensagem recebida! Abrindo cliente de email...',
           useMailto: true,
-          mailtoLink: `mailto:contato@ideiaspace.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+          mailtoLink: `mailto:admin@ideiaspace.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
             `Nome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}`
           )}`
         },
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
     // Envia email real usando Resend
     const data = await resend.emails.send({
       from: 'IdeiaSpace Website <onboarding@resend.dev>',
-      to: 'contato@ideiaspace.com',
+      to: 'admin@ideiaspace.com',
       replyTo: email,
       subject: `[Website] ${subject}`,
       html: `
@@ -153,7 +153,7 @@ export async function POST(request: NextRequest) {
       { 
         error: 'Erro ao enviar mensagem. Abrindo cliente de email...',
         useMailto: true,
-        mailtoLink: `mailto:contato@ideiaspace.com`
+        mailtoLink: `mailto:admin@ideiaspace.com`
       },
       { status: 500 }
     );

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import './ResourceCard.css';
+import { useRouter, usePathname } from 'next/navigation';
 
 interface ResourceCardProps {
   title: string;
@@ -12,6 +13,16 @@ interface ResourceCardProps {
 }
 
 const ResourceCard = ({ title, description, image, isWorkInProgress = false, link }: ResourceCardProps) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  
+  const handleClick = () => {
+    // Extrai o locale da URL atual (ex: /pt/technologies -> pt)
+    const locale = pathname.split('/')[1];
+    // Redireciona para a página principal com hash para a seção de contato
+    router.push(`/${locale}#contact`);
+  };
+
   const CardContent = () => (
     <div className={`resource-card ${isWorkInProgress ? 'work-in-progress' : ''}`}>
       <div className="resource-card-image">
@@ -43,7 +54,7 @@ const ResourceCard = ({ title, description, image, isWorkInProgress = false, lin
   }
 
   return (
-    <div className="resource-card-wrapper">
+    <div className="resource-card-wrapper" onClick={handleClick} style={{ cursor: 'pointer' }}>
       <CardContent />
     </div>
   );
