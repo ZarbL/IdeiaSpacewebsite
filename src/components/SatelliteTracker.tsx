@@ -378,7 +378,7 @@ export default function SatelliteTracker({ title, description }: SatelliteTracke
             >
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-[#e80074] shadow-sm shadow-[#e80074]/50"></div>
-                <span>Satélites IdeiaSpace</span>
+                <span>Nossos satélites</span>
               </div>
             </button>
           </div>
