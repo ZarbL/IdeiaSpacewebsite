@@ -85,12 +85,14 @@ export default function Header() {
             >
               {t('programmingTool')}
             </a>
-            <Link
-              href={`/${locale}/missions#satellites`}
+            <a
+              href="https://tleideiaspaceview.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-white hover:text-gray-300 transition-colors font-medium whitespace-nowrap"
             >
               {t('satellites')}
-            </Link>
+            </a>
 
             {/* Language Dropdown */}
             <div className="relative">
@@ -204,13 +206,15 @@ export default function Header() {
               >
                 {t('programmingTool')}
               </a>
-              <Link
-                href={`/${locale}/missions#satellites`}
+              <a
+                href="https://tleideiaspaceview.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
                 className="px-6 py-4 text-gray-900 hover:bg-blue-50 transition-colors font-medium border-b border-gray-100"
               >
                 {t('satellites')}
-              </Link>
+              </a>
               
             {/* Language Switcher Mobile */}
             <div className="px-6 py-4 border-b border-gray-100">
