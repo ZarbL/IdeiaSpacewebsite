@@ -38,8 +38,8 @@ const nextConfig: NextConfig = {
             value: 'on'
           },
           {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors *;"
           },
           {
             key: 'X-Content-Type-Options',
