@@ -27,6 +27,13 @@ export const metadata: Metadata = {
   description: "Transforming ideas into innovative space solutions. Cutting-edge technology for global communication.",
   keywords: ["space", "technology", "satellite", "innovation", "communication"],
   authors: [{ name: "IdeiaSpace" }],
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "48x48" },
+    ],
+    apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
+  },
   openGraph: {
     title: "IdeiaSpace - Space Technology",
     description: "Transforming ideas into innovative space solutions",

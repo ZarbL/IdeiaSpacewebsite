@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Left face -->
+  <polygon points="5,27 50,50 50,95 5,73" fill="#111111" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Right face -->
+  <polygon points="95,27 50,50 50,95 95,73" fill="#1a1a1a" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Top face -->
+  <polygon points="50,5 95,27 50,50 5,27" fill="#222222" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Pink diamond (bottom vertex at cube center) -->
+  <polygon points="50,10 80,27 50,50 20,27" fill="#E91E8C"/>
+  <!-- Pink Y lines from cube center to bottom corners -->
+  <line x1="50" y1="50" x2="5" y2="73" stroke="#E91E8C" stroke-width="6" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="95" y2="73" stroke="#E91E8C" stroke-width="6" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="50" y2="95" stroke="#E91E8C" stroke-width="6" stroke-linecap="round"/>
+</svg>
