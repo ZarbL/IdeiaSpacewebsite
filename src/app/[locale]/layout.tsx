@@ -29,10 +29,10 @@ export const metadata: Metadata = {
   authors: [{ name: "IdeiaSpace" }],
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
       { url: "/favicon.ico", sizes: "48x48" },
     ],
-    apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/icon.png", type: "image/png", sizes: "512x512" }],
   },
   openGraph: {
     title: "IdeiaSpace - Space Technology",
