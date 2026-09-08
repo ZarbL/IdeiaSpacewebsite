@@ -16,7 +16,12 @@
     "title": "Welcome to Ideia Space",
     "subtitle": "",
     "button": "Watch video",
-    "aboutButton": "About Us"
+    "aboutButton": "About Us",
+    "viewTop": "View top of the satellite",
+    "viewBottom": "View bottom of the satellite",
+    "viewLeft": "View left side of the satellite",
+    "viewRight": "View right side of the satellite",
+    "viewReset": "Back to default view"
   },
   "challenge": {
     "title": "Space Challenge",

@@ -38,4 +38,9 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# fontes brutas de modelos 3D (não otimizadas p/ web — só o .glb final vai pro repo)
+public/assets/*.obj
+public/assets/*.mtl
+public/assets/Meshy_AI_*
 next-env.d.ts

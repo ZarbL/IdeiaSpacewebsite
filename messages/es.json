@@ -16,7 +16,12 @@
     "title": "Bienvenido a Ideia Space",
     "subtitle": "",
     "button": "Ver vídeo",
-    "aboutButton": "Sobre Nosotros"
+    "aboutButton": "Sobre Nosotros",
+    "viewTop": "Ver la parte superior del satélite",
+    "viewBottom": "Ver la parte inferior del satélite",
+    "viewLeft": "Ver el lado izquierdo del satélite",
+    "viewRight": "Ver el lado derecho del satélite",
+    "viewReset": "Volver a la vista predeterminada"
   },
   "challenge": {
     "title": "El Desafío Espacial",
