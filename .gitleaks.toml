@@ -1,0 +1,12 @@
+# gitleaks — usa as regras padrão + allowlist de arquivos de teste, onde
+# aparecem nomes de variáveis de ambiente e valores mock (ex.: "re_test").
+[extend]
+useDefault = true
+
+[allowlist]
+description = "arquivos de teste e exemplos"
+paths = [
+  '''src/.*__tests__/.*''',
+  '''.*\.(test|spec)\.(ts|tsx|js|jsx)$''',
+  '''.*\.example$''',
+]

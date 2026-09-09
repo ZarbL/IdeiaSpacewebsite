@@ -11,7 +11,7 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:ci": "vitest run --coverage",
-    "test:fuzz": "vitest run src/**/*.fuzz.test.ts",
+    "test:fuzz": "vitest run fuzz.test",
     "compress:videos": "node scripts/compress-videos.js",
     "upload:cloudinary": "node scripts/upload-to-cloudinary.js",
     "upload:large": "node scripts/upload-large-videos.js"
