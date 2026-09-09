@@ -300,6 +300,10 @@
           "message": "Fiz um curso de satélite e a experiência foi muito incrível. Aprendi sobre nanossatélites, como eles funcionam e como podem ser usados para ajudar o meio ambiente e a sociedade. Durante o curso, conheci pessoas muito legais, interessadas em ciência, com quem pude trocar ideias e aprender ainda mais. Essa vivência me deixou mais motivada e com ainda mais vontade de seguir na área científica e participar de projetos que façam a diferença."
         }
       }
+    },
+    "whatIsChallenge": {
+      "title": "O que é o Desafio Espacial?",
+      "description": "É uma competição de projetos de Missão Espacial voltada para estudantes do Ensino Médio (14 a 18 anos). O projeto é desenhado para um ano e impacta diferentes grupos de alunos em etapas progressivas:"
     }
   },
   "leadership": {

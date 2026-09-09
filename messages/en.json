@@ -302,30 +302,6 @@
         "student4": {
           "name": "Pollyana Feitosa Siqueira",
           "message": "I took a satellite course and the experience was incredible. I learned about nanosatellites, how they work, and how they can be used to help the environment and society. During the course, I met very nice people interested in science, with whom I could exchange ideas and learn even more. This experience left me more motivated and with even more desire to pursue a scientific career and participate in projects that make a difference."
-        },
-        "student5": {
-          "name": "Student 5",
-          "message": "Student 5 testimonial text."
-        },
-        "student6": {
-          "name": "Student 6",
-          "message": "Student 6 testimonial text."
-        },
-        "student7": {
-          "name": "Student 7",
-          "message": "Student 7 testimonial text."
-        },
-        "student8": {
-          "name": "Student 8",
-          "message": "Student 8 testimonial text."
-        },
-        "student9": {
-          "name": "Student 9",
-          "message": "Student 9 testimonial text."
-        },
-        "student10": {
-          "name": "Student 10",
-          "message": "Student 10 testimonial text."
         }
       }
     }
