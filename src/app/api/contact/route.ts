@@ -1,11 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Construção preguiçosa: `new Resend()` lança quando a chave está ausente
+// (resend v6). Fazer isso no nível do módulo quebra o `next build` em ambientes
+// sem RESEND_API_KEY (CI, previews). Só instancia quando vai enviar de verdade.
+function getResendClient(): Resend | null {
+  const key = process.env.RESEND_API_KEY;
+  return key ? new Resend(key) : null;
+}
+
+const MAX_FIELD_LENGTHS: Record<string, number> = {
+  name: 200,
+  email: 320,
+  subject: 200,
+  message: 5000,
+};
+
+/** Escapa para interpolação segura dentro de HTML (corpo do email). */
+function escapeHtml(value: string): string {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, subject, message } = await request.json();
+    const body = await request.json().catch(() => null);
+    const { name, email, subject, message } = body ?? {};
 
     // Validação básica
     if (!name || !email || !subject || !message) {
@@ -13,6 +37,16 @@ export async function POST(request: NextRequest) {
         { error: 'Todos os campos são obrigatórios' },
         { status: 400 }
       );
+    }
+
+    // Tipos e tamanhos
+    for (const [field, value] of Object.entries({ name, email, subject, message })) {
+      if (typeof value !== 'string' || value.length > MAX_FIELD_LENGTHS[field]) {
+        return NextResponse.json(
+          { error: `Campo "${field}" inválido` },
+          { status: 400 }
+        );
+      }
     }
 
     // Validação de email
@@ -24,11 +58,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Valores prontos para interpolar no HTML do email
+    const safe = {
+      name: escapeHtml(name),
+      email: escapeHtml(email),
+      subject: escapeHtml(subject),
+      message: escapeHtml(message),
+    };
+
     // Se não houver RESEND_API_KEY configurada, usa mailto como fallback
-    if (!process.env.RESEND_API_KEY) {
+    const resend = getResendClient();
+    if (!resend) {
       console.log('RESEND_API_KEY not configured. Using mailto fallback.');
-      console.log('Contact form submission:', { name, email, subject, message });
-      
+
       return NextResponse.json(
         { 
           success: true, 
@@ -111,19 +153,19 @@ export async function POST(request: NextRequest) {
               <div class="content">
                 <div class="info-row">
                   <span class="label">Nome:</span>
-                  <span>${name}</span>
+                  <span>${safe.name}</span>
                 </div>
                 <div class="info-row">
                   <span class="label">Email:</span>
-                  <span><a href="mailto:${email}">${email}</a></span>
+                  <span><a href="mailto:${encodeURIComponent(email)}">${safe.email}</a></span>
                 </div>
                 <div class="info-row">
                   <span class="label">Assunto:</span>
-                  <span>${subject}</span>
+                  <span>${safe.subject}</span>
                 </div>
                 <div class="message-box">
                   <h3 style="margin-top: 0; color: #667eea;">Mensagem:</h3>
-                  <p style="white-space: pre-wrap;">${message}</p>
+                  <p style="white-space: pre-wrap;">${safe.message}</p>
                 </div>
               </div>
               <div class="footer">
@@ -135,7 +177,7 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    console.log('Email sent successfully:', data);
+    console.log('Email sent successfully:', data.data?.id);
 
     return NextResponse.json(
       { 
