@@ -1,0 +1,14 @@
+name: Bug
+description: Algo não funciona como deveria
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes: { label: O que acontece, description: Atual vs. esperado }
+    validations: { required: true }
+  - type: textarea
+    id: repro
+    attributes: { label: Como reproduzir }
+  - type: input
+    id: where
+    attributes: { label: Onde (arquivo / rota / componente) }

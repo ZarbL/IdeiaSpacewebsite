@@ -7,6 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:ci": "vitest run --coverage",
+    "test:fuzz": "vitest run fuzz.test",
     "compress:videos": "node scripts/compress-videos.js",
     "upload:cloudinary": "node scripts/upload-to-cloudinary.js",
     "upload:large": "node scripts/upload-large-videos.js"
@@ -25,15 +30,23 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.7.0",
+    "@vitest/coverage-v8": "^2.1.9",
     "babel-plugin-react-compiler": "1.0.0",
     "baseline-browser-mapping": "^2.8.32",
     "dotenv": "^17.2.3",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
+    "fast-check": "^3.23.2",
+    "jsdom": "^25.0.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^2.1.9"
   }
 }
