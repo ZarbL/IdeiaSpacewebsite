@@ -230,6 +230,7 @@ Workflows, secrets e proteção de branch: [`docs/CI-CD.md`](docs/CI-CD.md).
 
 | Documento | Conteúdo |
 |---|---|
+| [`docs/GUIA_OPERACIONAL.md`](docs/GUIA_OPERACIONAL.md) | Setup detalhado, comandos, rotina de desenvolvimento, deploy e troubleshooting |
 | [`docs/ARQUITETURA.md`](docs/ARQUITETURA.md) | Arquitetura, ciclo de requisição, i18n, build, mídia, rotas e limites conhecidos |
 | [`API_DOCUMENTATION.md`](API_DOCUMENTATION.md) | Contrato de `/api/contact` e `/api/satellites` |
 | [`docs/CI-CD.md`](docs/CI-CD.md) | Workflows do GitHub Actions e deploy |
