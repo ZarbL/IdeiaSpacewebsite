@@ -1,539 +1,253 @@
-# 🚀 IdeiaSpace - Website Institucional
+# IdeiaSpace — Website Institucional
 
-Site institucional da **IdeiaSpace**, plataforma educacional que conecta o espaço à sala de aula através do **Desafio Espacial**. O projeto transforma alunos em protagonistas, levando-os desde a concepção de uma missão espacial até o lançamento de satélites reais em órbita.
+Site institucional da **IdeiaSpace**, empresa de educação espacial que leva estudantes da concepção de uma missão espacial até o lançamento de satélites do tipo PocketQube, por meio do programa **Desafio Espacial**.
 
-Este website multilíngue apresenta as missões espaciais desenvolvidas pelos alunos, recursos educacionais para professores, tecnologias utilizadas e toda a jornada educacional proporcionada pelo programa.
-
----
-
-## 📑 Índice
-
-- [Sobre o Projeto](#-sobre-o-projeto)
-- [Tecnologias](#-tecnologias)
-- [Funcionalidades](#-funcionalidades)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Pré-requisitos](#-pré-requisitos)
-- [Instalação](#-instalação)
-- [Configuração](#-configuração)
-- [Scripts Disponíveis](#-scripts-disponíveis)
-- [Páginas e Rotas](#-páginas-e-rotas)
-- [Componentes Principais](#-componentes-principais)
-- [Internacionalização](#-internacionalização)
-- [Integrações](#-integrações)
-- [Deploy](#-deploy)
-- [Documentação Adicional](#-documentação-adicional)
+O site apresenta o programa, as missões desenvolvidas por estudantes, recursos educacionais, a equipe e os parceiros, e oferece um formulário de contato. Está disponível em **inglês, português e espanhol**.
 
 ---
 
-## 🎯 Sobre o Projeto
+## Sumário
 
-O site IdeiaSpace é uma plataforma web moderna que apresenta:
-
-- **Desafio Espacial**: Projeto educacional que conecta estudantes ao programa espacial
-- **Missões Reais**: Apresentação de satélites desenvolvidos por alunos (UAI-SAT, SARI-1, etc.)
-- **Recursos Educacionais**: Materiais e ferramentas para professores e educadores
-- **Tecnologias Espaciais**: Stack tecnológico usado nas missões espaciais
-- **Impacto Global**: Estatísticas de satélites lançados, estudantes impactados e países alcançados
-
----
-
-## 🛠 Tecnologias
-
-### Core Framework
-- **[Next.js 16](https://nextjs.org/)** - Framework React com App Router, SSR e SSG
-- **[React 19](https://react.dev/)** - Biblioteca JavaScript para construção de interfaces
-- **[TypeScript 5](https://www.typescriptlang.org/)** - Superset JavaScript com tipagem estática
-
-### Estilização
-- **[Tailwind CSS 4](https://tailwindcss.com/)** - Framework CSS utility-first
-- **CSS Modules** - Estilos CSS escopados por componente
-- **PostCSS** - Processamento e otimização de CSS
-
-### Internacionalização (i18n)
-- **[next-intl 4.5](https://next-intl-docs.vercel.app/)** - Internacionalização completa com suporte a 3 idiomas
-- Rotas dinâmicas `[locale]` para mudança de idioma
-- Traduções estruturadas em JSON
-
-### Mídia e Assets
-- **[Cloudinary](https://cloudinary.com/)** - CDN e gerenciamento de mídia (imagens e vídeos)
-- **[next-cloudinary 6.17](https://next-cloudinary.dev/)** - Integração Next.js com Cloudinary
-- Compressão e otimização automática de vídeos
-
-### Comunicação
-- **[Resend 6.5](https://resend.com/)** - Serviço de envio de emails transacionais
-- API Route para formulário de contato
-
-### Qualidade de Código
-- **[ESLint 9](https://eslint.org/)** - Linter para manter código limpo e padronizado
-- **eslint-config-next** - Configuração ESLint otimizada para Next.js
-- **Babel React Compiler** - Compilador experimental do React
-
-### DevOps
-- **[Vercel](https://vercel.com/)** - Plataforma de deploy e hospedagem
-- **dotenv** - Gerenciamento de variáveis de ambiente
+- [Tecnologias](#tecnologias)
+- [Requisitos](#requisitos)
+- [Instalação e execução local](#instalação-e-execução-local)
+- [Variáveis de ambiente](#variáveis-de-ambiente)
+- [Scripts](#scripts)
+- [Páginas e rotas](#páginas-e-rotas)
+- [APIs](#apis)
+- [Internacionalização](#internacionalização)
+- [Estrutura do projeto](#estrutura-do-projeto)
+- [Testes e qualidade](#testes-e-qualidade)
+- [Build e deploy](#build-e-deploy)
+- [Documentação](#documentação)
+- [Contribuindo](#contribuindo)
+- [Licença](#licença)
 
 ---
 
-## ✨ Funcionalidades
+## Tecnologias
 
-### 🌍 Multilíngue
-- Suporte completo para 3 idiomas: Português (pt), Inglês (en) e Espanhol (es)
-- Troca de idioma em tempo real
-- URLs localizadas para SEO
+| Área | Tecnologia |
+|---|---|
+| Framework | [Next.js 16](https://nextjs.org/) com App Router e React Compiler |
+| UI | [React 19](https://react.dev/) |
+| Linguagem | [TypeScript 5](https://www.typescriptlang.org/) (`strict`) |
+| Estilo | [Tailwind CSS 4](https://tailwindcss.com/) (via `@tailwindcss/postcss`, sem `tailwind.config`; importado em `src/app/globals.css`), CSS Modules e CSS por componente |
+| Internacionalização | [next-intl 4](https://next-intl.dev/) |
+| Mídia | [Cloudinary](https://cloudinary.com/) como CDN opcional de imagens e vídeos; Git LFS para os vídeos do repositório |
+| E-mail | [Resend](https://resend.com/), usado pelo formulário de contato |
+| Dados orbitais | Space-Track.org e N2YO, consultados pela API `/api/satellites` |
+| Testes | Vitest, Testing Library, jsdom, fast-check |
+| Qualidade | ESLint 9 (`eslint-config-next`), `tsc --noEmit` |
+| Hospedagem e CI | Vercel e GitHub Actions |
 
-### 📱 Design Responsivo
-- Layout adaptável para desktop, tablet e mobile
-- Scroll snap para experiência imersiva
-- Animações e transições suaves
-
-### 🎥 Mídia Otimizada
-- Vídeos hospedados no Cloudinary com CDN global
-- Lazy loading de imagens e vídeos
-- Compressão automática de assets
-
-### 📊 Componentes Interativos
-- Carrosséis dinâmicos (missões, tecnologias, depoimentos, etc.)
-- Contadores animados de estatísticas
-- Cards de liderança e equipe
-- Formulário de contato com validação
-
-### 🎨 Seções do Site
-- **Hero Section**: Vídeo de apresentação e call-to-action
-- **Stats Counter**: Estatísticas de impacto (satélites, estudantes, países)
-- **Ideia to Space**: Jornada educacional do programa
-- **Challenge Section**: Apresentação do Desafio Espacial
-- **Missions Section**: Showcase das missões dos alunos
-- **Technologies Section**: Stack tecnológico usado
-- **Leadership Cards**: Equipe e liderança
-- **Contact Form**: Formulário integrado com Resend
+As versões exatas estão no `package-lock.json`.
 
 ---
 
-## 📁 Estrutura do Projeto
+## Requisitos
 
-```
-ideaspace-website/
-├── public/                          # Arquivos estáticos
-│   └── assets/
-│       └── compressed/             # Vídeos comprimidos
-│
-├── src/
-│   ├── app/                        # App Router do Next.js
-│   │   ├── [locale]/              # Rotas internacionalizadas
-│   │   │   ├── page.tsx           # 🏠 Página inicial
-│   │   │   ├── layout.tsx         # Layout com i18n
-│   │   │   ├── about/             # 📖 Sobre nós
-│   │   │   ├── missions/          # 🛰️ Missões espaciais
-│   │   │   ├── services/          # 🔧 Serviços
-│   │   │   ├── teacher-resources/ # 📚 Recursos educacionais
-│   │   │   └── technologies/      # 💻 Tecnologias
-│   │   ├── api/
-│   │   │   └── contact/
-│   │   │       └── route.ts       # API de contato
-│   │   ├── globals.css            # Estilos globais
-│   │   └── layout.tsx             # Root layout
-│   │
-│   ├── components/                 # Componentes React
-│   │   ├── Header.tsx             # Cabeçalho com navegação
-│   │   ├── Footer.tsx             # Rodapé
-│   │   ├── ContactForm.tsx        # Formulário de contato
-│   │   ├── WhatsAppButton.tsx     # Botão flutuante WhatsApp
-│   │   │
-│   │   ├── *Carousel.tsx          # Diversos carrosséis:
-│   │   │   ├── AboutCarousel.tsx        # Sobre nós
-│   │   │   ├── BenefitsCarousel.tsx     # Benefícios
-│   │   │   ├── HistoryCarousel.tsx      # História
-│   │   │   ├── MVVCarousel.tsx          # Missão/Visão/Valores
-│   │   │   ├── MissionBadges.tsx        # Badges de missões
-│   │   │   ├── MethodologyCarousel.tsx  # Metodologia
-│   │   │   ├── PartnersCarousel.tsx     # Parceiros
-│   │   │   ├── PhasesCarousel.tsx       # Fases do projeto
-│   │   │   ├── StatsCarousel.tsx        # Estatísticas
-│   │   │   └── TestimonialsCarousel.tsx # Depoimentos
-│   │   │
-│   │   ├── StatsCounter.tsx       # Contador de estatísticas
-│   │   ├── LeadershipCard.tsx     # Card de liderança
-│   │   ├── TechnologyCard.tsx     # Card de tecnologia
-│   │   ├── TestimonialCard.tsx    # Card de depoimento
-│   │   ├── ResourceCard.tsx       # Card de recurso
-│   │   ├── SocialMediaCard.tsx    # Card de mídia social
-│   │   ├── EcosystemCard.tsx      # Card de ecossistema
-│   │   ├── ImpactCards.tsx        # Cards de impacto
-│   │   ├── JourneyCard.tsx        # Card de jornada
-│   │   │
-│   │   ├── CloudinaryVideo.tsx    # Vídeo do Cloudinary
-│   │   ├── OptimizedVideo.tsx     # Vídeo otimizado
-│   │   ├── SlowVideo.tsx          # Vídeo em slow motion
-│   │   ├── AnimatedPattern.tsx    # Padrões animados
-│   │   ├── ScrollIndicator.tsx    # Indicador de scroll
-│   │   └── InfoCard.tsx           # Card de informação
-│   │
-│   ├── views/
-│   │   └── sections/              # Seções da página
-│   │       ├── HeroSection.tsx           # Seção hero
-│   │       ├── ChallengeSection.tsx      # Seção desafio
-│   │       ├── MissionsSection.tsx       # Seção missões
-│   │       ├── TechnologiesSection.tsx   # Seção tecnologias
-│   │       ├── IdeiaToSpaceSection.tsx   # Seção ideia→espaço
-│   │       └── CTASection.tsx            # Call-to-action
-│   │
-│   ├── controllers/
-│   │   └── home.controller.ts     # Controlador da home (MVC)
-│   │
-│   ├── models/
-│   │   └── content.model.ts       # Modelo de conteúdo
-│   │
-│   ├── lib/                       # Utilitários
-│   │   ├── cloudinary.ts         # Helper Cloudinary
-│   │   ├── wordpress.ts          # Integração WordPress (futuro)
-│   │   └── assets.ts             # Helper de assets
-│   │
-│   ├── i18n.ts                   # Configuração i18n
-│   ├── routing.ts                # Configuração de rotas
-│   └── proxy.ts                  # Configuração de proxy
-│
-├── messages/                     # Traduções
-│   ├── pt.json                  # 🇧🇷 Português
-│   ├── en.json                  # 🇺🇸 Inglês
-│   └── es.json                  # 🇪🇸 Espanhol
-│
-├── scripts/                      # Scripts utilitários
-│   ├── compress-videos.js       # Compressão de vídeos
-│   └── upload-to-cloudinary.js  # Upload para Cloudinary
-│
-├── next.config.ts               # Configuração Next.js
-├── tailwind.config.ts           # Configuração Tailwind
-├── tsconfig.json                # Configuração TypeScript
-├── eslint.config.mjs            # Configuração ESLint
-├── postcss.config.mjs           # Configuração PostCSS
-├── vercel.json                  # Configuração Vercel
-├── package.json                 # Dependências
-│
-├── CLOUDINARY_UPLOAD.md         # 📖 Doc: Upload Cloudinary
-├── RESEND_SETUP.md              # 📖 Doc: Setup Resend
-└── DEPLOY_GUIDE.md              # 📖 Doc: Guia de Deploy
-```
+- **Node.js 20** (versão fixada em [`.nvmrc`](.nvmrc); o Next.js 16 exige `>=20.9.0`)
+- **npm** (o projeto usa `package-lock.json`)
+- **Git LFS**: os vídeos (`*.mp4`) são versionados com LFS
+- **FFmpeg** (opcional): apenas para `npm run compress:videos`
+
+Nenhuma conta em serviço externo é necessária para rodar o projeto localmente. Sem credenciais, as APIs usam respostas de fallback (veja [APIs](#apis)).
 
 ---
 
-## 📋 Pré-requisitos
-
-- **Node.js** 18.x ou superior
-- **npm** ou **yarn** ou **pnpm**
-- Conta no **[Cloudinary](https://cloudinary.com/)** (para mídia)
-- Conta no **[Resend](https://resend.com/)** (para emails)
-- **Git** para controle de versão
-
----
-
-## 🔧 Instalação
-
-### 1. Clone o repositório
+## Instalação e execução local
 
 ```bash
-git clone https://github.com/IdeiaSpace/IdeiaSite.git
-cd ideaspace-website
-```
+# 1. Clonar o repositório e baixar os vídeos do Git LFS
+git clone https://github.com/ZarbL/IdeiaSpacewebsite.git
+cd IdeiaSpacewebsite
+git lfs install
+git lfs pull
 
-### 2. Instale as dependências
+# 2. Instalar as dependências (versões do package-lock.json)
+npm ci
 
-```bash
-npm install
-# ou
-yarn install
-# ou
-pnpm install
-```
+# 3. (Opcional) configurar variáveis de ambiente
+cp .env.example .env.local
 
-### 3. Configure as variáveis de ambiente
-
-Crie um arquivo `.env.local` na raiz do projeto:
-
-```env
-# Cloudinary
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=seu_cloud_name
-CLOUDINARY_API_KEY=sua_api_key
-CLOUDINARY_API_SECRET=seu_api_secret
-
-# Resend (Email)
-RESEND_API_KEY=sua_resend_api_key
-RESEND_FROM_EMAIL=contato@ideispace.com
-
-# WhatsApp
-NEXT_PUBLIC_WHATSAPP_NUMBER=5511999999999
-```
-
-### 4. Execute em desenvolvimento
-
-```bash
+# 4. Rodar em desenvolvimento
 npm run dev
 ```
 
-Abra [http://localhost:3000](http://localhost:3000) no navegador.
+Abra <http://localhost:3000>. A raiz redireciona para `/en`, `/pt` ou `/es` conforme o idioma do navegador.
+
+> **Vídeos em ambiente local:** com a configuração padrão, as URLs de vídeo apontam para `/assets/<nome>.mp4`, mas os arquivos ficam em `public/assets/compressed/`. Por isso os vídeos não carregam localmente. Para vê-los, defina `NEXT_PUBLIC_USE_CLOUDINARY=true` no `.env.local` e reinicie o `npm run dev`. Detalhes em [`docs/ARQUITETURA.md`](docs/ARQUITETURA.md#8-pipeline-de-mídia).
 
 ---
 
-## ⚙️ Configuração
+## Variáveis de ambiente
 
-### Cloudinary
+Todas são opcionais. O modelo completo, com comentários, está em [`.env.example`](.env.example).
 
-Para configurar o upload de mídia no Cloudinary, siga o guia completo em **[CLOUDINARY_UPLOAD.md](./CLOUDINARY_UPLOAD.md)**.
+| Variável | Tipo | Para quê | Sem ela |
+|---|---|---|---|
+| `NEXT_PUBLIC_USE_CLOUDINARY` | Pública | `"true"` serve imagens e vídeos mapeados pelo Cloudinary | Caminhos locais `/assets/...` |
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | Pública | Conta Cloudinary usada nas URLs e no script de upload | Valor padrão definido em `src/lib/cloudinary.ts` |
+| `RESEND_API_KEY` | Servidor | Envio real do e-mail do formulário de contato | Resposta com link `mailto:` |
+| `N2YO_API_KEY` | Servidor | TLEs dos grupos `stations`, `starlink` e `weather` | TLEs estáticos de fallback |
+| `SPACETRACK_USERNAME` / `SPACETRACK_PASSWORD` | Servidor | TLEs do grupo `ideiaspace` | TLEs estáticos de fallback |
+| `CLOUDINARY_API_KEY` / `CLOUDINARY_API_SECRET` | Script local | Apenas para `npm run upload:cloudinary` | O script não consegue enviar |
 
-```bash
-# Comprimir vídeos
-npm run compress:videos
-
-# Upload para Cloudinary
-npm run upload:cloudinary
-```
-
-### Resend (Email)
-
-Para configurar o envio de emails via Resend, consulte **[RESEND_SETUP.md](./RESEND_SETUP.md)**.
+**Atenção às variáveis `NEXT_PUBLIC_*`:** elas vão para o código enviado ao navegador (nunca coloque segredos nelas). Como as páginas são geradas no build, o valor usado é o que existia **no momento do build**: alterar a variável depois exige um novo build (ou reiniciar o `npm run dev`).
 
 ---
 
-## 📦 Scripts Disponíveis
+## Scripts
 
-```bash
-# Desenvolvimento
-npm run dev              # Inicia servidor de desenvolvimento (http://localhost:3000)
+| Comando | Descrição |
+|---|---|
+| `npm run dev` | Servidor de desenvolvimento |
+| `npm run build` | Build de produção |
+| `npm start` | Servidor de produção (requer `build` antes) |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | Verificação de tipos (`tsc --noEmit`) |
+| `npm test` | Vitest em modo watch |
+| `npm run test:run` | Todos os testes, uma vez |
+| `npm run test:ci` | Testes com relatório de cobertura |
+| `npm run test:fuzz` | Apenas os testes de fuzzing (`*.fuzz.test.ts`) |
+| `npm run compress:videos` | Comprime vídeos de `public/assets/` para `public/assets/compressed/` com FFmpeg |
+| `npm run upload:cloudinary` | Envia vídeos e imagens para o Cloudinary (requer credenciais em `.env.local`) |
 
-# Produção
-npm run build            # Build otimizado para produção
-npm start                # Inicia servidor de produção
-
-# Qualidade de Código
-npm run lint             # Executa ESLint
-
-# Mídia
-npm run compress:videos  # Comprime vídeos para web
-npm run upload:cloudinary # Faz upload de mídia para Cloudinary
-```
-
----
-
-## 🗺️ Páginas e Rotas
-
-Todas as rotas são internacionalizadas com o prefixo `[locale]`:
-
-| Rota                        | Descrição                          |
-|-----------------------------|------------------------------------|
-| `/`                         | Redireciona para idioma padrão     |
-| `/pt`, `/en`, `/es`         | Página inicial                     |
-| `/{locale}/about`           | Sobre nós (equipe, história, MVV)  |
-| `/{locale}/missions`        | Missões espaciais dos alunos       |
-| `/{locale}/services`        | Serviços oferecidos                |
-| `/{locale}/teacher-resources` | Recursos para professores        |
-| `/{locale}/technologies`    | Tecnologias utilizadas             |
-
-### API Routes
-
-| Endpoint              | Método | Descrição                    |
-|-----------------------|--------|------------------------------|
-| `/api/contact`        | POST   | Envio de formulário contato  |
+O `package.json` também declara `upload:large`, mas o arquivo que ele executa (`scripts/upload-large-videos.js`) não existe no repositório.
 
 ---
 
-## 🧩 Componentes Principais
+## Páginas e rotas
 
-### Layout
-- **Header**: Navegação multilíngue com dropdown de idiomas
-- **Footer**: Links, redes sociais e informações de contato
-- **WhatsAppButton**: Botão flutuante de contato via WhatsApp
+Todas as páginas têm prefixo de idioma (`/en`, `/pt`, `/es`).
 
-### Carrosséis
-- **AboutCarousel**: História e evolução da IdeiaSpace
-- **MissionBadges**: Showcase de missões dos alunos (UAI-SAT, SARI-1)
-- **TechnologyCard**: Stack tecnológico usado nas missões
-- **TestimonialsCarousel**: Depoimentos de alunos e professores
-- **PartnersCarousel**: Parceiros e colaboradores
+| Rota | Conteúdo | Item do menu (pt) |
+|---|---|---|
+| `/` | Redireciona para o idioma detectado | — |
+| `/{locale}` | Página inicial: apresentação, números, Desafio, Missões, Recursos e contato (`#contact`) | Início |
+| `/{locale}/about` | História, missão/visão/valores, parceiros e liderança | Sobre Nós |
+| `/{locale}/missions` | Missões desenvolvidas por estudantes | Missões |
+| `/{locale}/services` | Programa Desafio Espacial: fases, metodologia e depoimentos | **Desafio** |
+| `/{locale}/technologies` | Recursos educacionais | **Recursos** |
+| `/{locale}/teacher-resources` | Página provisória de recursos para professores | (não aparece no menu) |
 
-### Seções Principais
-- **HeroSection**: Vídeo hero com CTA
-- **StatsCounter**: Contador animado de estatísticas
-- **IdeiaToSpaceSection**: Jornada educacional
-- **ChallengeSection**: Apresentação do Desafio Espacial
-- **MissionsSection**: Galeria de missões
-- **TechnologiesSection**: Tecnologias espaciais
+O menu também tem dois links externos: **Programação** (`ideia-spacetoweb.vercel.app`) e **Nossos Satélites** (`tleideiaspaceview.vercel.app`).
 
-### Formulários
-- **ContactForm**: Formulário de contato com validação e integração Resend
+Mais detalhes, incluindo o comportamento para URLs com idioma não suportado, em [`docs/ARQUITETURA.md`](docs/ARQUITETURA.md#9-mapa-de-rotas).
 
 ---
 
-## 🌐 Internacionalização
+## APIs
 
-O site suporta **3 idiomas** completos:
+| Endpoint | Método | Descrição | Sem credenciais |
+|---|---|---|---|
+| `/api/contact` | `POST` | Recebe o formulário de contato e envia o e-mail via Resend | Responde com um link `mailto:` |
+| `/api/satellites` | `GET` | Proxy de dados orbitais (TLE) do Space-Track e da N2YO, com cache em memória | Responde com TLEs estáticos |
 
-- 🇧🇷 **Português (pt)** - Idioma padrão
-- 🇺🇸 **Inglês (en)**
-- 🇪🇸 **Espanhol (es)**
+O formulário de contato da página inicial usa `/api/contact`. `/api/satellites` não é chamada pelas páginas deste repositório; ela é exposta via HTTP.
 
-### Estrutura de Traduções
+Contratos, respostas e cabeçalhos: [`API_DOCUMENTATION.md`](API_DOCUMENTATION.md).
 
-Todas as traduções estão em arquivos JSON na pasta `messages/`:
+---
 
-```json
-{
-  "nav": { "home": "Início", "about": "Sobre Nós" },
-  "hero": { "title": "Bem-vindo ao Ideia Space" },
-  "missions": { "title": "Nossas Missões" }
-}
-```
+## Internacionalização
 
-### Como Usar
+- Idiomas: **`en`** (padrão), **`pt`** e **`es`**.
+- Ao acessar `/`, o idioma é escolhido pelo cookie `NEXT_LOCALE` ou pelo `Accept-Language` do navegador. Se nenhum for suportado, usa `en`.
+- Os textos ficam em [`messages/`](messages) (`en.json`, `pt.json`, `es.json`), com as mesmas chaves nos três arquivos (verificado por teste).
+- Configuração: `src/routing.ts` (idiomas), `src/proxy.ts` (middleware), `src/i18n.ts` (carregamento das mensagens).
 
 ```tsx
-import { useTranslations } from 'next-intl';
+// Server Component
+const t = await getTranslations('about');
 
-export default function Component() {
-  const t = useTranslations();
-  
-  return <h1>{t('hero.title')}</h1>;
-}
+// Client Component
+const t = useTranslations('nav');
 ```
 
-### Configuração
-
-A configuração de i18n está em `src/i18n.ts` e usa **next-intl** com:
-- Detecção automática de idioma
-- URLs localizadas
-- Fallback para idioma padrão
+Para adicionar um idioma, é preciso alterar `src/routing.ts`, o `matcher` em `src/proxy.ts`, criar `messages/<idioma>.json` e incluir o idioma no seletor de `src/components/Header.tsx`.
 
 ---
 
-## 🔌 Integrações
+## Estrutura do projeto
 
-### Cloudinary
-- **CDN Global** para entrega rápida de mídia
-- **Otimização automática** de imagens e vídeos
-- **Transformações dinâmicas** (resize, crop, format)
+```
+├── .github/workflows/     # CI, fuzz, CodeQL, segurança e deploy
+├── docs/                  # Documentação técnica (arquitetura, CI/CD, backlog)
+├── messages/              # Traduções: en.json, pt.json, es.json
+├── public/
+│   └── assets/            # Imagens
+│       └── compressed/    # Vídeos (.mp4, Git LFS)
+├── scripts/               # Scripts de mídia: compressão, upload ao Cloudinary, favicon
+├── src/
+│   ├── app/
+│   │   ├── [locale]/      # Páginas (home, about, missions, services, technologies, teacher-resources)
+│   │   ├── api/           # Route Handlers: contact, satellites
+│   │   ├── layout.tsx     # Layout raiz
+│   │   └── globals.css    # Tailwind e estilos globais
+│   ├── components/        # Componentes de interface (Header, Footer, ContactForm, carrosséis, cards)
+│   ├── views/sections/    # Seções da página inicial
+│   ├── controllers/       # HomeController (conteúdo da página inicial)
+│   ├── models/            # Tipos do conteúdo da página inicial
+│   ├── lib/               # cloudinary.ts (URLs de mídia) e utilitários
+│   ├── i18n.ts            # Carregamento das traduções
+│   ├── routing.ts         # Idiomas suportados
+│   └── proxy.ts           # Middleware de idioma (next-intl)
+├── .env.example           # Modelo de variáveis de ambiente
+├── next.config.ts         # Configuração do Next.js (imagens, cabeçalhos, next-intl)
+├── vercel.json            # Configuração da Vercel
+└── vitest.config.ts       # Configuração dos testes
+```
 
-### Resend
-- **Emails transacionais** para formulário de contato
-- **Templates personalizados**
-- **Tracking de entrega**
-
-### Vercel
-- **Deploy automático** via Git
-- **Edge Network** global
-- **Analytics** e monitoramento
+As pastas `controllers/`, `models/` e `views/` são usadas apenas pela página inicial. As demais páginas montam seus componentes diretamente. Uma visão completa das responsabilidades está em [`docs/ARQUITETURA.md`](docs/ARQUITETURA.md#2-estrutura-arquitetural).
 
 ---
 
-## 🚀 Deploy
-
-### Deploy na Vercel (Recomendado)
-
-1. **Conecte o repositório**:
-   ```bash
-   # Instale a CLI da Vercel
-   npm i -g vercel
-   
-   # Deploy
-   vercel
-   ```
-
-2. **Configure as variáveis de ambiente** no painel da Vercel
-
-3. **Deploy automático**: Cada push na branch `main` faz deploy automaticamente
-
-Para instruções detalhadas, consulte **[DEPLOY_GUIDE.md](./DEPLOY_GUIDE.md)**.
-
-### Build Manual
+## Testes e qualidade
 
 ```bash
-# Build
-npm run build
-
-# Teste o build localmente
-npm start
+npm run lint && npm run typecheck && npm run test:ci && npm run build
 ```
 
----
-
-## 📖 Documentação Adicional
-
-- **[CLOUDINARY_UPLOAD.md](./CLOUDINARY_UPLOAD.md)** - Guia completo de upload de mídia
-- **[RESEND_SETUP.md](./RESEND_SETUP.md)** - Configuração de emails
-- **[DEPLOY_GUIDE.md](./DEPLOY_GUIDE.md)** - Guia de deploy e produção
+Os testes ficam em pastas `__tests__/` ao lado do código e cobrem as APIs (com Resend e `fetch` simulados), o helper de mídia `src/lib/cloudinary.ts`, o `HomeController` e a paridade das traduções. Não há testes de componentes nem testes end-to-end.
 
 ---
 
-## 🧪 Padrões de Código
+## Build e deploy
 
-### Arquitetura
-- **MVC Pattern**: Controllers, Models e Views separados
-- **Component-Based**: Componentes reutilizáveis e modulares
-- **CSS Modules**: Estilos escopados por componente
+- `npm run build` gera as páginas de forma estática: 6 rotas × 3 idiomas = 18 páginas. As duas APIs rodam sob demanda.
+- O build funciona **sem nenhuma variável de ambiente**; é assim que o CI o executa.
+- [`vercel.json`](vercel.json): framework Next.js, região `gru1`, deploy automático da branch `main` e Git LFS habilitado.
+- [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml): em push para `main`, aguarda o CI e faz o deploy pela Vercel CLI **se** o secret `VERCEL_TOKEN` estiver configurado; sem ele, a etapa de deploy é pulada. Em seguida executa um smoke test (requisição HTTP à URL do site).
+- Para usar o Cloudinary no site publicado, `NEXT_PUBLIC_USE_CLOUDINARY=true` precisa estar disponível **durante o build** na Vercel.
 
-### TypeScript
-- **Tipagem forte** em todos os arquivos
-- **Interfaces** para props de componentes
-- **Type safety** nas APIs
-
-### Estrutura de Componentes
-```tsx
-// Component.tsx
-export interface ComponentProps {
-  title: string;
-  description?: string;
-}
-
-export default function Component({ title, description }: ComponentProps) {
-  return <div>{title}</div>;
-}
-```
+Workflows, secrets e proteção de branch: [`docs/CI-CD.md`](docs/CI-CD.md).
 
 ---
 
-## 🤝 Contribuindo
+## Documentação
 
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/MinhaFeature`)
-3. Commit suas mudanças (`git commit -m 'feat: Adiciona MinhaFeature'`)
-4. Push para a branch (`git push origin feature/MinhaFeature`)
-5. Abra um Pull Request
+| Documento | Conteúdo |
+|---|---|
+| [`docs/ARQUITETURA.md`](docs/ARQUITETURA.md) | Arquitetura, ciclo de requisição, i18n, build, mídia, rotas e limites conhecidos |
+| [`API_DOCUMENTATION.md`](API_DOCUMENTATION.md) | Contrato de `/api/contact` e `/api/satellites` |
+| [`docs/CI-CD.md`](docs/CI-CD.md) | Workflows do GitHub Actions e deploy |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Fluxo de contribuição, branches e testes |
+| [`SECURITY.md`](SECURITY.md) | Como reportar vulnerabilidades |
+| [`CHANGELOG.md`](CHANGELOG.md) | Histórico de mudanças |
+| [`docs/BACKLOG.md`](docs/BACKLOG.md) | Issues abertas do code review |
 
 ---
 
-## 📄 Licença
+## Contribuindo
+
+Branches a partir de `dev`, Conventional Commits e CI verde obrigatório. Veja [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+Falhas de segurança não devem ser abertas como issue pública: siga [`SECURITY.md`](SECURITY.md).
+
+---
+
+## Licença
 
 Este projeto é propriedade da **IdeiaSpace**. Todos os direitos reservados.
-
----
-
-## 📞 Contato
-
-- **Website**: [www.ideispace.com](https://www.ideispace.com)
-- **Email**: contato@ideispace.com
-- **WhatsApp**: [Contato via WhatsApp](https://wa.me/seu_numero)
-
----
-
-## 🎓 Sobre o IdeiaSpace
-
-O **IdeiaSpace** é um projeto educacional inovador que conecta estudantes ao programa espacial brasileiro. Através do **Desafio Espacial**, os alunos:
-
-- 🛰️ Desenvolvem missões espaciais reais
-- 🚀 Lançam satélites em órbita (PocketQubes)
-- 💻 Programam sensores e sistemas embarcados
-- 📊 Analisam dados reais do espaço
-- 🌍 Desenvolvem visão global e científica
-
-### Impacto
-- **Satélites lançados** em órbita
-- **Milhares de estudantes** impactados
-- **Presença** em múltiplos países
-- **Parcerias** com universidades e agências espaciais
-
----
-
-<div align="center">
-  <strong>Desenvolvido com ❤️ pela equipe IdeiaSpace</strong>
-  
-  <br/>
-  
-  🚀 **Do Ideia ao Espaço** 🌌
-</div>

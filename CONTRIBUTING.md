@@ -1,25 +1,31 @@
 # Contribuindo
 
 Site institucional da IdeiaSpace — **Next.js 16 (App Router) + React 19**,
-`next-intl` (pt/en/es), Three.js / react-globe.gl, Cloudinary para mídia,
+`next-intl` (pt/en/es), Cloudinary para mídia,
 Resend para o formulário de contato. Sem backend próprio: as duas rotas
 server-side vivem em `src/app/api/` e rodam como funções na Vercel.
 
 ## Setup
 
 ```bash
+git lfs pull       # vídeos (*.mp4) ficam no Git LFS
 npm ci
+cp .env.example .env.local   # opcional
 npm run dev        # http://localhost:3000
 ```
 
-Variáveis de ambiente (todas opcionais — há fallback):
+Variáveis de ambiente (todas opcionais — há fallback; modelo em `.env.example`):
 
 | var | para quê | sem ela |
 |---|---|---|
 | `RESEND_API_KEY` | envio real do formulário de contato | cai para `mailto:` |
 | `N2YO_API_KEY` | TLEs de satélites (grupos não-IdeiaSpace) | dados estáticos de fallback |
 | `SPACETRACK_USERNAME` / `SPACETRACK_PASSWORD` | TLEs dos satélites IdeiaSpace | fallback |
-| `NEXT_PUBLIC_USE_CLOUDINARY` | servir vídeo/imagem do Cloudinary | `/assets/` local |
+| `NEXT_PUBLIC_USE_CLOUDINARY` | servir vídeo/imagem do Cloudinary | `/assets/` local — os vídeos não carregam nesse modo (ver `docs/ARQUITETURA.md`, seção 8) |
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | conta Cloudinary das URLs e do script de upload | valor padrão em `src/lib/cloudinary.ts` |
+
+As `NEXT_PUBLIC_*` são lidas no build (e ao iniciar o `next dev`): mudou o
+valor, refaça o build ou reinicie o servidor.
 
 ## Fluxo
 

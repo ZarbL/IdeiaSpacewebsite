@@ -3,6 +3,7 @@
 ## Índice
 - [API de Satélites](#api-de-satélites)
 - [API de Contato](#api-de-contato)
+- [Estado de Verificação](#estado-de-verificação)
 - [Variáveis de Ambiente](#variáveis-de-ambiente)
 
 ---
@@ -61,7 +62,9 @@ SARI-2
 | Header | Valores | Descrição |
 |--------|---------|-----------|
 | `X-Cache-Status` | `HIT`, `MISS`, `STALE`, `FALLBACK` | Status do cache |
-| `X-Data-Source` | `spacetrack`, `n2yo`, `fallback-error`, etc | Fonte dos dados |
+| `X-Data-Source` | `spacetrack`, `n2yo`, `spacetrack-stale`, `n2yo-stale`, `fallback-no-key`, `fallback-no-credentials`, `fallback-error` | Fonte dos dados |
+
+> Em respostas `HIT`, o código sempre envia `X-Data-Source: n2yo`, inclusive para o grupo `ideiaspace` (cuja fonte é o Space-Track).
 
 ### Categorias de Satélites Configuradas
 
@@ -79,7 +82,7 @@ SARI-2
 
 #### `starlink`
 - 30 satélites Starlink Gen1 em diferentes órbitas
-- IDs: 44713-44936 (selecionados)
+- IDs NORAD selecionados entre 44713 e 45053
 - **Fonte:** N2YO
 
 #### `weather`
@@ -102,10 +105,23 @@ SARI-2
 
 ### Tratamento de Erros
 
-1. **Credenciais ausentes:** Retorna dados de fallback estáticos
+1. **Credenciais ausentes:** Retorna dados de fallback estáticos, sem fazer nenhuma chamada externa
 2. **Erro na API:** Tenta usar cache expirado, senão usa fallback
 3. **TLE inválido:** Valida formato antes de cachear
 4. **Timeout:** 20 segundos (apenas N2YO)
+
+### Dados de Fallback
+
+Os TLEs estáticos ficam no próprio `route.ts` e são um subconjunto de cada grupo:
+
+| Grupo | Satélites no fallback | IDs configurados |
+|-------|-----------------------|------------------|
+| `ideiaspace` | 3 | 3 |
+| `stations` | 3 | 3 |
+| `starlink` | 10 | 30 |
+| `weather` | 10 | 22 |
+
+Grupos não reconhecidos usam o fallback de `stations`.
 
 ### Integração Space-Track.org
 
@@ -170,15 +186,18 @@ Envia emails de contato do formulário do website usando o serviço **Resend**. 
 
 | Campo | Validação |
 |-------|-----------|
-| `name` | Obrigatório, não vazio |
-| `email` | Obrigatório, formato válido (`/^[^\s@]+@[^\s@]+\.[^\s@]+$/`) |
-| `subject` | Obrigatório, não vazio |
-| `message` | Obrigatório, não vazio |
+| `name` | Obrigatório, string, até 200 caracteres |
+| `email` | Obrigatório, string, até 320 caracteres, formato válido (`/^[^\s@]+@[^\s@]+\.[^\s@]+$/`) |
+| `subject` | Obrigatório, string, até 200 caracteres |
+| `message` | Obrigatório, string, até 5000 caracteres |
+
+- Um corpo que não é JSON válido é tratado como corpo vazio (`400`, "Todos os campos são obrigatórios").
+- Antes de entrar no HTML do email, os campos são escapados (`&`, `<`, `>`, `"`, `'`).
 
 ### Exemplos de Requisição
 
 ```bash
-curl -X POST https://ideiaspace.com/api/contact \
+curl -X POST http://localhost:3000/api/contact \
   -H "Content-Type: application/json" \
   -d '{
     "name": "João Silva",
@@ -225,6 +244,14 @@ curl -X POST https://ideiaspace.com/api/contact \
 }
 ```
 
+```json
+{
+  "error": "Campo \"name\" inválido"
+}
+```
+
+O último formato aparece quando um campo não é string ou excede o tamanho máximo; o nome do campo varia.
+
 #### ❌ Erro no envio (500 Internal Server Error)
 
 ```json
@@ -255,11 +282,30 @@ O email enviado utiliza HTML formatado com:
 2. **Modo Fallback:** Sem `RESEND_API_KEY` → Retorna link `mailto:`
 3. **Modo Erro:** Falha no envio → Retorna link `mailto:` de backup
 
+As mensagens de resposta (`message`/`error`) são fixas em português, independentemente do idioma da página que enviou o formulário.
+
+---
+
+## Estado de Verificação
+
+| Comportamento | Como foi verificado |
+|---------------|---------------------|
+| Validações e respostas `400` de `/api/contact` | Execução local e testes automatizados |
+| Fallback `mailto:` sem `RESEND_API_KEY` | Execução local e testes automatizados |
+| Envio pelo Resend e erro `500` | Apenas testes automatizados, com o SDK do Resend simulado (mock) |
+| Fallbacks de `/api/satellites` sem credenciais (todos os grupos) | Execução local e testes automatizados |
+| Consulta à N2YO, cache `HIT`/`MISS`, TLE inválido, falha de rede | Apenas testes automatizados, com `fetch` simulado |
+| Autenticação e consulta ao Space-Track | Não há teste automatizado nem verificação com credenciais reais |
+
+Os comportamentos marcados como "apenas testes" seguem o código, mas não foram exercitados contra os serviços reais.
+
 ---
 
 ## Variáveis de Ambiente
 
-### Obrigatórias para Satélites
+Todas são **opcionais**: sem elas, as APIs usam os modos de fallback descritos acima. O modelo completo está em [`.env.example`](.env.example).
+
+### Para Satélites
 
 ```env
 # Para satélites IdeiaSpace (Space-Track.org)
@@ -270,7 +316,7 @@ SPACETRACK_PASSWORD=sua_senha_segura
 N2YO_API_KEY=sua_chave_api_n2yo
 ```
 
-### Obrigatórias para Contato
+### Para Contato
 
 ```env
 # Para envio de emails
@@ -301,10 +347,12 @@ RESEND_API_KEY=re_sua_chave_resend
 
 ## Rate Limits e Considerações
 
+> Os limites e planos abaixo são definidos pelos provedores e podem mudar; confirme na documentação de cada serviço. Delay, timeout e cache são definidos no código.
+
 ### Space-Track.org
 - **Limite:** 30 requests/minuto, 300 requests/hora
 - **Cache:** 8 horas (reduz significativamente requests)
-- **Autenticação:** Cookie por requisição
+- **Autenticação:** Login a cada busca não atendida pelo cache (o cookie da sessão é usado na consulta seguinte)
 
 ### N2YO
 - **Limite:** 1000 requests/hora (plano gratuito)
@@ -324,6 +372,8 @@ RESEND_API_KEY=re_sua_chave_resend
 ### Satélites API
 
 ```
+❌ Space-Track credentials não configuradas
+❌ N2YO_API_KEY não configurada
 ✅ Cache HIT para stations (45 minutos atrás)
 🌐 Buscando dados TLE de ideiaspace do Space-Track...
 ✅ 3 satélites TLE de ideiaspace recebidos do Space-Track e armazenados em cache
@@ -337,8 +387,7 @@ RESEND_API_KEY=re_sua_chave_resend
 
 ```
 RESEND_API_KEY not configured. Using mailto fallback.
-Contact form submission: { name, email, subject, message }
-Email sent successfully: { id: '...' }
+Email sent successfully: <id do email>
 Error sending email: [erro]
 ```
 
@@ -347,6 +396,8 @@ Error sending email: [erro]
 ## Exemplos de Uso no Frontend
 
 ### Buscar Satélites
+
+> Exemplo ilustrativo: nenhuma página deste repositório consome `/api/satellites`, e `parseTLE` representa uma função de parsing a ser fornecida pelo consumidor.
 
 ```typescript
 async function fetchSatellites(group: string) {
@@ -364,6 +415,8 @@ async function fetchSatellites(group: string) {
 ```
 
 ### Enviar Formulário de Contato
+
+> Exemplo simplificado. A implementação usada pelo site está em `src/components/ContactForm.tsx`: ela exibe `message` (ou `error`) no formulário e, quando a resposta traz `useMailto`, redireciona para o `mailtoLink`.
 
 ```typescript
 async function sendContactForm(data: ContactData) {
@@ -421,10 +474,10 @@ src/app/api/
 
 ## Troubleshooting
 
-### Problema: "Space-Track credentials not configured"
+### Problema: "Space-Track credentials não configuradas" (`X-Data-Source: fallback-no-credentials`)
 **Solução:** Adicione `SPACETRACK_USERNAME` e `SPACETRACK_PASSWORD` no `.env.local`
 
-### Problema: "N2YO_API_KEY não configurada"
+### Problema: "N2YO_API_KEY não configurada" (`X-Data-Source: fallback-no-key`)
 **Solução:** Adicione `N2YO_API_KEY` no `.env.local`
 
 ### Problema: Email não enviado
@@ -446,11 +499,11 @@ src/app/api/
 
 ## Contato e Suporte
 
-Para dúvidas ou problemas com as APIs:
-- **Email:** admin@ideiaspace.com
-- **Website:** https://ideiaspace.com
+Para dúvidas ou problemas com as APIs, abra uma issue no repositório. Falhas de segurança devem seguir o [`SECURITY.md`](SECURITY.md).
+
+Arquitetura e encaixe das APIs no restante da aplicação: [`docs/ARQUITETURA.md`](docs/ARQUITETURA.md#11-apis).
 
 ---
 
-**Última atualização:** 29 de janeiro de 2026
+**Última atualização:** 6 de outubro de 2026
 **Versão:** 1.0.0
