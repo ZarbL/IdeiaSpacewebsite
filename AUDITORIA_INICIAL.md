@@ -649,3 +649,29 @@ O Graphify gerou `graphify-out/` (`GRAPH_REPORT.md`, `graph.json`, `graph.html`,
 - **CI/CD**: os 5 workflows, `CODEOWNERS`, templates.
 - **Documentação**: `README.md`, `API_DOCUMENTATION.md`, `CONTRIBUTING.md`, `SECURITY.md`, `CHANGELOG.md`, `docs/BACKLOG.md`, `docs/CI-CD.md`.
 - **Graphify**: `GRAPH_REPORT.md`, `graph.json` (consultado por script), `.graphify_labels.json`, `manifest.json`.
+
+---
+
+## Respostas da validação prática
+
+> Adicionado após a **Fase 1** (06/10/2026). O texto acima foi mantido como estava. Detalhes, comandos e evidências estão em [`docs/FASE-1-VALIDACAO.md`](docs/FASE-1-VALIDACAO.md).
+
+**Execução (Node 22.11.0, sem variáveis de ambiente):** `npm ci` ✅ · `lint` ✅ (0 erros, 24 warnings) · `typecheck` ✅ · `test:run`/`test:ci` ✅ (7 arquivos, 31/31; cobertura 69,9% statements) · `test:fuzz` ✅ (5/5) · `build` ✅ (18 páginas SSG, 2 APIs dinâmicas) · `npm audit`: 39 vulnerabilidades (11 em produção, 1 crítica no `next`).
+
+**Itens que estavam ❓ e agora têm resposta:**
+
+| Onde estava | Resposta |
+|---|---|
+| §5.1 — detecção automática de idioma | ✅ `/` sem cabeçalho → `/en`; `Accept-Language: pt-BR` → `/pt`; `es` → `/es`; `fr` → `/en`; o cookie `NEXT_LOCALE` tem prioridade. |
+| §9.1 — quais páginas saem estáticas | ✅ As 6 rotas × 3 idiomas são **SSG** (prerenderizadas); `/api/contact` e `/api/satellites` são dinâmicas. |
+| §10 — os testes passam? | ✅ 31/31 aprovados; cobertura acima dos limites (69,91 / 78,21 / 78,57 / 69,91). |
+| A1 — vídeos locais | ✅ Confirmado: 8 URLs `/assets/*.mp4` → 404 e 11/11 `<video>` sem fonte. Com `NEXT_PUBLIC_USE_CLOUDINARY=true`, 11/11 carregam. A variável é **gravada no HTML durante o build**. |
+| A12 — esquema de `lib/assets.ts` | ✅ `ideiaspace/videos/*` e `ideiaspace/images/*` não existem na CDN (404). |
+| A15 — locale não suportado (`/fr`) | ✅ Responde **200** com conteúdo em inglês e `<html lang="fr">`. O mesmo vale para qualquer segmento (ex.: `/edusat`), e em produção a página fica em cache. |
+| A18 — `graphify-out/` | ✅ Resolvido: já está no `.gitignore`. |
+
+**Itens confirmados na execução** (já eram ✅/⚠️ pela leitura do código): A6, A7, A8 (com uma diferença: `/edusat` etc. não dão 404, ver A15), A9, A13, A14, D1, D3–D13. D2 ficou ⚠️: só Node 22 foi testado.
+
+**Continuam ❓:** se a produção usa Cloudinary e qual deploy está ativo (§9.2); quem consome `/api/satellites` (§1, A2); comportamento real com Resend, Space-Track e N2YO; A3 (HIT do grupo `ideiaspace`); A4 (cache em serverless); A5 (TLEs de fallback); A11 (números oficiais); D14 (domínio/e-mail oficiais).
+
+**Observações novas da execução:** todo o JSON de traduções do idioma (~22 KB) vai embutido em cada página; a Home tem dois `<h1>`; o hero de `/services` aparece sem descrição em `pt`/`en`; no Windows o seletor de idioma mostra "BR" em vez da bandeira; o fallback `starlink` tem 10 satélites (4 com IDs fora da lista configurada) e o `weather` tem 10 de 22.
