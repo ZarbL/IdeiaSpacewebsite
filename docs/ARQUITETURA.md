@@ -683,5 +683,3 @@ Comportamentos atuais que um desenvolvedor precisa conhecer antes de trabalhar n
 | [`docs/CI-CD.md`](CI-CD.md) | Workflows do GitHub Actions, secrets e fluxo de deploy |
 | [`CONTRIBUTING.md`](../CONTRIBUTING.md) | Setup, variáveis de ambiente, fluxo de branches e comandos de teste |
 | [`SECURITY.md`](../SECURITY.md) | Superfície de ataque e como reportar vulnerabilidades |
-| [`AUDITORIA_INICIAL.md`](../AUDITORIA_INICIAL.md) | Auditoria técnica do repositório, com divergências e pontos de atenção |
-| [`docs/FASE-1-VALIDACAO.md`](FASE-1-VALIDACAO.md) | Resultados da execução local (instalação, testes, build, rotas, mídia, APIs) |
