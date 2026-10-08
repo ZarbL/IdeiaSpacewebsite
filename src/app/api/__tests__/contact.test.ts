@@ -26,7 +26,8 @@ const valid = { name: 'Ada', email: 'ada@example.com', subject: 'Oi', message: '
 
 beforeEach(() => {
   sendMock.mockReset();
-  sendMock.mockResolvedValue({ data: { id: 'email_123' } });
+  // mesmo formato do SDK real: `{ data, error }` (só um dos dois é preenchido)
+  sendMock.mockResolvedValue({ data: { id: 'email_123' }, error: null });
 });
 
 describe('POST /api/contact — validação', () => {
@@ -86,7 +87,21 @@ describe('POST /api/contact — com RESEND_API_KEY', () => {
     expect(html).toContain('a &amp; b &lt; c &gt; d');
   });
 
-  it('erro do Resend → 500 com fallback mailto', async () => {
+  it('Resend devolve error (recusa ou falha de rede) → 500 com fallback mailto', async () => {
+    // o SDK não lança nesses casos: resolve com `{ data: null, error }`
+    sendMock.mockResolvedValue({
+      data: null,
+      error: { name: 'validation_error', statusCode: 403, message: 'recusado' },
+    });
+    const { POST } = await loadRoute('re_test');
+    const res = await POST(post(valid) as never);
+    const json = await res.json();
+    expect(res.status).toBe(500);
+    expect(json.success).toBeUndefined();
+    expect(json.useMailto).toBe(true);
+  });
+
+  it('exceção ao chamar o Resend → 500 com fallback mailto', async () => {
     sendMock.mockRejectedValue(new Error('resend down'));
     const { POST } = await loadRoute('re_test');
     const res = await POST(post(valid) as never);

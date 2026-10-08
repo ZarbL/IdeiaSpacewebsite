@@ -26,6 +26,18 @@ function escapeHtml(value: string): string {
     .replace(/'/g, '&#39;');
 }
 
+/** Falha no envio: oferece o mailto como fallback. */
+function sendFailedResponse() {
+  return NextResponse.json(
+    {
+      error: 'Erro ao enviar mensagem. Abrindo cliente de email...',
+      useMailto: true,
+      mailtoLink: `mailto:admin@ideiaspace.com`
+    },
+    { status: 500 }
+  );
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json().catch(() => null);
@@ -84,8 +96,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Envia email real usando Resend
-    const data = await resend.emails.send({
+    // Envia email real usando Resend.
+    // O SDK (v6) não lança exceção quando o Resend recusa o envio ou está
+    // inacessível: devolve `{ data: null, error }`. Esse retorno também é falha.
+    const { data, error } = await resend.emails.send({
       from: 'IdeiaSpace Website <onboarding@resend.dev>',
       to: 'admin@ideiaspace.com',
       replyTo: email,
@@ -177,27 +191,25 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    console.log('Email sent successfully:', data.data?.id);
+    if (error) {
+      console.error('Error sending email:', error);
+      return sendFailedResponse();
+    }
+
+    console.log('Email sent successfully:', data?.id);
 
     return NextResponse.json(
-      { 
-        success: true, 
+      {
+        success: true,
         message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.',
-        emailId: data.data?.id
+        emailId: data?.id
       },
       { status: 200 }
     );
   } catch (error) {
     console.error('Error sending email:', error);
-    
+
     // Em caso de erro, oferece mailto como fallback
-    return NextResponse.json(
-      { 
-        error: 'Erro ao enviar mensagem. Abrindo cliente de email...',
-        useMailto: true,
-        mailtoLink: `mailto:admin@ideiaspace.com`
-      },
-      { status: 500 }
-    );
+    return sendFailedResponse();
   }
 }
