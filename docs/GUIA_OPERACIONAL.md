@@ -61,7 +61,7 @@ nvm use        # opcional, se usar nvm
 npm ci
 ```
 
-Use `npm ci` (e não `npm install`) para instalar exatamente as versões do `package-lock.json`, como o CI faz. A instalação leva alguns minutos e exibe avisos de pacotes depreciados e um resumo do `npm audit`; isso não impede o funcionamento.
+Use `npm ci` (e não `npm install`) para instalar exatamente as versões do `package-lock.json`, como o CI faz. A instalação leva alguns minutos e exibe avisos de pacotes depreciados e um resumo do `npm audit`. Nada disso impede a instalação nem o funcionamento, mas o resumo do audit não é ruído: ele inclui vulnerabilidades reais e ainda não corrigidas, entre elas duas críticas no `next`. A situação está registrada em [`SECURITY.md`](../SECURITY.md) e em [`docs/BACKLOG.md`](BACKLOG.md#segurança-das-dependências-sem-issue-aberta).
 
 ### 2.3 Variáveis de ambiente (opcional)
 
@@ -154,7 +154,7 @@ $env:FUZZ_RUNS = "3000"; npm run test:fuzz    # PowerShell
 
 ## 5. Rotina de desenvolvimento
 
-1. Crie a branch a partir de `dev` (`feat/...`, `fix/...`, `chore/...`) e use Conventional Commits. Ver [`CONTRIBUTING.md`](../CONTRIBUTING.md).
+1. Crie a branch a partir de `main` (`feat/...`, `fix/...`, `chore/...`) e use Conventional Commits. Ver [`CONTRIBUTING.md`](../CONTRIBUTING.md#fluxo).
 2. Durante o trabalho: `npm run dev` e, em outro terminal, `npm test` (watch).
 3. Antes de abrir o PR, rode a mesma sequência do CI:
 
@@ -168,7 +168,7 @@ $env:FUZZ_RUNS = "3000"; npm run test:fuzz    # PowerShell
    npm run lint; if ($?) { npm run typecheck }; if ($?) { npm run test:ci }; if ($?) { npm run build }
    ```
 
-4. Abra o PR para `dev`. O CI precisa estar verde.
+4. Abra o PR para `dev`. O GitHub sugere `main`, que é a branch padrão do repositório: troque a base. O CI precisa estar verde antes do merge. É regra do time: o GitHub não bloqueia o merge, porque as branches não têm proteção. A `dev` acumula as mudanças até a publicação, quando é mesclada em `main` ([6.1](#61-caminho-do-código-até-produção)). Hoje `dev` está atrás de `main`, e o PR leva commits a mais: ver a situação em [`CONTRIBUTING.md`](../CONTRIBUTING.md#fluxo).
 5. Mudanças em textos: edite os **três** arquivos de `messages/` (`en`, `pt`, `es`) com as mesmas chaves. O teste `src/__tests__/messages-parity.test.ts` reprova o CI se uma chave existir em um arquivo e não nos outros.
 
 O que o CI **não** verifica: a interface no navegador. Não há testes de componente nem end-to-end. Mudanças visuais ou de navegação precisam ser conferidas manualmente com `npm run dev`.
@@ -182,11 +182,11 @@ Baseado em [`vercel.json`](../vercel.json), [`.github/workflows/`](../.github/wo
 ### 6.1 Caminho do código até produção
 
 ```text
-branch de trabalho
+branch de trabalho (criada a partir de main)
    │  PR para dev ──► ci.yml (lint · typecheck · testes+cobertura · build)
    │                  fuzz.yml · codeql.yml · security.yml
    ▼
-dev
+dev (acumula as mudanças até a publicação)
    │  PR/merge dev → main
    ▼
 main (push)
@@ -310,7 +310,7 @@ No PowerShell, use `curl.exe` (o `curl` do PowerShell 5.1 é um alias de `Invoke
 
 **O que esse teste cobre:** validação (campos, tipos, tamanhos, formato de e-mail) e o fallback `mailto:`. O terminal do `npm run dev` registra `RESEND_API_KEY not configured. Using mailto fallback.`
 
-**O que ele não cobre:** o envio real pelo Resend. Esse caminho é coberto pelos testes automatizados com o Resend simulado (`npm run test:run -- contact`). Para testá-lo de verdade, use uma chave **de uma conta de teste sua**, nunca a de produção. O remetente (`onboarding@resend.dev`) e o destinatário (`admin@ideiaspace.com`) estão fixos no código. Dependendo da configuração da sua conta, o Resend pode recusar o envio para esse destinatário. Nesse caso, a API responde `500` com o `mailtoLink` e o terminal registra `Error sending email: …`.
+**O que ele não cobre:** o envio real pelo Resend. Esse caminho é coberto pelos testes automatizados, com o SDK do Resend simulado e com o SDK real sobre `fetch` simulado (`npm run test:run -- contact`). Para testá-lo de verdade, use uma chave **de uma conta de teste sua**, nunca a de produção. O remetente (`onboarding@resend.dev`) e o destinatário (`admin@ideiaspace.com`) estão fixos no código. Dependendo da configuração da sua conta, o Resend pode recusar o envio para esse destinatário. Nesse caso, a API responde `500` com o `mailtoLink` e o terminal registra `Error sending email: …`.
 
 ### 7.4 Testar a API de satélites sem as chaves da N2YO e do Space-Track
 

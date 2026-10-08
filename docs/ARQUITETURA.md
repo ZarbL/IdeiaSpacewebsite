@@ -581,7 +581,7 @@ flowchart LR
     K -->|não| MT["200 + useMailto + mailtoLink"]
     K -->|sim| RS[("Resend")]
     RS -->|ok| OK["200 + emailId"]
-    RS -->|erro| E500["500 + mailtoLink"]
+    RS -->|"erro (recusa, falha de rede<br/>ou exceção)"| E500["500 + mailtoLink"]
     MT --> F
     OK --> F
     E500 --> F
@@ -591,6 +591,7 @@ flowchart LR
 - O componente envia os dados e exibe o campo `message` (sucesso) ou `error` (falha) da resposta. Se a resposta trouxer `useMailto`, abre o cliente de e-mail do visitante.
 - A rota escapa os campos antes de inseri-los no HTML do e-mail.
 - O cliente Resend só é criado quando há chave, o que permite o `next build` sem segredos.
+- O SDK do Resend não lança exceção quando o envio é recusado ou o serviço está inacessível: devolve `{ data: null, error }`. A rota trata esse `error` como falha e responde `500` com o `mailtoLink`, como faz quando a chamada lança uma exceção.
 - As mensagens de retorno são definidas na rota, em português, e não passam pelo i18n.
 
 ### Satélites
@@ -641,7 +642,8 @@ Os testes usam **Vitest** com ambiente **jsdom**, **Testing Library** e **fast-c
 
 | Arquivo | Cobre |
 |---|---|
-| `src/app/api/__tests__/contact.test.ts` | Validação, fallback `mailto`, envio com Resend simulado, escape de HTML, erro do Resend |
+| `src/app/api/__tests__/contact.test.ts` | Validação, fallback `mailto`, envio com Resend simulado, escape de HTML, `error` devolvido pelo SDK e exceção no envio |
+| `src/app/api/__tests__/contact.resend-sdk.test.ts` | Contrato real do SDK do Resend, com só o `fetch` simulado: aceite → `200`; recusa `403` e falha de rede → `500` |
 | `src/app/api/__tests__/contact.fuzz.test.ts` | Corpos arbitrários nunca geram exceção nem 5xx |
 | `src/app/api/__tests__/satellites.test.ts` | Fallbacks sem credenciais, montagem do TLE a partir da N2YO, TLE inválido, falha de rede, cache HIT |
 | `src/lib/__tests__/cloudinary.test.ts` | Montagem das URLs e alternância local/Cloudinary |
@@ -649,7 +651,7 @@ Os testes usam **Vitest** com ambiente **jsdom**, **Testing Library** e **fast-c
 | `src/controllers/__tests__/home.controller.test.ts` | Formato do `PageContent` e uso da função de tradução |
 | `src/__tests__/messages-parity.test.ts` | `en`, `pt` e `es` com o mesmo conjunto de chaves |
 
-São 7 arquivos e 31 testes. A cobertura é medida apenas em `src/lib`, `src/controllers`, `src/models` e `src/app/api`, com limites mínimos definidos no `vitest.config.ts`.
+São 8 arquivos e 35 testes. A cobertura é medida apenas em `src/lib`, `src/controllers`, `src/models` e `src/app/api`, com limites mínimos definidos no `vitest.config.ts`.
 
 **Escopo:** os testes cobrem a **lógica** (helpers de mídia, controller, paridade das traduções) e as **APIs**, com serviços externos simulados. **Não há testes de componentes, de páginas nem testes end-to-end** em navegador. Comportamentos de interface (navegação, troca de idioma, carregamento real de vídeos e imagens, formulário no navegador) não têm cobertura automatizada.
 

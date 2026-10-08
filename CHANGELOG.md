@@ -19,6 +19,11 @@
 
 ### Corrigido
 
+- `api/contact`: quando o Resend recusava o envio ou estava inacessível, o SDK
+  devolvia `{ data: null, error }` (sem lançar exceção) e a rota respondia `200`
+  com "Mensagem enviada com sucesso!", perdendo a mensagem. Agora esse `error`
+  gera o `500` com `mailtoLink` já documentado. Novo teste com o SDK real e
+  `fetch` simulado (`contact.resend-sdk.test.ts`).
 - `api/contact`: campos do usuário eram interpolados **sem escape** no HTML do
   email (injeção de HTML/phishing). Agora escapados; adiciona limite de tamanho
   e validação de tipo.

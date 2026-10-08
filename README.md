@@ -237,13 +237,13 @@ Workflows, secrets e proteção de branch: [`docs/CI-CD.md`](docs/CI-CD.md).
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Fluxo de contribuição, branches e testes |
 | [`SECURITY.md`](SECURITY.md) | Como reportar vulnerabilidades |
 | [`CHANGELOG.md`](CHANGELOG.md) | Histórico de mudanças |
-| [`docs/BACKLOG.md`](docs/BACKLOG.md) | Issues abertas do code review |
+| [`docs/BACKLOG.md`](docs/BACKLOG.md) | Issues abertas do code review e situação de segurança das dependências |
 
 ---
 
 ## Contribuindo
 
-Branches a partir de `dev`, Conventional Commits e CI verde obrigatório. Veja [`CONTRIBUTING.md`](CONTRIBUTING.md).
+Branch a partir de `main`, PR para `dev`, Conventional Commits e CI verde antes do merge. A `dev` acumula as mudanças, que vão para produção quando `dev` é mesclada em `main`. O GitHub não impõe essas regras (as branches não têm proteção) e sugere `main` como base do PR: troque para `dev`. Hoje `dev` está atrás de `main`. A situação das branches e os detalhes estão em [`CONTRIBUTING.md`](CONTRIBUTING.md#fluxo).
 
 Falhas de segurança não devem ser abertas como issue pública: siga [`SECURITY.md`](SECURITY.md).
 

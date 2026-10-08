@@ -254,6 +254,8 @@ O último formato aparece quando um campo não é string ou excede o tamanho má
 
 #### ❌ Erro no envio (500 Internal Server Error)
 
+Ocorre com `RESEND_API_KEY` configurada quando o envio falha: o Resend recusa a requisição (chave inválida, remetente ou destinatário não permitido etc.), o serviço não responde, ou a chamada lança uma exceção inesperada. O SDK do Resend não lança exceção nos dois primeiros casos: ele devolve `{ data: null, error }`, e a rota trata esse `error` como falha.
+
 ```json
 {
   "error": "Erro ao enviar mensagem. Abrindo cliente de email...",
@@ -280,7 +282,7 @@ O email enviado utiliza HTML formatado com:
 
 1. **Modo Completo:** Com `RESEND_API_KEY` configurada → Envia email real
 2. **Modo Fallback:** Sem `RESEND_API_KEY` → Retorna link `mailto:`
-3. **Modo Erro:** Falha no envio → Retorna link `mailto:` de backup
+3. **Modo Erro:** Falha no envio (o SDK devolve `error` ou a chamada lança exceção) → `500` com link `mailto:` de backup
 
 As mensagens de resposta (`message`/`error`) são fixas em português, independentemente do idioma da página que enviou o formulário.
 
@@ -292,7 +294,7 @@ As mensagens de resposta (`message`/`error`) são fixas em português, independe
 |---------------|---------------------|
 | Validações e respostas `400` de `/api/contact` | Execução local e testes automatizados |
 | Fallback `mailto:` sem `RESEND_API_KEY` | Execução local e testes automatizados |
-| Envio pelo Resend e erro `500` | Apenas testes automatizados, com o SDK do Resend simulado (mock) |
+| Envio pelo Resend e erro `500` | Testes automatizados com o SDK simulado (mock) e com o SDK real e `fetch` simulado (`contact.resend-sdk.test.ts`: aceite, recusa `403` e falha de rede); execução local com o SDK apontado para um endereço local (recusa `403` e serviço inacessível). O envio real pelo Resend não foi verificado |
 | Fallbacks de `/api/satellites` sem credenciais (todos os grupos) | Execução local e testes automatizados |
 | Consulta à N2YO, cache `HIT`/`MISS`, TLE inválido, falha de rede | Apenas testes automatizados, com `fetch` simulado |
 | Autenticação e consulta ao Space-Track | Não há teste automatizado nem verificação com credenciais reais |
@@ -505,5 +507,5 @@ Arquitetura e encaixe das APIs no restante da aplicação: [`docs/ARQUITETURA.md
 
 ---
 
-**Última atualização:** 6 de outubro de 2026
+**Última atualização:** 8 de outubro de 2026
 **Versão:** 1.0.0

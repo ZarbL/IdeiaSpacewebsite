@@ -19,3 +19,10 @@ do GitHub ou contato@ideiaspace.com.br.
 - **Headers**: `next.config.ts` define `X-Content-Type-Options`, `Referrer-Policy`
   e `Content-Security-Policy: frame-ancestors *` (embedding liberado — issue
   aberta para restringir aos domínios reais).
+- **Dependências**: há vulnerabilidades conhecidas **ainda não corrigidas**. Em
+  08/10/2026, o `npm audit --omit=dev` apontou 11 pacotes de produção, entre eles
+  o `next` 16.0.8 (dependência direta), com 2 avisos críticos de execução remota
+  de código. O PR #1, aberto pelo `vercel[bot]`, trata de outra falha (já
+  corrigida no projeto) e não resolve esses avisos. A situação detalhada, com o
+  que já foi corrigido e o que não foi, está em
+  [`docs/BACKLOG.md`](docs/BACKLOG.md#segurança-das-dependências-sem-issue-aberta).

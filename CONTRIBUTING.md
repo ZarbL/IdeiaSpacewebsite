@@ -29,14 +29,41 @@ valor, refaça o build ou reinicie o servidor.
 
 ## Fluxo
 
-1. Branch a partir de `dev`: `feat/...`, `fix/...`, `chore/...`.
+Fluxo do time (informado pelo time em 08/10/2026):
+
+1. Branch a partir de `main`: `feat/...`, `fix/...`, `chore/...`.
 2. Conventional Commits (`feat:`, `fix:`, `docs:`…).
 3. Antes do PR:
    ```bash
    npm run lint && npm run typecheck && npm run test:ci && npm run build
    ```
-4. PR para `dev`; CI verde obrigatório. `dev` → `main` quando for para produção
-   (a Vercel publica em push para `main`).
+4. PR para `dev`, com o CI verde antes do merge. A `dev` acumula as mudanças
+   de várias branches.
+5. Quando o time decide publicar, `dev` é mesclada em `main` e as mudanças
+   acumuladas vão para produção de uma vez (a Vercel publica em push para
+   `main`).
+
+**Situação das branches (verificada em 08/10/2026).** O histórico ainda não
+segue esse fluxo:
+
+- Nenhum PR teve `dev` como base. Os dois PRs mesclados até hoje, #2
+  (`chore/ci-cd-quality`) e #9 (`fix/stats-card-counters`), foram direto para
+  `main`. Até setembro de 2026, as mudanças entravam por commits diretos em
+  `main`.
+- Por isso, `dev` está 12 commits atrás de `main`: não tem o CI, os testes nem
+  esta documentação. Ela tem 1 commit que ainda não foi para `main`
+  (`e80cf1e`, satélite 3D no Hero, de 08/09/2026).
+- Enquanto `dev` não receber o que está em `main`, um PR de uma branch nova
+  para `dev` leva junto esses 12 commits e tem conflito em `package-lock.json`
+  (simulação com `git merge-tree`).
+
+**Limitações que dependem da configuração do GitHub.** A branch padrão do
+repositório é `main`, por isso o GitHub sugere `main` como base ao abrir um PR:
+troque para `dev`. `main` e `dev` não têm proteção de branch nem rulesets
+ativas (API pública do GitHub, 08/10/2026). Nada impede PR direto para `main`,
+push direto nem merge com o CI vermelho: o fluxo e o CI verde são regra do
+time, não bloqueio automático. A proteção sugerida está em
+[`docs/CI-CD.md`](docs/CI-CD.md#branch-protection-sugerida-para-main).
 
 ## Testes
 
