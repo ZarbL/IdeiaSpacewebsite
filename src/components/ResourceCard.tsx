@@ -23,7 +23,7 @@ const ResourceCard = ({ title, description, image, isWorkInProgress = false, lin
     router.push(`/${locale}#contact`);
   };
 
-  const CardContent = () => (
+  const cardContent = (
     <div className={`resource-card ${isWorkInProgress ? 'work-in-progress' : ''}`}>
       <div className="resource-card-image">
         <img src={image} alt={title} />
@@ -48,14 +48,14 @@ const ResourceCard = ({ title, description, image, isWorkInProgress = false, lin
   if (link && !isWorkInProgress) {
     return (
       <a href={link} target="_blank" rel="noopener noreferrer" className="resource-card-wrapper">
-        <CardContent />
+        {cardContent}
       </a>
     );
   }
 
   return (
     <div className="resource-card-wrapper" onClick={handleClick} style={{ cursor: 'pointer' }}>
-      <CardContent />
+      {cardContent}
     </div>
   );
 };

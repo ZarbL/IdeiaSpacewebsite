@@ -1,0 +1,58 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  wait-for-ci:
+    name: Aguardar CI verde
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.sha }}
+          check-name: 'Lint · typecheck · test · build'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 20
+          allowed-conclusions: success,skipped
+
+  deploy:
+    name: Deploy (Vercel)
+    needs: wait-for-ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy para produção
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::notice::VERCEL_TOKEN ausente — a Git integration da Vercel já publica em push para main. Pulando."
+            exit 0
+          fi
+          npx vercel@latest pull --yes --environment=production --token="$VERCEL_TOKEN"
+          npx vercel@latest build --prod --token="$VERCEL_TOKEN"
+          npx vercel@latest deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+
+      - name: Smoke test
+        run: |
+          URL="${SITE_URL:-https://ideiaspace.com.br}"
+          for i in $(seq 1 10); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$URL")
+            [ "$code" = "200" ] && echo "ok ($URL)" && exit 0
+            echo "tentativa $i — HTTP $code"; sleep 15
+          done
+          echo "::warning::$URL não respondeu 200"
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}

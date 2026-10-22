@@ -1,0 +1,17 @@
+name: Melhoria / tarefa
+description: Uma mudança a fazer, com contexto
+labels: [enhancement]
+body:
+  - type: textarea
+    id: context
+    attributes: { label: Contexto, description: Por que importa, situação hoje }
+    validations: { required: true }
+  - type: input
+    id: where
+    attributes: { label: Onde (arquivo / diretório) }
+  - type: textarea
+    id: todo
+    attributes: { label: O que fazer }
+  - type: textarea
+    id: done
+    attributes: { label: Pronto quando }
