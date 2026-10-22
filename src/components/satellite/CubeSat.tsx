@@ -4,63 +4,48 @@ import { Suspense, useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
-import { GLTF } from 'three-stdlib';
 import type { SatelliteView } from './ViewControls';
 
 /**
- * Malha real do CubeSat do Ideia Space.
- * Origem: modelo gerado (Meshy AI) em .obj/.mtl (~239MB, 2,5M triângulos),
- * reempacotado com gltf-transform (weld + simplify + resize + jpeg) para
- * ~1,3MB / ~25k triângulos e convertido para .glb com gltfjsx.
- * O .obj/.mtl originais ficam fora do git (ver .gitignore) — só o .glb
- * otimizado em public/assets/models/cubesat.glb entra no repositório.
+ * Malha real do Solar Cube (CubeSat com painéis solares) do Ideia Space.
+ * Origem: modelo gerado no Meshy AI em .obj/.mtl/.png
+ * (Meshy_AI_Solar_Cube_Circuit_20261021, 22MB, ~237k triângulos), convertido
+ * com obj2gltf e otimizado com gltf-transform (weld + simplify 0.1 + resize
+ * 1024 + jpeg 85) para ~1,2MB / ~24k triângulos.
+ * Os arquivos brutos ficam fora do git — só o .glb otimizado em
+ * public/assets/models/solar-cube.glb entra no repositório.
  */
 
-const MODEL_URL = '/assets/models/cubesat.glb';
+const MODEL_URL = '/assets/models/solar-cube.glb';
 
-// Largura alvo (unidades da cena) para a maior dimensão do satélite depois
-// de normalizado — ajuste este número se ele aparecer grande/pequeno demais
-// na Hero.
-const TARGET_WIDTH = 4.6;
+// Tamanho alvo (unidades da cena) da maior dimensão do modelo depois de
+// normalizado — ajuste se ele aparecer grande/pequeno demais na Hero.
+const TARGET_SIZE = 4.6;
 
-type GLTFResult = GLTF & {
-  nodes: {
-    Meshy_AI_Tiny_Satellite_on_the_0901201309_texture: THREE.Mesh;
-  };
-  materials: {
-    ['Material.001']: THREE.MeshStandardMaterial;
-  };
-};
-
-function RealSatelliteMesh() {
-  const { nodes, materials } = useGLTF(MODEL_URL) as unknown as GLTFResult;
-  const geometry = nodes.Meshy_AI_Tiny_Satellite_on_the_0901201309_texture.geometry;
+function SolarCubeMesh() {
+  const { scene } = useGLTF(MODEL_URL);
 
   // O .glb não carrega uma unidade confiável (veio de um .obj gerado por IA),
-  // então centralizamos e normalizamos a escala pelo bounding box real,
-  // em vez de confiar em valores fixos.
-  const { scale, offset } = useMemo(() => {
-    geometry.computeBoundingBox();
-    const box = geometry.boundingBox as THREE.Box3;
-    const size = new THREE.Vector3();
-    const center = new THREE.Vector3();
-    box.getSize(size);
-    box.getCenter(center);
+  // então centralizamos e normalizamos a escala pelo bounding box real, sem
+  // depender do nome dos nós/materiais exportados pelo Meshy.
+  const { model, scale, offset } = useMemo(() => {
+    const model = scene.clone(true);
+    model.traverse((obj) => {
+      if ((obj as THREE.Mesh).isMesh) {
+        obj.castShadow = true;
+        obj.receiveShadow = true;
+      }
+    });
 
-    const scale = TARGET_WIDTH / Math.max(size.x, 1e-4);
-    return { scale, offset: center.multiplyScalar(-scale) };
-  }, [geometry]);
+    const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
 
-  return (
-    <mesh
-      geometry={geometry}
-      material={materials['Material.001']}
-      position={[offset.x, offset.y, offset.z]}
-      scale={scale}
-      castShadow
-      receiveShadow
-    />
-  );
+    const scale = TARGET_SIZE / Math.max(size.x, size.y, size.z, 1e-4);
+    return { model, scale, offset: center.multiplyScalar(-scale) };
+  }, [scene]);
+
+  return <primitive object={model} position={[offset.x, offset.y, offset.z]} scale={scale} />;
 }
 
 useGLTF.preload(MODEL_URL);
@@ -126,10 +111,10 @@ export default function CubeSat({
 
   return (
     <group ref={spin} scale={0.95}>
-      {/* Suspense local: enquanto o .glb carrega, o gradiente estelar do
+      {/* Suspense local: enquanto o .glb carrega, o fundo preto do
           SatelliteBackground continua visível por trás (poster/fallback). */}
       <Suspense fallback={null}>
-        <RealSatelliteMesh />
+        <SolarCubeMesh />
       </Suspense>
     </group>
   );
