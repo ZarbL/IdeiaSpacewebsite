@@ -22,9 +22,9 @@ function detectReducedMotion(): boolean {
 }
 
 /**
- * Fundo 3D da Hero: um CubeSat animado do Ideia Space sobre um gradiente estelar.
+ * Fundo 3D da Hero: um CubeSat animado do Ideia Space sobre fundo preto.
  * - Carrega o three.js só no cliente (dynamic + ssr:false).
- * - O gradiente CSS abaixo funciona como poster/estado de carregamento e como
+ * - O fundo preto abaixo funciona como poster/estado de carregamento e como
  *   fallback caso o WebGL não esteja disponível.
  * - Pausa o render loop quando a Hero sai da viewport.
  * - Respeita prefers-reduced-motion.
@@ -56,14 +56,8 @@ export default function SatelliteBackground() {
 
   return (
     <div ref={containerRef} className="absolute inset-0 overflow-hidden">
-      {/* Gradiente estelar (poster + fallback) */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 120% 80% at 70% 30%, #1b2a54 0%, #0a1130 45%, #03060f 100%)',
-        }}
-      />
+      {/* Fundo preto (poster + fallback) */}
+      <div className="absolute inset-0 bg-black" />
 
       {webglOk && (
         <SatelliteScene active={active} reducedMotion={reducedMotion} view={view} />
