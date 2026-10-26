@@ -37,6 +37,15 @@ describe('paridade dos arquivos de tradução', () => {
     expect(diff(ptKeys, esKeys)).toEqual([]);
   });
 
-  // Valores vazios pré-existentes (hero.subtitle, services.spaceChallenge.*)
-  // são rastreados numa issue — não bloqueiam o CI por enquanto.
+  it('nenhum valor vazio (fora a exceção conhecida)', () => {
+    // pt/en deixam a descrição do hero de /services vazia; es tem texto.
+    const allowEmpty = new Set(['services.spaceChallenge.description']);
+    for (const [locale, messages] of Object.entries({ en, pt, es })) {
+      const empty = flatKeys(messages as Json).filter((k) => {
+        const v = k.split('.').reduce<unknown>((o, p) => (o as Json)[p], messages);
+        return v === '' && !allowEmpty.has(k);
+      });
+      expect(empty, locale).toEqual([]);
+    }
+  });
 });

@@ -75,9 +75,6 @@ export default async function MissionsPage({params}: {params: Promise<{locale: s
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-2xl mb-6">
             {t('hero.title')}
           </h1>
-          <p className="text-xl sm:text-2xl md:text-3xl text-gray-100 drop-shadow-lg">
-            {t('hero.subtitle')}
-          </p>
         </div>
 
         {/* Scroll Indicator at Bottom */}

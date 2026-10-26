@@ -1,23 +1,31 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import styles from './ContactForm.module.css';
 
 export default function ContactForm() {
   const t = useTranslations('contact.form');
-  
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    website: '' // honeypot: humanos não veem, bots preenchem
   });
+
+  // A API descarta envios feitos rápido demais após abrir a página (bots).
+  const mountedAt = useRef(0);
+  useEffect(() => {
+    mountedAt.current = Date.now();
+  }, []);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
     message: string;
+    mailtoLink?: string;
   }>({ type: null, message: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -38,36 +46,40 @@ export default function ContactForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, elapsedMs: Date.now() - mountedAt.current }),
       });
 
       const data = await response.json();
+      // Fallback sem Resend: mostra o link mailto em vez de navegar para fora da página.
+      const mailtoLink: string | undefined =
+        data.useMailto && data.mailtoLink ? data.mailtoLink : undefined;
 
       if (response.ok) {
         setSubmitStatus({
           type: 'success',
-          message: data.message || 'Mensagem enviada com sucesso!'
+          message: data.message || 'Mensagem enviada com sucesso!',
+          mailtoLink,
         });
 
-        // Se retornar useMailto, abre o cliente de email
-        if (data.useMailto && data.mailtoLink) {
-          window.location.href = data.mailtoLink;
-        }
+        // Com o link mailto na tela, mantém a mensagem e o formulário até o usuário agir.
+        if (mailtoLink) return;
 
-        // Reset form após 2 segundos
+        // Reset form após 3 segundos
         setTimeout(() => {
           setFormData({
             name: '',
             email: '',
             subject: '',
-            message: ''
+            message: '',
+            website: ''
           });
           setSubmitStatus({ type: null, message: '' });
         }, 3000);
       } else {
         setSubmitStatus({
           type: 'error',
-          message: data.error || 'Erro ao enviar mensagem. Tente novamente.'
+          message: data.error || 'Erro ao enviar mensagem. Tente novamente.',
+          mailtoLink,
         });
       }
     } catch (error) {
@@ -90,8 +102,27 @@ export default function ContactForm() {
           {submitStatus.type && (
             <div className={`${styles.statusMessage} ${styles[submitStatus.type]}`}>
               {submitStatus.message}
+              {submitStatus.mailtoLink && (
+                <>
+                  {' '}
+                  <a href={submitStatus.mailtoLink} target="_blank" rel="noopener noreferrer">
+                    {t('openEmail')}
+                  </a>
+                </>
+              )}
             </div>
           )}
+
+          <div className={styles.honeypot} aria-hidden="true">
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={formData.website}
+              onChange={handleChange}
+            />
+          </div>
 
           <div className={styles.formField}>
             <input

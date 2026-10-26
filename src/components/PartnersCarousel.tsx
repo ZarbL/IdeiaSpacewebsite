@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { getImageUrl } from '@/lib/cloudinary';
 import './PartnersCarousel.css';
 
@@ -22,7 +23,7 @@ const PartnersCarousel = () => {
       <div className="partners-carousel-container">
         {partners.map((partner, index) => (
           <div key={index} className="partner-card">
-            <img src={partner.logo} alt={partner.name} className="partner-logo" />
+            <Image src={partner.logo} alt={partner.name} width={200} height={150} className="partner-logo" />
           </div>
         ))}
       </div>

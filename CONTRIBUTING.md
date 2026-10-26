@@ -17,8 +17,6 @@ Variáveis de ambiente (todas opcionais — há fallback):
 | var | para quê | sem ela |
 |---|---|---|
 | `RESEND_API_KEY` | envio real do formulário de contato | cai para `mailto:` |
-| `N2YO_API_KEY` | TLEs de satélites (grupos não-IdeiaSpace) | dados estáticos de fallback |
-| `SPACETRACK_USERNAME` / `SPACETRACK_PASSWORD` | TLEs dos satélites IdeiaSpace | fallback |
 | `NEXT_PUBLIC_USE_CLOUDINARY` | servir vídeo/imagem do Cloudinary | `/assets/` local |
 
 ## Fluxo
@@ -40,8 +38,8 @@ Vitest + Testing Library + jsdom.
 - `npm run test:fuzz` — arquivos `*.fuzz.test.ts` (fast-check). `FUZZ_RUNS`
   escala as iterações no run noturno.
 
-Cobrimos hoje: `lib/cloudinary`, `controllers/home.controller`, as rotas
-`api/contact` e `api/satellites` (integração, com `resend`/`fetch` mockados) e a
+Cobrimos hoje: `lib/cloudinary`, `controllers/home.controller`, a rota
+`api/contact` (integração, com `resend` mockado) e a
 paridade dos arquivos de tradução (`messages/*.json`).
 
 ## Estrutura
@@ -49,7 +47,7 @@ paridade dos arquivos de tradução (`messages/*.json`).
 ```
 src/
 ├── app/[locale]/     # páginas (App Router, segmento de locale)
-├── app/api/          # rotas server-side (contact, satellites)
+├── app/api/          # rotas server-side (contact)
 ├── components/       # componentes de UI
 ├── views/sections/   # seções de página compostas
 ├── controllers/      # montagem de conteúdo a partir das traduções

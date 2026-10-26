@@ -185,7 +185,6 @@ ideaspace-website/
 │   │
 │   ├── lib/                       # Utilitários
 │   │   ├── cloudinary.ts         # Helper Cloudinary
-│   │   ├── wordpress.ts          # Integração WordPress (futuro)
 │   │   └── assets.ts             # Helper de assets
 │   │
 │   ├── i18n.ts                   # Configuração i18n

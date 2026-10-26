@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { ChallengeContent } from '@/models/content.model';
 import OptimizedVideo from '@/components/OptimizedVideo';
+import RichText from '@/components/RichText';
 
 interface ChallengeSectionProps {
   content: ChallengeContent;
@@ -27,10 +28,9 @@ export default function ChallengeSection({ content }: ChallengeSectionProps) {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 tracking-wide">
             {content.title}
           </h2>
-          <p 
-            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-100 leading-relaxed mb-6 sm:mb-8 drop-shadow-lg max-w-full lg:max-w-[600px] xl:max-w-[700px]"
-            dangerouslySetInnerHTML={{ __html: content.description }}
-          />
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-100 leading-relaxed mb-6 sm:mb-8 drop-shadow-lg max-w-full lg:max-w-[600px] xl:max-w-[700px]">
+            <RichText text={content.description} />
+          </p>
           <div className="flex items-center gap-3 md:gap-4 justify-center md:justify-start">
             <Link
               href={`/${locale}${content.buttonLink}`}

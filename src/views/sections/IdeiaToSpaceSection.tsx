@@ -1,10 +1,12 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
 import { getImageUrl } from '@/lib/cloudinary';
+import RichText from '@/components/RichText';
 
 interface IdeiaToSpaceSectionProps {
   title: string;
@@ -33,10 +35,12 @@ export default function IdeiaToSpaceSection({ title, description }: IdeiaToSpace
     <section className="h-screen w-full relative overflow-hidden snap-start flex items-center justify-center">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src={getImageUrl('falcon9.jpg')}
           alt="Falcon 9 Launch"
-          className="w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
         />
       </div>
 
@@ -56,8 +60,9 @@ export default function IdeiaToSpaceSection({ title, description }: IdeiaToSpace
           <p 
             className="text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl text-gray-100 leading-relaxed drop-shadow-lg mx-auto lg:mx-0 mb-6 md:mb-8"
             style={{ maxWidth: titleWidth > 0 ? `${titleWidth}px` : '100%' }}
-            dangerouslySetInnerHTML={{ __html: description }}
-          />
+          >
+            <RichText text={description} />
+          </p>
           <div className="flex items-center gap-3 md:gap-4 justify-center lg:justify-start">
             <Link
               href={`/${locale}/about`}

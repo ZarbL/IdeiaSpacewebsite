@@ -7,21 +7,16 @@
     "teacherResources": "Recursos",
     "programmingTool": "Programación",
     "satellites": "Nuestros Satélites",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "language": "Idioma"
   },
   "common": {
     "scrollForMore": "DESPLÁZATE PARA MÁS"
   },
   "hero": {
     "title": "Bienvenido a Ideia Space",
-    "subtitle": "",
     "button": "Ver vídeo",
-    "aboutButton": "Sobre Nosotros",
-    "viewTop": "Ver la parte superior del satélite",
-    "viewBottom": "Ver la parte inferior del satélite",
-    "viewLeft": "Ver el lado izquierdo del satélite",
-    "viewRight": "Ver el lado derecho del satélite",
-    "viewReset": "Volver a la vista predeterminada"
+    "aboutButton": "Sobre Nosotros"
   },
   "challenge": {
     "title": "El Desafío Espacial",
@@ -33,8 +28,7 @@
     "description": "Conoce más sobre las misiones desarrolladas por nuestros estudiantes",
     "button": "Saber Más",
     "hero": {
-      "title": "Misiones Espaciales",
-      "subtitle": ""
+      "title": "Misiones Espaciales"
     },
     "development": {
       "title": "¿Cómo ocurre el desarrollo de misiones?",
@@ -67,16 +61,6 @@
         "student": "Resumen de la Misión",
         "description": "La misión forma parte de un proyecto desarrollado por estudiantes de secundaria, que tiene como objetivo usar el satélite para conectar sensores IoT en Brasil. El satélite está equipado con una carga útil compuesta por una tarjeta SD para almacenar datos recibidos de estaciones terrestres y un sistema de radio dedicado a la transmisión y retransmisión de la información recopilada. Al combinar tecnología espacial accesible y aplicación práctica, el proyecto ofrece a los estudiantes experiencia práctica en ingeniería espacial, desde el desarrollo hasta la operación de la misión.\n\n**Objetivo de la Misión**\n\nEl objetivo de esta misión es monitorear la calidad del suelo brasileño durante los ciclos de cosecha y entrecosecha a través de un picossatélite desarrollado por estudiantes, proporcionando datos que ayuden a los productores rurales en la selección de cultivos y en la adopción de prácticas de manejo sostenible, mientras promueve la capacitación técnica de los involucrados en ingeniería espacial aplicada."
       }
-    },
-    "tracker": {
-      "title": "Rastreo de Satélites",
-      "description": "Sigue la posición de los satélites alrededor de la Tierra, Actualización cada 5 minutos.",
-      "filters": {
-        "stations": "Estaciones Espaciales",
-        "starlink": "Starlink",
-        "active": "Satélites Activos"
-      },
-      "count": "satélites siendo rastreados en tiempo real"
     }
   },
   "stats": {
@@ -180,8 +164,7 @@
   "services": {
     "spaceChallenge": {
       "title": "El Desafío Espacial",
-      "description": "El Desafío Espacial es un proyecto de Ideia Space que conecta el universo con el aula. Transformamos a los estudiantes en protagonistas, llevándolos desde la concepción de una misión hasta el lanzamiento de un satélite real.",
-      "button": "Vea nuestro impacto"
+      "description": "El Desafío Espacial es un proyecto de Ideia Space que conecta el universo con el aula. Transformamos a los estudiantes en protagonistas, llevándolos desde la concepción de una misión hasta el lanzamiento de un satélite real."
     },
     "whySpaceChallenge": {
       "description": "El Desafío Espacial es el viaje educativo práctico de Ideia Space que conecta a estudiantes de la Escuela Secundaria a la Educación Superior con una misión espacial real. A través de desafíos interdisciplinarios y proyectos prácticos, los alumnos desarrollan competencias en ciencia, tecnología, ingeniería y trabajo en equipo, mientras diseñan, programan y operan un satélite educativo. Más que aprender sobre el espacio, forman parte de él — adquiriendo habilidades técnicas, pensamiento crítico y visión de futuro alineadas con las demandas de la nueva economía espacial.",
@@ -330,7 +313,8 @@
       "subject": "Asunto",
       "message": "Mensaje",
       "send": "Enviar Mensaje",
-      "sending": "Enviando..."
+      "sending": "Enviando...",
+      "openEmail": "Abrir en mi correo"
     },
     "whatsapp": "WhatsApp"
   },

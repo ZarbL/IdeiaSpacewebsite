@@ -12,6 +12,7 @@
     "test:run": "vitest run",
     "test:ci": "vitest run --coverage",
     "test:fuzz": "vitest run fuzz.test",
+    "test:e2e": "playwright test",
     "compress:videos": "node scripts/compress-videos.js",
     "upload:cloudinary": "node scripts/upload-to-cloudinary.js",
     "upload:large": "node scripts/upload-large-videos.js"
@@ -19,18 +20,19 @@
   "dependencies": {
     "@react-three/drei": "^10.7.8",
     "@react-three/fiber": "^9.7.0",
+    "@upstash/ratelimit": "^2.2.0",
+    "@upstash/redis": "^1.39.0",
     "cloudinary": "^2.8.0",
     "next": "^16.0.8",
     "next-cloudinary": "^6.17.5",
     "next-intl": "^4.5.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-globe.gl": "^2.37.0",
     "resend": "^6.5.2",
-    "satellite.js": "^6.0.2",
     "three": "^0.182.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.3",

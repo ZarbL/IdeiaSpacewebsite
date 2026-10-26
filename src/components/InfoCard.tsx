@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 interface InfoCardProps {
   title: string;
@@ -16,7 +17,7 @@ const InfoCard = ({ title, description, image }: InfoCardProps) => {
         {/* Background Image */}
         {image && (
           <div className="absolute inset-0 opacity-30">
-            <img src={image} alt={title} className="w-full h-full object-cover" />
+            <Image src={image} alt={title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
           </div>
         )}
         

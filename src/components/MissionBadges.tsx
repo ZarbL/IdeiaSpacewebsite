@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import RichText from './RichText';
 import './MissionBadges.css';
 
 interface Mission {
@@ -19,13 +20,6 @@ interface MissionBadgesProps {
 
 export default function MissionBadges({ missions }: MissionBadgesProps) {
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
-
-  // Convert markdown-style formatting to HTML
-  const formatDescription = (text: string) => {
-    return text
-      .replace(/\n\n/g, '<br/><br/>')
-      .replace(/\*\*(.*?)\*\*/g, '<strong class="mission-objective">$1</strong>');
-  };
 
   return (
     <div className="mission-badges-container">
@@ -57,7 +51,9 @@ export default function MissionBadges({ missions }: MissionBadgesProps) {
           <div className="mission-details-content">
             <div className="mission-text">
               <h3 className="mission-student-name">{selectedMission.studentName}</h3>
-              <p className="mission-description" dangerouslySetInnerHTML={{ __html: formatDescription(selectedMission.missionDescription) }} />
+              <p className="mission-description">
+                <RichText text={selectedMission.missionDescription} strongClassName="mission-objective" />
+              </p>
             </div>
             <div className="mission-image-wrapper">
               <Image

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { getContactLimiter } from '@/lib/rate-limit';
 
 // Construção preguiçosa: `new Resend()` lança quando a chave está ausente
 // (resend v6). Fazer isso no nível do módulo quebra o `next build` em ambientes
@@ -26,10 +27,32 @@ function escapeHtml(value: string): string {
     .replace(/'/g, '&#39;');
 }
 
+/** Tempo mínimo entre abrir e enviar o formulário; abaixo disso é bot. */
+const MIN_FILL_MS = 3000;
+
+/**
+ * Filtro barato de bot, antes do rate limit: o campo escondido `website`
+ * (honeypot) veio preenchido, ou o formulário foi enviado rápido demais.
+ * `elapsedMs` é medido pelo ContactForm; quem posta direto na API não o envia.
+ */
+function looksLikeBot(website: unknown, elapsedMs: unknown): boolean {
+  if (website) return true;
+  return typeof elapsedMs !== 'number' || elapsedMs < MIN_FILL_MS;
+}
+
+// Na Vercel o primeiro valor de x-forwarded-for é escrito pela borda (não é forjável).
+function clientIp(request: NextRequest): string {
+  return (
+    request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+    request.headers.get('x-real-ip') ||
+    'unknown'
+  );
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json().catch(() => null);
-    const { name, email, subject, message } = body ?? {};
+    const { name, email, subject, message, website, elapsedMs } = body ?? {};
 
     // Validação básica
     if (!name || !email || !subject || !message) {
@@ -55,6 +78,24 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Email inválido' },
         { status: 400 }
+      );
+    }
+
+    // Bot: responde como sucesso para não ensinar o que foi detectado, e não envia nada.
+    if (looksLikeBot(website, elapsedMs)) {
+      console.warn('Contact form submission discarded (honeypot/timing).');
+      return NextResponse.json(
+        { success: true, message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.' },
+        { status: 200 }
+      );
+    }
+
+    const { success, reset } = await getContactLimiter().limit(clientIp(request));
+    if (!success) {
+      const retryAfter = Math.max(1, Math.ceil((reset - Date.now()) / 1000));
+      return NextResponse.json(
+        { error: 'Muitas mensagens em pouco tempo. Tente novamente em alguns minutos.' },
+        { status: 429, headers: { 'Retry-After': String(retryAfter) } }
       );
     }
 

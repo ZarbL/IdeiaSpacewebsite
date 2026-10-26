@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import { Float, Stars, Environment, Lightformer } from '@react-three/drei';
 import CubeSat from './CubeSat';
-import type { SatelliteView } from './ViewControls';
 
 /**
  * Ajusta a distância da câmera conforme o formato da viewport para o
@@ -30,18 +29,15 @@ interface SatelliteSceneProps {
   /** Pausa o render loop quando a Hero sai da tela (economia de bateria/GPU). */
   active?: boolean;
   reducedMotion?: boolean;
-  /** Face do satélite selecionada pelo usuário no D-pad (ViewControls). */
-  view?: SatelliteView;
 }
 
-export default function SatelliteScene({
-  active = true,
-  reducedMotion = false,
-  view = 'default',
-}: SatelliteSceneProps) {
+export default function SatelliteScene({ active = true, reducedMotion = false }: SatelliteSceneProps) {
   return (
     <Canvas
-      style={{ position: 'absolute', inset: 0 }}
+      // Arrastar gira o satélite (CubeSat). No toque, só o arraste horizontal:
+      // o vertical continua rolando a página, já que a Hero ocupa a tela toda.
+      style={{ position: 'absolute', inset: 0, touchAction: 'pan-y' }}
+      className="cursor-grab active:cursor-grabbing"
       dpr={[1, 1.75]}
       frameloop={active ? 'always' : 'never'}
       camera={{ position: [0, 0.4, 8], fov: 42 }}
@@ -54,14 +50,12 @@ export default function SatelliteScene({
       <pointLight position={[-6, -2, -4]} intensity={55} color="#e6007e" />
       <pointLight position={[4, 2, 6]} intensity={16} color="#5478e6" />
 
-      {/* Com uma face selecionada no D-pad, reduz o flutuar ambiente pra manter a
-          view legível — sem competir com a rotação que o usuário pediu. */}
       <Float
-        speed={reducedMotion || view !== 'default' ? 0 : 1.4}
-        rotationIntensity={reducedMotion || view !== 'default' ? 0 : 0.3}
-        floatIntensity={reducedMotion || view !== 'default' ? 0 : 0.6}
+        speed={reducedMotion ? 0 : 1.4}
+        rotationIntensity={reducedMotion ? 0 : 0.3}
+        floatIntensity={reducedMotion ? 0 : 0.6}
       >
-        <CubeSat reducedMotion={reducedMotion} view={view} />
+        <CubeSat reducedMotion={reducedMotion} />
       </Float>
 
       <Stars

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import './ResourceCard.css';
 import { useRouter, usePathname } from 'next/navigation';
 
@@ -26,7 +27,7 @@ const ResourceCard = ({ title, description, image, isWorkInProgress = false, lin
   const cardContent = (
     <div className={`resource-card ${isWorkInProgress ? 'work-in-progress' : ''}`}>
       <div className="resource-card-image">
-        <img src={image} alt={title} />
+        <Image src={image} alt={title} fill sizes="(max-width: 768px) 100vw, 33vw" />
         {isWorkInProgress && (
           <div className="wip-badge">Work in Progress</div>
         )}

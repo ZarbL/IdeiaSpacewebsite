@@ -59,7 +59,7 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
     >
       <div className="carousel-container">
         {/* Previous Button */}
-        <button className="carousel-button prev-button" onClick={goToPrevious}>
+        <button className="carousel-button prev-button" onClick={goToPrevious} aria-label="Previous testimonial">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
@@ -80,7 +80,7 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
         </div>
 
         {/* Next Button */}
-        <button className="carousel-button next-button" onClick={goToNext}>
+        <button className="carousel-button next-button" onClick={goToNext} aria-label="Next testimonial">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
           </svg>

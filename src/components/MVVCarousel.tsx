@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import './MVVCarousel.css';
 import { getImageUrl, getVideoUrl } from '@/lib/cloudinary';
 
@@ -9,7 +10,7 @@ const MVVCarousel = () => {
     <div className="mvv-carousel-wrapper">
       <div className="mvv-carousel-container">
         <div className="mvv-card">
-          <img src={getImageUrl('impactocard1.png')} alt="Leader" className="mvv-image" />
+          <Image src={getImageUrl('impactocard1.png')} alt="Leader" fill sizes="280px" className="mvv-image" />
         </div>
         <div className="mvv-card">
           <video autoPlay loop muted playsInline className="mvv-video">
@@ -17,7 +18,7 @@ const MVVCarousel = () => {
           </video>
         </div>
         <div className="mvv-card">
-          <img src={getImageUrl('impactocard3.png')} alt="Leader" className="mvv-image" />
+          <Image src={getImageUrl('impactocard3.png')} alt="Leader" fill sizes="280px" className="mvv-image" />
         </div>
       </div>
     </div>

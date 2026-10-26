@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { getImageUrl, getVideoUrl } from '@/lib/cloudinary';
 import './HistoryCarousel.css';
 
@@ -9,7 +10,7 @@ const HistoryCarousel = () => {
     <div className="history-carousel-wrapper">
       <div className="history-carousel-container">
         <div className="history-card">
-          <img src={getImageUrl('beneficio2.png')} alt="História 1" className="history-video" />
+          <Image src={getImageUrl('beneficio2.png')} alt="História 1" fill sizes="280px" className="history-video" />
         </div>
         <div className="history-card">
           <video
@@ -23,7 +24,7 @@ const HistoryCarousel = () => {
           </video>
         </div>
         <div className="history-card">
-          <img src={getImageUrl('card3.png')} alt="História 3" className="history-video" />
+          <Image src={getImageUrl('card3.png')} alt="História 3" fill sizes="280px" className="history-video" />
         </div>
       </div>
     </div>

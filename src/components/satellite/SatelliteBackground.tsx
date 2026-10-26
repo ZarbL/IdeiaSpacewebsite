@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-import ViewControls, { SatelliteView } from './ViewControls';
 
 const SatelliteScene = dynamic(() => import('./SatelliteScene'), { ssr: false });
 
@@ -34,7 +33,6 @@ export default function SatelliteBackground() {
   const [active, setActive] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(detectReducedMotion);
   const [webglOk] = useState(detectWebgl);
-  const [view, setView] = useState<SatelliteView>('default');
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -59,11 +57,7 @@ export default function SatelliteBackground() {
       {/* Fundo preto (poster + fallback) */}
       <div className="absolute inset-0 bg-black" />
 
-      {webglOk && (
-        <SatelliteScene active={active} reducedMotion={reducedMotion} view={view} />
-      )}
-
-      {webglOk && <ViewControls active={view} onChange={setView} />}
+      {webglOk && <SatelliteScene active={active} reducedMotion={reducedMotion} />}
     </div>
   );
 }

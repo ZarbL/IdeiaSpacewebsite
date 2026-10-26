@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { getImageUrl, getVideoUrl } from '@/lib/cloudinary';
 import './BenefitsCarousel.css';
 
@@ -9,7 +10,7 @@ const BenefitsCarousel = () => {
     <div className="benefits-carousel-wrapper">
       <div className="benefits-carousel-container">
         <div className="benefits-card">
-          <img src={getImageUrl('beneficio1.png')} alt="Benefício 1" className="benefits-image" />
+          <Image src={getImageUrl('beneficio1.png')} alt="Benefício 1" fill sizes="280px" className="benefits-image" />
         </div>
         <div className="benefits-card">
           <video
@@ -23,7 +24,7 @@ const BenefitsCarousel = () => {
           </video>
         </div>
         <div className="benefits-card">
-          <img src={getImageUrl('beneficio3.png')} alt="Benefício 3" className="benefits-image" />
+          <Image src={getImageUrl('beneficio3.png')} alt="Benefício 3" fill sizes="280px" className="benefits-image" />
         </div>
       </div>
     </div>

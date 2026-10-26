@@ -4,11 +4,10 @@ import { PageContent } from '@/models/content.model';
 import { getVideoUrl } from '@/lib/cloudinary';
 
 export class HomeController {
-  static getPageContent(t: any): PageContent {
+  static getPageContent(t: (key: string) => string): PageContent {
     return {
       hero: {
         title: t('hero.title'),
-        subtitle: t('hero.subtitle'),
         videoSrc: getVideoUrl('ideiaforword.mp4'),
         buttonText: t('hero.button'),
         buttonLink: '/about',

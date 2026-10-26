@@ -7,21 +7,16 @@
     "teacherResources": "Resources",
     "programmingTool": "Programming",
     "satellites": "Our Satellites",
-    "contact": "Contact"
+    "contact": "Contact",
+    "language": "Language"
   },
   "common": {
     "scrollForMore": "SCROLL FOR MORE"
   },
   "hero": {
     "title": "Welcome to Ideia Space",
-    "subtitle": "",
     "button": "Watch video",
-    "aboutButton": "About Us",
-    "viewTop": "View top of the satellite",
-    "viewBottom": "View bottom of the satellite",
-    "viewLeft": "View left side of the satellite",
-    "viewRight": "View right side of the satellite",
-    "viewReset": "Back to default view"
+    "aboutButton": "About Us"
   },
   "challenge": {
     "title": "Space Challenge",
@@ -33,8 +28,7 @@
     "description": "Learn more about the missions developed by our students",
     "button": "Learn More",
     "hero": {
-      "title": "Space Missions",
-      "subtitle": ""
+      "title": "Space Missions"
     },
     "development": {
       "title": "How does mission development happen?",
@@ -67,16 +61,6 @@
         "student": "Mission Summary",
         "description": "The mission is part of a project developed by high school students, which aims to use the satellite to connect IoT sensors in Brazil. The satellite is equipped with a payload consisting of an SD card to store data received from ground stations and a radio system dedicated to transmitting and relaying collected information. By combining accessible space technology and practical application, the project offers students practical experience in space engineering, from development to mission operation.\n\n**Mission Objective**\n\nThe objective of this mission is to monitor the quality of Brazilian soil during crop and off-season cycles through a picosatellite developed by students, providing data to assist rural producers in crop selection and adoption of sustainable management practices, while promoting technical training for those involved in applied space engineering."
       }
-    },
-    "tracker": {
-      "title": "Satellite Tracking",
-      "description": "Track the position of satellites around the Earth, Updated every 5 minutes.",
-      "filters": {
-        "stations": "Space Stations",
-        "starlink": "Starlink",
-        "active": "Active Satellites"
-      },
-      "count": "satellites being tracked in real-time"
     }
   },
   "stats": {
@@ -180,8 +164,7 @@
   "services": {
     "spaceChallenge": {
       "title": "Space Challenge",
-      "description": "",
-      "button": "See our impact"
+      "description": ""
     },
     "whySpaceChallenge": {
       "description": "The Space Challenge is Ideia Space's practical educational journey that connects students from Middle School to Higher Education to a real space mission. Through interdisciplinary challenges and hands-on projects, students develop skills in science, technology, engineering and teamwork, while designing, programming and operating an educational satellite. More than learning about space, they become part of it — acquiring technical skills, critical thinking and future vision aligned with the demands of the new space economy.",
@@ -330,7 +313,8 @@
       "subject": "Subject",
       "message": "Message",
       "send": "Send Message",
-      "sending": "Sending..."
+      "sending": "Sending...",
+      "openEmail": "Open in my email"
     },
     "whatsapp": "WhatsApp"
   },

@@ -1,7 +1,19 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 import { getImageUrl } from '@/lib/cloudinary';
+
+/**
+ * Separa o número animável do texto em volta: "1600+" → 1600 com sufixo "+",
+ * "50k" mantém o "k", "1.500" → 1500. Sem dígitos → null (exibe o texto como está).
+ */
+export function parseStat(value: string): { prefix: string; target: number; suffix: string } | null {
+  const match = value.match(/^(\D*?)(\d[\d.,]*)(.*)$/);
+  if (!match) return null;
+  const [, prefix, digits, suffix] = match;
+  return { prefix, target: parseInt(digits.replace(/\D/g, ''), 10), suffix };
+}
 
 interface StatItemProps {
   number: string;
@@ -14,9 +26,8 @@ function StatItem({ number, label, size = 'medium' }: StatItemProps) {
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
 
-  // Extract numeric value from string (e.g., "1500+" -> 1500)
-  const targetNumber = parseInt(number.replace(/\D/g, '')) || 0;
-  const hasSuffix = number.match(/[+]/);
+  const stat = parseStat(number);
+  const targetNumber = stat?.target ?? 0;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -72,8 +83,7 @@ function StatItem({ number, label, size = 'medium' }: StatItemProps) {
   return (
     <div ref={elementRef} className="flex flex-col items-center justify-center text-center">
       <div className={`font-bold text-white ${sizeClasses[size]} tracking-tight`}>
-        {count}
-        {hasSuffix && '+'}
+        {stat ? `${stat.prefix}${count}${stat.suffix}` : number}
       </div>
       <p className={`text-gray-300 mt-3 md:mt-4 max-w-[200px] md:max-w-[250px] leading-relaxed ${labelSizeClasses[size]}`}>
         {label}
@@ -97,10 +107,12 @@ export default function StatsCounter({ stats, title, subtitle }: StatsCounterPro
     <section className="h-screen w-full relative overflow-hidden snap-start flex items-center justify-center">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src={getImageUrl('contador.jpg')}
           alt="Space Background"
-          className="w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
         />
       </div>
 

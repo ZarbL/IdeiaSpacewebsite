@@ -15,14 +15,9 @@ const eslintConfig = defineConfig([
     "coverage/**",
     "scripts/**", // scripts Node (CJS) de build/mídia — não são código da app
     "*.config.{js,mjs,ts}",
+    "playwright-report/**",
+    "test-results/**",
   ]),
-  {
-    rules: {
-      // Débito pré-existente de tipagem — vira warning para não travar o CI;
-      // acompanhado numa issue.
-      "@typescript-eslint/no-explicit-any": "warn",
-    },
-  },
 ]);
 
 export default eslintConfig;

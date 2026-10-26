@@ -7,21 +7,16 @@
     "teacherResources": "Recursos",
     "programmingTool": "Programação",
     "satellites": "Nossos Satélites",
-    "contact": "Contato"
+    "contact": "Contato",
+    "language": "Idioma"
   },
   "common": {
     "scrollForMore": "ROLE PARA MAIS"
   },
   "hero": {
     "title": "Bem-vindo ao Ideia Space",
-    "subtitle": "",
     "button": "Assistir vídeo",
-    "aboutButton": "Sobre Nós",
-    "viewTop": "Ver parte de cima do satélite",
-    "viewBottom": "Ver parte de baixo do satélite",
-    "viewLeft": "Ver lado esquerdo do satélite",
-    "viewRight": "Ver lado direito do satélite",
-    "viewReset": "Voltar à visão padrão"
+    "aboutButton": "Sobre Nós"
   },
   "challenge": {
     "title": "Desafio Espacial",
@@ -33,8 +28,7 @@
     "description": "Conheça mais sobre as missões desenvolvidas pelos nossos alunos",
     "button": "Saiba Mais",
     "hero": {
-      "title": "Missões Espaciais",
-      "subtitle": ""
+      "title": "Missões Espaciais"
     },
     "development": {
       "title": "Como acontece o desenvolvimento de missões?",
@@ -67,16 +61,6 @@
         "student": "Resumo da Missão",
         "description": "A missão faz parte de um projeto desenvolvido por estudantes do ensino médio, que visa usar o satélite para conectar sensores de IoT no Brasil. O satélite é equipado com uma carga útil composta por um cartão SD para armazenar dados recebidos de estações terrestres e um sistema de rádio dedicado à transmissão e retransmissão das informações coletadas. Ao combinar tecnologia espacial acessível e aplicação prática, o projeto oferece aos alunos experiência prática em engenharia espacial, desde o desenvolvimento até a operação da missão.\n\n**Objetivo da Missão**\n\nO objetivo da presente missão é monitorar a qualidade do solo brasileiro durante os ciclos de safra e entressafra por meio de um picosatélite desenvolvido por estudantes, fornecendo dados que auxiliem os produtores rurais na seleção de culturas e na adoção de práticas de manejo sustentável, enquanto promove a capacitação técnica dos envolvidos em engenharia espacial aplicada."
       }
-    },
-    "tracker": {
-      "title": "Rastreamento de Satélites",
-      "description": "Acompanhe a posição dos satélites ao redor da Terra, atualização a cada 5 minutos.",
-      "filters": {
-        "stations": "Estações Espaciais",
-        "starlink": "Starlink",
-        "active": "Satélites Ativos"
-      },
-      "count": "satélites sendo rastreados em tempo real"
     }
   },
   "stats": {
@@ -180,8 +164,7 @@
   "services": {
     "spaceChallenge": {
       "title": "Desafio Espacial",
-      "description": "",
-      "button": ""
+      "description": ""
     },
     "whySpaceChallenge": {
       "description": "O Desafio Espacial é um programa educacional único que capacita jovens estudantes do Ensino Fundamental II a se tornarem os próximos líderes em inovação espacial. Através de três trilhas formativas — Missões Espaciais, Design de Satélites e Construção de Satélites Orbitais —, os participantes terão a oportunidade de desenvolver habilidades práticas, trabalhar em equipe e, no final, lançar um satélite real no espaço!",
@@ -330,7 +313,8 @@
       "subject": "Assunto",
       "message": "Mensagem",
       "send": "Enviar Mensagem",
-      "sending": "Enviando..."
+      "sending": "Enviando...",
+      "openEmail": "Abrir no meu e-mail"
     },
     "whatsapp": "WhatsApp"
   },

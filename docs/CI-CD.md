@@ -20,8 +20,8 @@ publica em push para `main`, região `gru1`).
 | `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | secret | deploy via Vercel CLI no `deploy.yml`. Sem eles, a Git integration da Vercel já cobre o deploy — o job vira no-op. |
 | `SITE_URL` | variable | URL para o smoke test (default `https://ideiaspace.com.br`) |
 
-Env de runtime (na Vercel, não no CI): `RESEND_API_KEY`, `N2YO_API_KEY`,
-`SPACETRACK_USERNAME`, `SPACETRACK_PASSWORD`, `NEXT_PUBLIC_USE_CLOUDINARY`.
+Env de runtime (na Vercel, não no CI): `RESEND_API_KEY`,
+`NEXT_PUBLIC_USE_CLOUDINARY`.
 O build no CI roda sem elas de propósito — o código tem fallback.
 
 ## Branch protection sugerida para `main`

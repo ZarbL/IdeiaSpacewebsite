@@ -3,6 +3,28 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
+const isDev = process.env.NODE_ENV === 'development';
+
+// CSP completa, ainda em Report-Only (só reporta no console, não bloqueia).
+// Para promover: trocar o header para `Content-Security-Policy` (ver SECURITY.md).
+// - 'unsafe-inline' em script-src: o App Router injeta scripts inline; tirar
+//   exige nonce via proxy.ts (e render dinâmico em todas as páginas).
+// - blob: em img/connect: o GLTFLoader lê a textura embutida no .glb via blob URL.
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://res.cloudinary.com",
+  "media-src 'self' blob: https://res.cloudinary.com",
+  "font-src 'self'",
+  `connect-src 'self' blob: https://res.cloudinary.com${isDev ? ' ws:' : ''}`,
+  "worker-src 'self' blob:",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self'",
+].join('; ');
+
 const nextConfig: NextConfig = {
   reactCompiler: true,
   
@@ -37,9 +59,18 @@ const nextConfig: NextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'on'
           },
+          // Anti-clickjacking aplicado de fato: só o próprio site pode embutir as páginas.
           {
             key: 'Content-Security-Policy',
-            value: "frame-ancestors *;"
+            value: "frame-ancestors 'self'"
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN'
+          },
+          {
+            key: 'Content-Security-Policy-Report-Only',
+            value: contentSecurityPolicy
           },
           {
             key: 'X-Content-Type-Options',

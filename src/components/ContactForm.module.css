@@ -52,6 +52,21 @@
   color: #ff6464;
 }
 
+.statusMessage a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* Honeypot: fora da tela para humanos, visível para bots que preenchem tudo */
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .formField {
   display: flex;
   align-items: center;

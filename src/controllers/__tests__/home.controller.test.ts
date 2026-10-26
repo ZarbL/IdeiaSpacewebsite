@@ -16,7 +16,6 @@ describe('HomeController.getPageContent', () => {
     expect(Object.keys(c).sort()).toEqual(['challenge', 'cta', 'hero', 'technologies']);
     expect(c.hero).toMatchObject({
       title: 'T:hero.title',
-      subtitle: 'T:hero.subtitle',
       buttonLink: '/about',
       videoSrc: '/assets/ideiaforword.mp4',
     });

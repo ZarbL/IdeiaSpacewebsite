@@ -2,6 +2,7 @@ import {getTranslations} from 'next-intl/server';
 import {setRequestLocale} from 'next-intl/server';
 import { getImageUrl, getVideoUrl } from '@/lib/cloudinary';
 import OptimizedVideo from '@/components/OptimizedVideo';
+import RichText from '@/components/RichText';
 import AboutCarousel from '@/components/AboutCarousel';
 import BenefitsCarousel from '@/components/BenefitsCarousel';
 import HistoryCarousel from '@/components/HistoryCarousel';
@@ -57,10 +58,9 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 md:mb-8">
                   {t('historyTitle')}
                 </h2>
-                <p 
-                  className="text-base sm:text-lg md:text-xl text-gray-100 leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: t('historyDescription') }}
-                />
+                <p className="text-base sm:text-lg md:text-xl text-gray-100 leading-relaxed">
+                  <RichText text={t('historyDescription')} />
+                </p>
               </div>
             </div>
             <div className="hidden lg:flex items-center justify-center">
@@ -76,10 +76,9 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 md:mb-8">
                   {t('mvvTitle')}
                 </h2>
-                <p 
-                  className="text-base sm:text-lg md:text-xl text-gray-100 leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: t('mvvContent') }}
-                />
+                <p className="text-base sm:text-lg md:text-xl text-gray-100 leading-relaxed">
+                  <RichText text={t('mvvContent')} />
+                </p>
               </div>
             </div>
             <div className="hidden lg:flex items-center justify-center">

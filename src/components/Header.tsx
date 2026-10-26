@@ -99,6 +99,8 @@ export default function Header() {
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors font-medium"
+                aria-label={t('language')}
+                aria-expanded={isLangOpen}
               >
                 <span className="text-2xl">{currentLang.flag}</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

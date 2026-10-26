@@ -2,7 +2,6 @@
 
 export interface HeroContent {
   title: string;
-  subtitle: string;
   videoSrc: string;
   buttonText: string;
   buttonLink: string;
